@@ -30,7 +30,7 @@ public class Main_Menu extends Application {
 
     public static void main(String args[]) {
 
-        Application.launch();
+
     }
 
 }
