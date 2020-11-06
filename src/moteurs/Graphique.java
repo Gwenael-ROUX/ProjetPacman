@@ -17,8 +17,10 @@ public class Graphique extends Application {
     public void start(Stage stage) throws Exception {
         root = new Group();
 
-        Image image = new Image(new FileInputStream(""));
+        Image image = new Image(new FileInputStream("Image/Pacman.png"));
         ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(20);
+        imageView.setFitWidth(20);
         root.getChildren().add(imageView);
 
         scene = new Scene(root,600,300);
