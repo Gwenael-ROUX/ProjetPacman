@@ -32,7 +32,7 @@ public class Main extends Application {
         pacmanImageView.setX(0);
         pacmanImageView.setY(0);
         KeyboardController pacmanController = new KeyboardController();
-        Physics pacmanPhysics = new Physics(10, 1, false);
+        Physics pacmanPhysics = new Physics(10, 1);
 
         Character ghost = new Ghost(120, 120, new BoxCollider(110, 130, 10, 30));
         ImageView ghostImageView = new ImageView(new Image(new FileInputStream("Image/Ghost.png")));
@@ -41,7 +41,7 @@ public class Main extends Application {
         ghostImageView.setX(0);
         ghostImageView.setY(0);
         AI ghostController = new RandomAI();
-        Physics ghostPhysics = new Physics(5, 1, false);
+        Physics ghostPhysics = new Physics(5, 1);
 
         CharacterBehaviour[] behaviours = new CharacterBehaviour[2];
         behaviours[0] = new CharacterBehaviour(pacman, pacmanImageView, pacmanController, pacmanPhysics);
