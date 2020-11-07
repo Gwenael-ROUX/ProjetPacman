@@ -20,7 +20,9 @@ public class CharacterBehaviour {
 
     public void update(double x, double y){
         character.move(x, y);
-        img.setX(x); img.setY(y);
+
+        img.setX(x - img.getFitWidth()/2);
+        img.setY(y - img.getFitHeight()/2);
     }
 
     public Controller getController(){

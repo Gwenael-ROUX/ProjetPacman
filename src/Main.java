@@ -29,8 +29,8 @@ public class Main extends Application {
         ImageView pacmanImageView = new ImageView(new Image(new FileInputStream("Image/Pacman.png")));
         pacmanImageView.setFitHeight(20);
         pacmanImageView.setFitWidth(20);
-        pacmanImageView.setX(0);
-        pacmanImageView.setY(0);
+        pacmanImageView.setX(10);
+        pacmanImageView.setY(10);
         KeyboardController pacmanController = new KeyboardController();
         Physics pacmanPhysics = new Physics(10, 1, false);
 
@@ -38,8 +38,8 @@ public class Main extends Application {
         ImageView ghostImageView = new ImageView(new Image(new FileInputStream("Image/Ghost.png")));
         ghostImageView.setFitHeight(20);
         ghostImageView.setFitWidth(20);
-        ghostImageView.setX(0);
-        ghostImageView.setY(0);
+        ghostImageView.setX(110);
+        ghostImageView.setY(110);
         AI ghostController = new RandomAI();
         Physics ghostPhysics = new Physics(5, 1, false);
 

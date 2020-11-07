@@ -10,8 +10,8 @@ public class BoxCollider implements Collider {
         this.x2 = x2;
         this.y1 = y1;
         this.y2 = y2;
-        this.centerX = (x2-x1)/2;
-        this.centerY = (y2-y1)/2;
+        this.centerX = x1 + (x2-x1)/2;
+        this.centerY = y1 + (y2-y1)/2;
     }
 
     @Override
