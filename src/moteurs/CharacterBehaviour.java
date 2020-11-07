@@ -1,25 +1,25 @@
 package moteurs;
 
 import javafx.scene.image.ImageView;
-import gameplay.Character;
+import gameplay.Entity;
 import moteurs.controllers.Controller;
 import moteurs.physics.Physics;
 
 public class CharacterBehaviour {
-    private Character character;
+    private Entity entity;
     private ImageView img;
     private Controller controller;
     private Physics physics;
 
-    public CharacterBehaviour(Character character, ImageView img, Controller controller, Physics physics){
-        this.character = character;
+    public CharacterBehaviour(Entity entity, ImageView img, Controller controller, Physics physics){
+        this.entity = entity;
         this.img = img;
         this.controller = controller;
         this.physics = physics;
     }
 
     public void update(double x, double y){
-        character.move(x, y);
+        entity.move(x, y);
         img.setX(x); img.setY(y);
     }
 
@@ -31,7 +31,7 @@ public class CharacterBehaviour {
         return physics;
     }
 
-    public Character getCharacter(){
-        return character;
+    public Entity getCharacter(){
+        return entity;
     }
 }
