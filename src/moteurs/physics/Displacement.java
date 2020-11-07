@@ -1,4 +1,4 @@
-package moteurs;
+package moteurs.physics;
 
 public enum Displacement {
     RIGHT,
