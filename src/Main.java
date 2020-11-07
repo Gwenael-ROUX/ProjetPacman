@@ -1,6 +1,6 @@
 import gameplay.Ghost;
 import gameplay.Pacman;
-import gameplay.Character;
+import gameplay.Entity;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -25,23 +25,23 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Character pacman = new Pacman(20, 20, new BoxCollider(10, 30, 10, 30));
+        Entity pacman = new Pacman(20, 20, new BoxCollider(10, 30, 10, 30));
         ImageView pacmanImageView = new ImageView(new Image(new FileInputStream("Image/Pacman.png")));
         pacmanImageView.setFitHeight(20);
         pacmanImageView.setFitWidth(20);
         pacmanImageView.setX(10);
         pacmanImageView.setY(10);
         KeyboardController pacmanController = new KeyboardController();
-        Physics pacmanPhysics = new Physics(10, 1, false);
+        Physics pacmanPhysics = new Physics(10, 1);
 
-        Character ghost = new Ghost(120, 120, new BoxCollider(110, 130, 10, 30));
+        Entity ghost = new Ghost(120, 120, new BoxCollider(110, 130, 10, 30));
         ImageView ghostImageView = new ImageView(new Image(new FileInputStream("Image/Ghost.png")));
         ghostImageView.setFitHeight(20);
         ghostImageView.setFitWidth(20);
         ghostImageView.setX(110);
         ghostImageView.setY(110);
         AI ghostController = new RandomAI();
-        Physics ghostPhysics = new Physics(5, 1, false);
+        Physics ghostPhysics = new Physics(5, 1);
 
         CharacterBehaviour[] behaviours = new CharacterBehaviour[2];
         behaviours[0] = new CharacterBehaviour(pacman, pacmanImageView, pacmanController, pacmanPhysics);

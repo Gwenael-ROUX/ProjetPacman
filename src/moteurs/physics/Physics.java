@@ -3,12 +3,10 @@ package moteurs.physics;
 public class Physics {
     private int speed;
     private int gravity;
-    private boolean collision;
 
-    public Physics(int speed, int gravity, boolean collision){
+    public Physics(int speed, int gravity){
         this.speed = speed;
         this.gravity = gravity;
-        this.collision = collision;
     }
 
     public int getSpeed() {
@@ -19,7 +17,4 @@ public class Physics {
         return gravity;
     }
 
-    public boolean isCollision() {
-        return collision;
-    }
 }

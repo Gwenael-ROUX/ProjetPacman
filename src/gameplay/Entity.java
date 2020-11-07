@@ -2,11 +2,11 @@ package gameplay;
 
 import moteurs.physics.Collider;
 
-public abstract class Character {
+public abstract class Entity {
     private double x, y;
     private Collider collider;
 
-    public Character(double x, double y, Collider collider){
+    public Entity(double x, double y, Collider collider){
         this.x = x;
         this.y = y;
         this.collider = collider;

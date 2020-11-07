@@ -4,6 +4,5 @@ import moteurs.physics.Displacement;
 import moteurs.controllers.Controller;
 
 public interface AI extends Controller {
-
-    public Displacement move();
+    Displacement move();
 }
