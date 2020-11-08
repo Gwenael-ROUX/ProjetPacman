@@ -1,4 +1,1 @@
-package moteurs;
-
-public class Moteur {
-}
+package moteurs;public class Moteur {}

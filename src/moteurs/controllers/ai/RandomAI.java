@@ -1,16 +1,1 @@
-package moteurs.controllers.ai;
-
-import moteurs.physics.Displacement;
-
-public class RandomAI implements AI {
-
-    public RandomAI(){}
-
-    public Displacement move(){
-        Displacement[] possibleDisplacement = new Displacement[]{Displacement.RIGHT, Displacement.LEFT, Displacement.UP, Displacement.DOWN, Displacement.NOTHING};
-        int choose = (int) (Math.random()*possibleDisplacement.length);
-        //updatae de la physique ??? (et des nouvelles coordonnées)
-
-        return possibleDisplacement[choose];
-    }
-}
+package moteurs.controllers.ai;import moteurs.physics.Displacement;public class RandomAI implements AI {    public RandomAI(){}    public Displacement move(){        Displacement[] possibleDisplacement = new Displacement[]{Displacement.RIGHT, Displacement.LEFT, Displacement.UP, Displacement.DOWN, Displacement.NOTHING};        int choose = (int) (Math.random()*possibleDisplacement.length);        //updatae de la physique ??? (et des nouvelles coordonnées)        return possibleDisplacement[choose];    }}

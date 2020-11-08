@@ -1,7 +1,1 @@
-package moteurs.controllers;
-
-import moteurs.physics.Displacement;
-
-public interface Controller {
-    Displacement move();
-}
+package moteurs.controllers;import moteurs.physics.Displacement;public interface Controller {    Displacement move();}
