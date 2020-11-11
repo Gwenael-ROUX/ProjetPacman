@@ -2,6 +2,7 @@ package gameplay;
 
 import javafx.scene.image.ImageView;
 import moteurs.Entity;
+import moteurs.Position;
 import moteurs.controllers.Controller;
 import moteurs.physics.Collider;
 import moteurs.physics.Physics;
@@ -11,8 +12,8 @@ public class EntityCharacter extends Entity {
     private final Controller controller;
     private final Physics physics;
 
-    public EntityCharacter(double x, double y, Collider collider, ImageView imageView, Controller controller, Physics physics) {
-        super(x, y, collider);
+    public EntityCharacter(Position position, Collider collider, ImageView imageView, Controller controller, Physics physics) {
+        super(position, collider);
         this.imageView = imageView;
         this.controller = controller;
         this.physics = physics;
@@ -30,10 +31,10 @@ public class EntityCharacter extends Entity {
         return physics;
     }
 
-    public void update(double x, double y){
-        move(x, y);
+    public void update(Position nextPosition){
+        move(nextPosition);
 
-        imageView.setX(x - imageView.getFitWidth()/2);
-        imageView.setY(y - imageView.getFitHeight()/2);
+        imageView.setX(nextPosition.getX() - imageView.getFitWidth()/2);
+        imageView.setY(nextPosition.getY() - imageView.getFitHeight()/2);
     }
 }
