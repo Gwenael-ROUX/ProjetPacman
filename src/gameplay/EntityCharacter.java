@@ -1,6 +1,7 @@
 package gameplay;
 
 import javafx.scene.image.ImageView;
+import moteurs.Entity;
 import moteurs.controllers.Controller;
 import moteurs.physics.Collider;
 import moteurs.physics.Physics;
