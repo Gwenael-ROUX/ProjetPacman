@@ -20,8 +20,8 @@ public class Movement {
         angle = Math.toRadians(Math.toDegrees(angle) + angleVariation);
 
 
-        double fx = (radius * Math.cos(angle));
-        double fy = (radius * Math.sin(angle));
+        position.setX(radius * Math.cos(angle));
+        position.setY(radius * Math.sin(angle));
 
         return position;
     }
