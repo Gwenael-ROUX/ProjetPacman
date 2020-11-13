@@ -7,22 +7,10 @@ import moteurs.physics.Collider;
 import moteurs.physics.Physics;
 
 public class EntityCharacter extends ImageEntity {
-    private final Controller controller;
-    private final Physics physics;
+    private Controller controller;
+    private Physics physics;
 
-    public EntityCharacter(Position position, Collider collider, String name, ImageView imageView, Controller controller, Physics physics) {
-        super(position, collider, name, imageView);
-        this.controller = controller;
-        this.physics = physics;
-    }
-
-    public Controller getController() {
-        return controller;
-    }
-
-
-    public Physics getPhysics() {
-        return physics;
+    public EntityCharacter() {
     }
 
     public void update(Position nextPosition){
@@ -30,5 +18,21 @@ public class EntityCharacter extends ImageEntity {
 
         imageView.setX(nextPosition.getX() - imageView.getFitWidth()/2);
         imageView.setY(nextPosition.getY() - imageView.getFitHeight()/2);
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public Physics getPhysics() {
+        return physics;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    public void setPhysics(Physics physics) {
+        this.physics = physics;
     }
 }

@@ -6,14 +6,16 @@ import moteurs.Position;
 import moteurs.physics.Collider;
 
 public class ImageEntity extends Entity {
-    protected final ImageView imageView;
+    protected ImageView imageView;
 
-    public ImageEntity(Position position, Collider collider, String name, ImageView imageView) {
-        super(position, collider, name);
-        this.imageView = imageView;
+    public ImageEntity() {
     }
 
     public ImageView getImageView() {
         return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
     }
 }
