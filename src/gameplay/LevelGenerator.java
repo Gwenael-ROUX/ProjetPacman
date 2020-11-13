@@ -52,23 +52,35 @@ public class LevelGenerator {
 
     private void putEntity(String[] tab, int i){
         int j = 0;
-        double posY = (dimCaseLarg * i) + (dimCaseLarg/2);
+        double posY = (dimCaseLarg * i);
         for (String str:tab){
-            double posX = (dimCaseLong * j) + (dimCaseLong/2);
+            double posX = (dimCaseLong * j);
             switch (str) {
                 case "#" :
+                    ImageView murView = new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/mur.png")));
+                    murView.setFitHeight(dimCaseLarg);
+                    murView.setFitWidth(dimCaseLong);
+                    murView.setX(posX);
+                    murView.setY(posY);
+                    ImageEntity mur = new ImageEntity(new Position(posX, posY),
+                            new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)), "mur",
+                            murView);
+                    setMatrix(i,j, mur);
                     break;
                 case "p" :
+                    System.out.println(posX);
+                    System.out.println(posX);
+                    System.out.println(posX+dimCaseLong);
                     ImageView pacmanImageView = new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/Pacman.png")));
                     KeyboardController pacmanController = new KeyboardController();
                     Physics pacmanPhysics = new Physics(10, 1);
-                    pacmanImageView.setFitHeight(20);
-                    pacmanImageView.setFitWidth(20);
-                    pacmanImageView.setX(posX);
-                    pacmanImageView.setY(posY);
-                    EntityCharacter pacman = new EntityCharacter(new Position(posX, posY),
-                            new BoxCollider(new Position(posX-10, posY-10), new Position(posX+10, posY+10)),
-                            pacmanImageView, pacmanController, pacmanPhysics, "pacman");
+                    pacmanImageView.setFitHeight(dimCaseLarg);
+                    pacmanImageView.setFitWidth(dimCaseLong);
+                    pacmanImageView.setX(posX+dimCaseLong/2);
+                    pacmanImageView.setY(posY+dimCaseLarg/2);
+                    EntityCharacter pacman = new EntityCharacter(new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                            new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)), "pacman",
+                            pacmanImageView, pacmanController, pacmanPhysics);
                     setMatrix(i,j, pacman);
                     break;
                 case "v" :
@@ -83,28 +95,28 @@ public class LevelGenerator {
                     ImageView ghostImageView = new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/GhostRed.png")));
                     AI ghostController = new RandomAI();
                     Physics ghostPhysics = new Physics(10, 1);
-                    ghostImageView.setFitHeight(20);
-                    ghostImageView.setFitWidth(20);
-                    ghostImageView.setX(posX);
-                    ghostImageView.setY(posY);
+                    ghostImageView.setFitHeight(dimCaseLarg);
+                    ghostImageView.setFitWidth(dimCaseLong);
+                    ghostImageView.setX(posX+dimCaseLong/2);
+                    ghostImageView.setY(posY+dimCaseLarg/2);
 
-                    EntityCharacter ghost = new EntityCharacter(new Position(posX, posY),
-                            new BoxCollider(new Position(posX-10, posY-10),new Position(posX+10, posY+10)),
-                            ghostImageView, ghostController, ghostPhysics, "ghost");
+                    EntityCharacter ghost = new EntityCharacter(new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                            new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)), "ghost",
+                            ghostImageView, ghostController, ghostPhysics);
                     setMatrix(i,j, ghost);
                     break;
                 case "g" :
                     ImageView ghostImageView1 = new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/GhostGreen.png")));
                     AI ghostController1 = new RandomAI();
                     Physics ghostPhysics1 = new Physics(10, 1);
-                    ghostImageView1.setFitHeight(20);
-                    ghostImageView1.setFitWidth(20);
-                    ghostImageView1.setX(posX);
-                    ghostImageView1.setY(posY);
+                    ghostImageView1.setFitHeight(dimCaseLarg);
+                    ghostImageView1.setFitWidth(dimCaseLong);
+                    ghostImageView1.setX(posX+dimCaseLong/2);
+                    ghostImageView1.setY(posY+dimCaseLarg/2);
 
-                    EntityCharacter ghost1 = new EntityCharacter(new Position(posX, posY),
-                            new BoxCollider(new Position(posX-10, posY-10),new Position(posX+10, posY+10)),
-                            ghostImageView1, ghostController1, ghostPhysics1, "ghost1");
+                    EntityCharacter ghost1 = new EntityCharacter(new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                            new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)), "ghost1",
+                            ghostImageView1, ghostController1, ghostPhysics1);
                     setMatrix(i,j, ghost1);
                     break;
                 case "h" :

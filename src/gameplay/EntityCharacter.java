@@ -1,37 +1,25 @@
 package gameplay;
 
 import javafx.scene.image.ImageView;
-import moteurs.Entity;
 import moteurs.Position;
 import moteurs.controllers.Controller;
 import moteurs.physics.Collider;
 import moteurs.physics.Physics;
 
-public class EntityCharacter extends Entity {
-    private final ImageView imageView;
+public class EntityCharacter extends ImageEntity {
     private final Controller controller;
     private final Physics physics;
-    private final String name;
 
-    public EntityCharacter(Position position, Collider collider, ImageView imageView, Controller controller, Physics physics, String name) {
-        super(position, collider);
-        this.imageView = imageView;
+    public EntityCharacter(Position position, Collider collider, String name, ImageView imageView, Controller controller, Physics physics) {
+        super(position, collider, name, imageView);
         this.controller = controller;
         this.physics = physics;
-        this.name = name;
-    }
-
-    public ImageView getImageView() {
-        return imageView;
     }
 
     public Controller getController() {
         return controller;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public Physics getPhysics() {
         return physics;
