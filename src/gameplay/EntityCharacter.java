@@ -11,12 +11,14 @@ public class EntityCharacter extends Entity {
     private final ImageView imageView;
     private final Controller controller;
     private final Physics physics;
+    private final String name;
 
-    public EntityCharacter(Position position, Collider collider, ImageView imageView, Controller controller, Physics physics) {
+    public EntityCharacter(Position position, Collider collider, ImageView imageView, Controller controller, Physics physics, String name) {
         super(position, collider);
         this.imageView = imageView;
         this.controller = controller;
         this.physics = physics;
+        this.name = name;
     }
 
     public ImageView getImageView() {
@@ -25,6 +27,10 @@ public class EntityCharacter extends Entity {
 
     public Controller getController() {
         return controller;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Physics getPhysics() {
