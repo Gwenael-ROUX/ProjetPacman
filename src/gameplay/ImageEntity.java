@@ -8,8 +8,8 @@ import moteurs.physics.Collider;
 public class ImageEntity extends Entity {
     protected final ImageView imageView;
 
-    public ImageEntity(Position position, Collider collider, String name, ImageView imageView) {
-        super(position, collider, name);
+    public ImageEntity(Position position, Collider collider, String name, boolean isCrossable, ImageView imageView) {
+        super(position, collider, name, isCrossable);
         this.imageView = imageView;
     }
 

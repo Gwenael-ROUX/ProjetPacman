@@ -11,10 +11,16 @@ public class EntityCharacter extends ImageEntity {
     private final Physics physics;
 
     public EntityCharacter(Position position, Collider collider, String name, ImageView imageView, Controller controller, Physics physics) {
-        super(position, collider, name, imageView);
+        super(position, collider, name, false, imageView);
         this.controller = controller;
         this.physics = physics;
     }
+
+    /*public EntityCharacter(EntityCharacter entityCharacter){
+        super(entityCharacter.getPosition(), entityCharacter.getCollider(), entityCharacter.getName(), entityCharacter.isCrossable(), entityCharacter.getImageView());
+        this.controller = entityCharacter.getController();
+        this.physics = entityCharacter.getPhysics();
+    }*/
 
     public Controller getController() {
         return controller;

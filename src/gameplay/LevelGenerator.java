@@ -5,8 +5,7 @@ import javafx.scene.image.ImageView;
 import moteurs.Entity;
 import moteurs.Position;
 import moteurs.controllers.KeyboardController;
-import moteurs.controllers.ai.AI;
-import moteurs.controllers.ai.RandomAI;
+import moteurs.controllers.ai.*;
 import moteurs.physics.BoxCollider;
 import moteurs.physics.Physics;
 
@@ -17,11 +16,20 @@ public class LevelGenerator {
     private double v1,v2;
     private double dimCaseLong;
     private double dimCaseLarg;
+    private ShortestPathAI shortestPathAI;
+    private MapRepresentation mapRepresentation;
 
     public LevelGenerator(double v1, double v2, String chemin) {
         this.v1 = v1;
         this.v2 = v2;
+        mapRepresentation = new MapRepresentation(matrix);
+        this.shortestPathAI = new ShortestPathAI(new BasicPathFinder(mapRepresentation));
         readFile(chemin);
+        mapRepresentation.update(matrix);
+    }
+
+    public MapRepresentation getMapRepresentation(){
+        return mapRepresentation;
     }
 
     public void readFile(String chemin){
@@ -50,10 +58,10 @@ public class LevelGenerator {
         }
     }
 
-    private void putEntity(String[] tab, int i){
+    private void putEntity(String[] tab, int i) {
         int j = 0;
         double posY = (dimCaseLarg * i);
-        for (String str:tab){
+        for (String str : tab){
             double posX = (dimCaseLong * j);
             switch (str) {
                 case "#" :
@@ -63,17 +71,16 @@ public class LevelGenerator {
                     murView.setX(posX);
                     murView.setY(posY);
                     ImageEntity mur = new ImageEntity(new Position(posX, posY),
-                            new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)), "mur",
+                            new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)),
+                            "mur",
+                            false,
                             murView);
                     setMatrix(i,j, mur);
                     break;
                 case "p" :
-                    System.out.println(posX);
-                    System.out.println(posX);
-                    System.out.println(posX+dimCaseLong);
                     ImageView pacmanImageView = new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/Pacman.png")));
                     KeyboardController pacmanController = new KeyboardController();
-                    Physics pacmanPhysics = new Physics(10, 1);
+                    Physics pacmanPhysics = new Physics(60, 1);
                     pacmanImageView.setFitHeight(dimCaseLarg);
                     pacmanImageView.setFitWidth(dimCaseLong);
                     pacmanImageView.setX(posX+dimCaseLong/2);
@@ -82,6 +89,7 @@ public class LevelGenerator {
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)), "pacman",
                             pacmanImageView, pacmanController, pacmanPhysics);
                     setMatrix(i,j, pacman);
+                    this.shortestPathAI.setTarget(pacman);
                     break;
                 case "v" :
                     break;
@@ -93,22 +101,23 @@ public class LevelGenerator {
                     break;
                 case "r" :
                     ImageView ghostImageView = new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/GhostRed.png")));
-                    AI ghostController = new RandomAI();
-                    Physics ghostPhysics = new Physics(10, 1);
+                    AI redghostController = shortestPathAI;
+                    Physics ghostPhysics = new Physics(60, 1);
                     ghostImageView.setFitHeight(dimCaseLarg);
                     ghostImageView.setFitWidth(dimCaseLong);
                     ghostImageView.setX(posX+dimCaseLong/2);
                     ghostImageView.setY(posY+dimCaseLarg/2);
 
-                    EntityCharacter ghost = new EntityCharacter(new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                    EntityCharacter redghost = new EntityCharacter(new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)), "ghost",
-                            ghostImageView, ghostController, ghostPhysics);
-                    setMatrix(i,j, ghost);
+                            ghostImageView, redghostController, ghostPhysics);
+                    setMatrix(i,j, redghost);
+                    shortestPathAI.setOrigin(redghost);
                     break;
                 case "g" :
                     ImageView ghostImageView1 = new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/GhostGreen.png")));
                     AI ghostController1 = new RandomAI();
-                    Physics ghostPhysics1 = new Physics(10, 1);
+                    Physics ghostPhysics1 = new Physics(60, 1);
                     ghostImageView1.setFitHeight(dimCaseLarg);
                     ghostImageView1.setFitWidth(dimCaseLong);
                     ghostImageView1.setX(posX+dimCaseLong/2);
