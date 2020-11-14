@@ -2,7 +2,7 @@ package gameplay;
 
 import gameplay.builder.MurBuilder;
 import gameplay.builder.PacmanBuilder;
-import gameplay.builder.Serveur;
+import gameplay.builder.Director;
 import gameplay.builder.ghost.BlueGhostBuilder;
 import gameplay.builder.ghost.GreenGhostBuilder;
 import gameplay.builder.ghost.RedGhostBuilder;
@@ -54,7 +54,7 @@ public class LevelGenerator {
     private void putEntity(String[] tab, int i){
         int j = 0;
         double posY = (dimCaseLarg * i);
-        Serveur serveur = new Serveur();
+        Director serveur = new Director();
         for (String str:tab){
             double posX = (dimCaseLong * j);
             switch (str) {

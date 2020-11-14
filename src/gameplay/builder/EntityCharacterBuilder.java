@@ -21,4 +21,5 @@ public abstract class EntityCharacterBuilder {
     public abstract void buildImageView();
     public abstract void buildController();
     public abstract void buildPhysics();
+    public abstract void buildAnimation();
 }

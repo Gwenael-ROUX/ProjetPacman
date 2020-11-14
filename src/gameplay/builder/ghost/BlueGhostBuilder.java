@@ -39,4 +39,9 @@ public class BlueGhostBuilder extends EntityCharacterBuilder {
     public void buildPhysics() {
         entityCharacter.setPhysics(new Physics(10, 1));
     }
+
+    @Override
+    public void buildAnimation() {
+
+    }
 }

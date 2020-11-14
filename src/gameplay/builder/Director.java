@@ -5,7 +5,7 @@ import gameplay.ImageEntity;
 import moteurs.Position;
 import moteurs.physics.Collider;
 
-public class Serveur {
+public class Director {
     private EntityCharacterBuilder entityCharacterBuilder;
     private ImageEntityBuilder imageEntityBuilder;
     private Position position;
