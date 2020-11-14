@@ -42,6 +42,7 @@ public class Director {
         entityCharacterBuilder.buildImageView();
         entityCharacterBuilder.buildPhysics();
         entityCharacterBuilder.buildController();
+        entityCharacterBuilder.buildAnimation();
     }
 
     public void constructImageEntity (){

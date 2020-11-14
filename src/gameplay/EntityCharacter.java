@@ -24,7 +24,6 @@ public class EntityCharacter extends ImageEntity {
 
         imageView.setX(nextPosition.getX() - imageView.getFitWidth()/2);
         imageView.setY(nextPosition.getY() - imageView.getFitHeight()/2);
-        imageView.setImage(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanLeft.png")));
     }
 
     public Controller getController() {
@@ -54,7 +53,6 @@ public class EntityCharacter extends ImageEntity {
     public void playAnimation(String state) {
         List<ImageView> animations = listAnimation.get(state);
         for (ImageView currentImage : animations) {
-            imageView.setX(500);
             imageView.setImage(currentImage.getImage());
         }
     }

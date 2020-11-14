@@ -31,7 +31,7 @@ public class PacmanBuilder extends EntityCharacterBuilder {
 
     @Override
     public void buildImageView() {
-        entityCharacter.setImageView(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/Pacman.png"))));
+        entityCharacter.setImageView(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanRight.png"))));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class PacmanBuilder extends EntityCharacterBuilder {
         animations.get("down").add(pacmanclose);
 
 
-        animations.put("rigth", new ArrayList<ImageView>());
+        animations.put("right", new ArrayList<ImageView>());
         animations.get("right").add(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanRight.png"))));
         animations.get("right").add(pacmanclose);
 
