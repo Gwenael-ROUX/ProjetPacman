@@ -1,6 +1,5 @@
 package gameplay.builder;
 
-import gameplay.EntityCharacter;
 import gameplay.ImageEntity;
 import moteurs.Position;
 import moteurs.physics.Collider;

@@ -50,21 +50,21 @@ public class PacmanBuilder extends EntityCharacterBuilder {
         ImageView pacmanclose = new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanClose.png")));
 
         animations.put("up", new ArrayList<ImageView>());
-        animations.get("up").add(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanUp.png"))));
         animations.get("up").add(pacmanclose);
+        animations.get("up").add(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanUp.png"))));
 
         animations.put("down", new ArrayList<ImageView>());
-        animations.get("down").add(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanDown.png"))));
         animations.get("down").add(pacmanclose);
+        animations.get("down").add(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanDown.png"))));
 
 
         animations.put("right", new ArrayList<ImageView>());
-        animations.get("right").add(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanRight.png"))));
         animations.get("right").add(pacmanclose);
+        animations.get("right").add(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanRight.png"))));
 
         animations.put("left", new ArrayList<ImageView>());
-        animations.get("left").add(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanLeft.png"))));
         animations.get("left").add(pacmanclose);
+        animations.get("left").add(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/pacman/pacmanLeft.png"))));
 
         entityCharacter.setListAnimation(animations);
     }

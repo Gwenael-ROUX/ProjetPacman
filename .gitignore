@@ -1,7 +1,5 @@
-*.class
-*.class
 *.MF
 out/production/ProjetPacman/Image/Ghost.png
-out/production/ProjetPacman/Image/Pacman.png
+out/
 .idea/artifacts/ProjetPacman_jar.xml
-.idea/artifacts/ProjetPacman_jar.xml
+

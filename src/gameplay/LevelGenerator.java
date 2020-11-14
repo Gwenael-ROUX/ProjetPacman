@@ -54,15 +54,15 @@ public class LevelGenerator {
     private void putEntity(String[] tab, int i){
         int j = 0;
         double posY = (dimCaseLarg * i);
-        Director serveur = new Director();
+        Director director = new Director();
         for (String str:tab){
             double posX = (dimCaseLong * j);
             switch (str) {
                 case "#" :
-                    serveur.setImageEntityBuilder(new MurBuilder(),new Position(posX, posY),
+                    director.setImageEntityBuilder(new MurBuilder(),new Position(posX, posY),
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
-                    serveur.constructImageEntity();
-                    ImageEntity mur = serveur.getImageEntity();
+                    director.constructImageEntity();
+                    ImageEntity mur = director.getImageEntity();
                     ImageView murView = mur.getImageView();
                     murView.setFitHeight(dimCaseLarg);
                     murView.setFitWidth(dimCaseLong);
@@ -71,10 +71,10 @@ public class LevelGenerator {
                     setMatrix(i,j, mur);
                     break;
                 case "p" :
-                    serveur.setEntityCharacterBuilder(new PacmanBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                    director.setEntityCharacterBuilder(new PacmanBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
-                    serveur.constructEntityCharacter();
-                    EntityCharacter pacman = serveur.getEntityCharacter();
+                    director.constructEntityCharacter();
+                    EntityCharacter pacman = director.getEntityCharacter();
                     ImageView pacmanImageView = pacman.getImageView();
                     pacmanImageView.setFitHeight(dimCaseLarg);
                     pacmanImageView.setFitWidth(dimCaseLong);
@@ -84,10 +84,10 @@ public class LevelGenerator {
                     setMatrix(i,j, pacman);
                     break;
                 case "r" :
-                    serveur.setEntityCharacterBuilder(new RedGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                    director.setEntityCharacterBuilder(new RedGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
-                    serveur.constructEntityCharacter();
-                    EntityCharacter ghostR = serveur.getEntityCharacter();
+                    director.constructEntityCharacter();
+                    EntityCharacter ghostR = director.getEntityCharacter();
                     ImageView ghostRImage = ghostR.getImageView();
                     ghostRImage.setFitHeight(dimCaseLarg);
                     ghostRImage.setFitWidth(dimCaseLong);
@@ -96,10 +96,10 @@ public class LevelGenerator {
                     setMatrix(i,j, ghostR);
                     break;
                 case "g" :
-                    serveur.setEntityCharacterBuilder(new GreenGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                    director.setEntityCharacterBuilder(new GreenGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
-                    serveur.constructEntityCharacter();
-                    EntityCharacter ghostG = serveur.getEntityCharacter();
+                    director.constructEntityCharacter();
+                    EntityCharacter ghostG = director.getEntityCharacter();
                     ImageView ghostGImage = ghostG.getImageView();
                     ghostGImage.setFitHeight(dimCaseLarg);
                     ghostGImage.setFitWidth(dimCaseLong);
@@ -108,10 +108,10 @@ public class LevelGenerator {
                     setMatrix(i,j, ghostG);
                     break;
                 case "y" :
-                    serveur.setEntityCharacterBuilder(new YellowGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                    director.setEntityCharacterBuilder(new YellowGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
-                    serveur.constructEntityCharacter();
-                    EntityCharacter ghostY = serveur.getEntityCharacter();
+                    director.constructEntityCharacter();
+                    EntityCharacter ghostY = director.getEntityCharacter();
                     ImageView ghostYImage = ghostY.getImageView();
                     ghostYImage.setFitHeight(dimCaseLarg);
                     ghostYImage.setFitWidth(dimCaseLong);
@@ -120,10 +120,10 @@ public class LevelGenerator {
                     setMatrix(i,j, ghostY);
                     break;
                 case "b" :
-                    serveur.setEntityCharacterBuilder(new BlueGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                    director.setEntityCharacterBuilder(new BlueGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
-                    serveur.constructEntityCharacter();
-                    EntityCharacter ghostB = serveur.getEntityCharacter();
+                    director.constructEntityCharacter();
+                    EntityCharacter ghostB = director.getEntityCharacter();
                     ImageView ghostBImage = ghostB.getImageView();
                     ghostBImage.setFitHeight(dimCaseLarg);
                     ghostBImage.setFitWidth(dimCaseLong);
