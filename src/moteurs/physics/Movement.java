@@ -25,6 +25,4 @@ public class Movement {
 
         return position;
     }
-
-
 }
