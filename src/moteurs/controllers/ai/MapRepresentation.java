@@ -46,6 +46,12 @@ public class MapRepresentation {
         matrix[y][x] = entity;
     }
 
+    public void swap(int srcX, int srcY, int dstX, int dstY){
+        Entity e = matrix[dstY][dstX];
+        matrix[dstY][dstX] = matrix[srcY][srcX];
+        matrix[srcY][srcX] = e;
+    }
+
     public int getDistance(int x, int y){
         return matrixDistance[y][x];
     }

@@ -34,13 +34,14 @@ public class ShortestPathAI implements AI{
         Position position_origin = map.getPositionEntity(origin);
         List<Position> listPositions = new ArrayList<>();
 
+        map.displayDistance(); // Show map distance from origin to target
+        System.out.println(position_target == null || position_origin == null);
+        System.out.println();
+
         if(position_target == null || position_origin == null)
             return  lastDisplacement;
 
         int x = (int)position_target.getX(), y = (int)position_target.getY();
-
-        map.displayDistance(); // Show map distance from origin to target
-        System.out.println();
 
         if(map.getDistance(x, y) == -1)
             return lastDisplacement;
@@ -65,10 +66,11 @@ public class ShortestPathAI implements AI{
             }
         }
 
-        if(listPositions.size() < 2)
+        if(listPositions.size() == 0)
             return lastDisplacement;
 
-        Position nextPosition = listPositions.get(listPositions.size()-2);
+        Position nextPosition = (listPositions.size() == 1) ?
+                listPositions.get(listPositions.size()-1) : listPositions.get(listPositions.size()-2);
         Displacement result;
         if(nextPosition.getX() != position_origin.getX()){
             if(nextPosition.getX() > position_origin.getX())
