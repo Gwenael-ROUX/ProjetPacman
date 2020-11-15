@@ -85,9 +85,9 @@ public class MapRepresentation {
     public void displayDistance(){
         for(int[] dists : matrixDistance){
             for(int dist : dists){
-                System.out.print(dist + "\t");
+                //System.out.print(dist + "\t");
             }
-            System.out.println();
+            //System.out.println();
         }
     }
 }

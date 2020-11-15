@@ -51,5 +51,6 @@ public class Director {
         imageEntityBuilder.buildCollider(collider);
         imageEntityBuilder.buildName();
         imageEntityBuilder.buildImageView();
+        imageEntityBuilder.buildCrossable();
     }
 }

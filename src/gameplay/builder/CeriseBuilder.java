@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import moteurs.Position;
 import moteurs.physics.Collider;
 
-public class MurBuilder extends ImageEntityBuilder{
+public class CeriseBuilder extends ImageEntityBuilder {
     @Override
     public void buildPosition(Position position) {
         imageEntity.setPosition(position);
@@ -14,21 +14,21 @@ public class MurBuilder extends ImageEntityBuilder{
 
     @Override
     public void buildCollider(Collider collider) {
-        imageEntity.setCollider(collider);
-    }
+            imageEntity.setCollider(collider);
+        }
 
     @Override
     public void buildName() {
-        imageEntity.setName("mur");
+        imageEntity.setName("objet");
     }
 
     @Override
     public void buildImageView() {
-        imageEntity.setImageView(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/mur.png"))));
+        imageEntity.setImageView(new ImageView(new Image(LevelGenerator.class.getResourceAsStream("/Image/cerise.png"))));
     }
 
     @Override
     public void buildCrossable() {
-        imageEntity.setCrossable(false);
+        imageEntity.setCrossable(true);
     }
 }

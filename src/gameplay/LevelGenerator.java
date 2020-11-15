@@ -1,9 +1,6 @@
 package gameplay;
 
-import gameplay.builder.EntityCharacterBuilder;
-import gameplay.builder.MurBuilder;
-import gameplay.builder.PacmanBuilder;
-import gameplay.builder.Director;
+import gameplay.builder.*;
 import gameplay.builder.ghost.BlueGhostBuilder;
 import gameplay.builder.ghost.GreenGhostBuilder;
 import gameplay.builder.ghost.RedGhostBuilder;
@@ -149,7 +146,17 @@ public class LevelGenerator {
                     ghostBImage.setY(posY+dimCaseLarg/2);
                     setMatrix(i,j, ghostB);
                     break;
-                case "v" :
+                case "c" :
+                    director.setImageEntityBuilder(new CeriseBuilder(),new Position(posX, posY),
+                            new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
+                    director.constructImageEntity();
+                    ImageEntity cerise = director.getImageEntity();
+                    ImageView ceriseView = cerise.getImageView();
+                    ceriseView.setFitHeight(dimCaseLarg);
+                    ceriseView.setFitWidth(dimCaseLong);
+                    ceriseView.setX(posX);
+                    ceriseView.setY(posY);
+                    setMatrix(i,j, cerise);
                     break;
                 case "a" :
                     break;

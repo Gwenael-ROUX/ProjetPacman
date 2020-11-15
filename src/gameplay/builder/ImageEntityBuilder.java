@@ -19,4 +19,6 @@ public abstract class ImageEntityBuilder {
     public abstract void buildCollider(Collider collider);
     public abstract void buildName();
     public abstract void buildImageView();
+    public abstract void buildCrossable();
+
 }

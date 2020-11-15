@@ -35,8 +35,8 @@ public class ShortestPathAI implements AI{
         List<Position> listPositions = new ArrayList<>();
 
         map.displayDistance(); // Show map distance from origin to target
-        System.out.println(position_target == null || position_origin == null);
-        System.out.println();
+//        System.out.println(position_target == null || position_origin == null);
+//        System.out.println();
 
         if(position_target == null || position_origin == null)
             return  lastDisplacement;
