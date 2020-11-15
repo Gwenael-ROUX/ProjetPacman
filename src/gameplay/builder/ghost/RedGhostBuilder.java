@@ -5,6 +5,7 @@ import gameplay.builder.EntityCharacterBuilder;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import moteurs.Position;
+import moteurs.controllers.ai.AI;
 import moteurs.controllers.ai.RandomAI;
 import moteurs.physics.Collider;
 import moteurs.physics.Physics;
@@ -14,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class RedGhostBuilder extends EntityCharacterBuilder {
+    private AI ai;
+
     @Override
     public void buildPosition(Position position) {
         entityCharacter.setPosition(position);
@@ -36,12 +39,16 @@ public class RedGhostBuilder extends EntityCharacterBuilder {
 
     @Override
     public void buildController() {
-        entityCharacter.setController(new RandomAI());
+        entityCharacter.setController(ai);
+    }
+
+    public void setAI(AI ai){
+        this.ai = ai;
     }
 
     @Override
     public void buildPhysics() {
-        entityCharacter.setPhysics(new Physics(10, 1));
+        entityCharacter.setPhysics(new Physics(30, 1));
     }
 
     @Override

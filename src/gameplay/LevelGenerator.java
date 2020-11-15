@@ -1,5 +1,6 @@
 package gameplay;
 
+import gameplay.builder.EntityCharacterBuilder;
 import gameplay.builder.MurBuilder;
 import gameplay.builder.PacmanBuilder;
 import gameplay.builder.Director;
@@ -94,10 +95,12 @@ public class LevelGenerator {
                     pacmanImageView.setY(posY+dimCaseLarg/2);
 
                     setMatrix(i,j, pacman);
-                    this.shortestPathAI.setTarget(pacman);
+                    shortestPathAI.setTarget(pacman);
                     break;
                 case "r" :
-                    director.setEntityCharacterBuilder(new RedGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
+                    RedGhostBuilder builder = new RedGhostBuilder();
+                    builder.setAI(shortestPathAI);
+                    director.setEntityCharacterBuilder(builder, new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
                     director.constructEntityCharacter();
                     EntityCharacter ghostR = director.getEntityCharacter();
@@ -106,7 +109,9 @@ public class LevelGenerator {
                     ghostRImage.setFitWidth(dimCaseLong);
                     ghostRImage.setX(posX+dimCaseLong/2);
                     ghostRImage.setY(posY+dimCaseLarg/2);
+
                     setMatrix(i,j, ghostR);
+                    shortestPathAI.setOrigin(ghostR);
                     break;
                 case "g" :
                     director.setEntityCharacterBuilder(new GreenGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),

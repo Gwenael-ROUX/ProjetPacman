@@ -41,7 +41,7 @@ public class YellowGhostBuilder extends EntityCharacterBuilder {
 
     @Override
     public void buildPhysics() {
-        entityCharacter.setPhysics(new Physics(10, 1));
+        entityCharacter.setPhysics(new Physics(30, 1));
     }
 
     @Override
