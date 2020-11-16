@@ -161,6 +161,16 @@ public class LevelGenerator {
                 case "a" :
                     break;
                 case "." :
+                    director.setImageEntityBuilder(new GommeBuilder(),new Position(posX, posY),
+                            new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
+                    director.constructImageEntity();
+                    ImageEntity gomme = director.getImageEntity();
+                    ImageView gommeView = gomme.getImageView();
+                    gommeView.setFitHeight(dimCaseLarg/2);
+                    gommeView.setFitWidth(dimCaseLong/2);
+                    gommeView.setX(posX + (dimCaseLong/4));
+                    gommeView.setY(posY +(dimCaseLong/4));
+                    setMatrix(i,j, gomme);
                     break;
                 case "*" :
                     break;
