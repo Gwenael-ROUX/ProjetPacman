@@ -1,7 +1,8 @@
-*.class
-*.class
 *.MF
-out/production/ProjetPacman/Image/Ghost.png
-out/production/ProjetPacman/Image/Pacman.png
+*.class
+
+src/META-INF/
+out/
+lib/
 .idea/artifacts/ProjetPacman_jar.xml
-.idea/artifacts/ProjetPacman_jar.xml
+.idea/libraries/javafx_swt.xml

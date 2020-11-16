@@ -1,25 +1,29 @@
 package gameplay;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import moteurs.Entity;
+import moteurs.Position;
 import moteurs.controllers.Controller;
 import moteurs.physics.Collider;
 import moteurs.physics.Physics;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-public class EntityCharacter extends Entity {
-    private final ImageView imageView;
-    private final Controller controller;
-    private final Physics physics;
 
-    public EntityCharacter(double x, double y, Collider collider, ImageView imageView, Controller controller, Physics physics) {
-        super(x, y, collider);
-        this.imageView = imageView;
-        this.controller = controller;
-        this.physics = physics;
-    }
+public class EntityCharacter extends ImageEntity {
+    private Controller controller;
+    private Physics physics;
+    private HashMap<String, List<ImageView>> listAnimation = new HashMap<>();
 
-    public ImageView getImageView() {
-        return imageView;
+
+    public EntityCharacter() {}
+
+    public void update(Position nextPosition){
+        move(nextPosition);
+
+        imageView.setX(nextPosition.getX() - imageView.getFitWidth()/2);
+        imageView.setY(nextPosition.getY() - imageView.getFitHeight()/2);
     }
 
     public Controller getController() {
@@ -30,10 +34,26 @@ public class EntityCharacter extends Entity {
         return physics;
     }
 
-    public void update(double x, double y){
-        move(x, y);
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 
-        imageView.setX(x - imageView.getFitWidth()/2);
-        imageView.setY(y - imageView.getFitHeight()/2);
+    public void setPhysics(Physics physics) {
+        this.physics = physics;
+    }
+
+    public HashMap<String, List<ImageView>> getListAnimation() {
+        return listAnimation;
+    }
+
+    public void setListAnimation(HashMap<String, List<ImageView>> listAnimation) {
+        this.listAnimation = listAnimation;
+    }
+
+    public void playAnimation(String state) {
+        List<ImageView> animations = listAnimation.get(state);
+        for (ImageView currentImage : animations) {
+            imageView.setImage(currentImage.getImage());
+        }
     }
 }
