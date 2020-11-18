@@ -1,11 +1,11 @@
-import gameplay.EntityCharacter;
-import gameplay.LevelGenerator;
-import moteurs.Entity;
-import moteurs.Position;
-import moteurs.controllers.ai.BasicPathFinder;
-import moteurs.controllers.ai.MapRepresentation;
-import moteurs.controllers.ai.ShortestPathAI;
-import moteurs.physics.Displacement;
+import PasGenerique.gameplay.EntityCharacter;
+import PasGenerique.gameplay.LevelGenerator;
+import PasGenerique.moteurs.Entity;
+import PasGenerique.moteurs.Position;
+import PasGenerique.moteurs.controllers.ai.BasicPathFinder;
+import PasGenerique.moteurs.controllers.ai.MapRepresentation;
+import PasGenerique.moteurs.controllers.ai.ShortestPathAI;
+import PasGenerique.moteurs.physics.Displacement;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
