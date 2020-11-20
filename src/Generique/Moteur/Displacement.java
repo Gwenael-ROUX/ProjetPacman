@@ -1,0 +1,1 @@
+package Generique.Moteur;public enum Displacement {    RIGHT(0),    LEFT(180),    UP(90),    DOWN(270),    NOTHING(-1);    private final double numVal;    Displacement(double numVal){        this.numVal = numVal;    }    public double getNumVal() {        return numVal;    }}
