@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class AnimationManager {
-    private HashMap<String, Animation> animations;
+    private final HashMap<String, Animation> animations;
     private Animation currentAnimation;
 
     public AnimationManager() {
