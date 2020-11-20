@@ -1,6 +1,6 @@
 package Generique.Moteur.graphique;
 
-import Generique.Moteur.Entity;
+import Generique.Moteur.core_kernel.Entity;
 import javafx.scene.image.ImageView;
 
 public abstract class GraphicsComponent {

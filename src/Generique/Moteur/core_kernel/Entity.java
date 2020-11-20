@@ -1,5 +1,9 @@
-package Generique.Moteur;
+package Generique.Moteur.core_kernel;
 
+import Generique.Moteur.ControllerComponent;
+import Generique.Moteur.PhysicsComponent;
+import Generique.Moteur.Position;
+import Generique.Moteur.SoundComponent;
 import Generique.Moteur.graphique.GraphicsComponent;
 
 public class Entity {

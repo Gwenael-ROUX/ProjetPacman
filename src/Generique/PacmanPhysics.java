@@ -1,6 +1,6 @@
 package Generique;
 
-import Generique.Moteur.Entity;
+import Generique.Moteur.core_kernel.Entity;
 import Generique.Moteur.PhysicsComponent;
 
 public class PacmanPhysics extends PhysicsComponent {
