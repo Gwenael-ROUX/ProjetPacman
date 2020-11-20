@@ -1,4 +1,7 @@
 package Generique.Moteur.core_kernel;
 
-public class Event {
+public abstract class Event {
+    protected Entity entity;
+
+    public abstract void handle();
 }
