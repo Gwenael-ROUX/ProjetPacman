@@ -1,4 +1,5 @@
 package Generique.Moteur.controller;
 
-interface ControllerComponent {
+public interface ControllerComponent {
+    public double move();
 }

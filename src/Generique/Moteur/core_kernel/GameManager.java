@@ -19,10 +19,10 @@ public class GameManager {
 
 
     public void update(){
-        // Events
+        // TODO : Events
 
-        // Loop on entities
+        // TODO : Loop on entities
 
-        // Collision listener
+        // TODO : Collision listener
     }
 }

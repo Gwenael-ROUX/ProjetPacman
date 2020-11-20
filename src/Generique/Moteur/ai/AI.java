@@ -1,4 +1,6 @@
 package Generique.Moteur.ai;
 
-interface AI {
+import Generique.Moteur.ControllerComponent;
+
+interface AI extends ControllerComponent {
 }
