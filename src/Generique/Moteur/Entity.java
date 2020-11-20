@@ -1,5 +1,7 @@
 package Generique.Moteur;
 
+import Generique.Moteur.graphique.GraphicsComponent;
+
 public class Entity {
     private Position position;
     private String name;
@@ -22,6 +24,14 @@ public class Entity {
             graphicsComponent.update(this);
         if (soundComponent != null)
             soundComponent.update(this);
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setControllerComponent(ControllerComponent controllerComponent) {

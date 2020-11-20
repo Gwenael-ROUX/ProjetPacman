@@ -1,4 +1,4 @@
-package Generique.Moteur;
+package Generique.Moteur.graphique;
 
 import javafx.scene.image.ImageView;
 
