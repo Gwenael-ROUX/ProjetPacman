@@ -1,6 +1,7 @@
 package Generique.Moteur.graphique;
 
 import Generique.Moteur.core_kernel.Entity;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class GraphicsComponent {
@@ -21,7 +22,7 @@ public abstract class GraphicsComponent {
         currentImage.setY(entity.getPosition().getY() - currentImage.getFitHeight()/2);
     }
 
-    public void setImageView(ImageView imageView) {
-        this.currentImage = imageView;
+    public void setImageView(String chemin) {
+        this.currentImage = new ImageView(new Image(AnimationManager.class.getResourceAsStream(chemin)));
     }
 }
