@@ -37,6 +37,10 @@ public abstract class PhysicsComponent implements ColliderListener, Component {
         this.collider = collider;
     }
 
+    public Collider getCollider() {
+        return collider;
+    }
+
     @Override
     public abstract void onCollision(Entity entity);
 }
