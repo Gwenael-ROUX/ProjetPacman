@@ -1,14 +1,23 @@
 package Generique.Moteur.controller;
 
-public class KeyboardController implements ControllerComponent {
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 
-    public KeyboardController(){
-        // TODO
+public abstract class KeyboardController implements ControllerComponent {
+
+    private EventHandler<? super KeyEvent> eventHandler;
+
+    public KeyboardController(){}
+
+    protected void createHandler(EventController eventController){
+        eventHandler = (EventHandler<KeyEvent>) keyEvent -> {
+            eventController.handle(KeyboardCode.valueOf(String.valueOf(keyEvent.getCode())));
+        };
     }
 
-    @Override
-    public double move() {
-        // TODO
-        return 0;
+    public EventHandler<? super KeyEvent> getEventHandler() {
+        return eventHandler;
     }
 }
+
+
