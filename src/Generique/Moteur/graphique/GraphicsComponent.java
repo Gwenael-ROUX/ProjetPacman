@@ -1,10 +1,11 @@
 package Generique.Moteur.graphique;
 
+import Generique.Moteur.Component;
 import Generique.Moteur.core_kernel.Entity;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public abstract class GraphicsComponent {
+public abstract class GraphicsComponent implements Component {
     private ImageView currentImage;
     private AnimationManager animation;
 
@@ -12,6 +13,7 @@ public abstract class GraphicsComponent {
         this.currentImage = imageView;
     }
 
+    @Override
     public  void update(Entity entity){
         if (animation != null){
             animation.playAnimation(10);
