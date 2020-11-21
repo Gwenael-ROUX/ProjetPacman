@@ -1,5 +1,8 @@
 package Generique.Moteur.controller;
 
-public interface ControllerComponent {
-    public double move();
+import Generique.Moteur.Component;
+import Generique.Moteur.core_kernel.Entity;
+
+public interface ControllerComponent extends Component {
+    public void update(Entity entity);
 }

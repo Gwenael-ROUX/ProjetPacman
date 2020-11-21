@@ -1,14 +1,19 @@
 package Generique.Moteur.core_kernel;
 
+import Generique.Moteur.Component;
 import Generique.Moteur.physics.PhysicsComponent;
 import Generique.Moteur.physics.Position;
 import Generique.Moteur.sound.SoundComponent;
 import Generique.Moteur.controller.ControllerComponent;
 import Generique.Moteur.graphique.GraphicsComponent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Entity {
     private Position position;
     private String name;
+    private double orientation;
     private ControllerComponent controllerComponent;
     private PhysicsComponent physicsComponent;
     private GraphicsComponent graphicsComponent;
@@ -17,13 +22,17 @@ public class Entity {
     public Entity(Position position, String name) {
         this.position = position;
         this.name = name;
+        this.orientation = 0.0;
+    }
+
+    public void move(){
+        if(controllerComponent != null)
+            controllerComponent.update(this);
+        if (physicsComponent != null)
+            physicsComponent.update(this);
     }
 
     public void update(){
-        //if (controllerComponent != null)
-        //    controllerComponent.update(this);
-        if (physicsComponent != null)
-            physicsComponent.update(this);
         if (graphicsComponent != null)
             graphicsComponent.update(this);
         if (soundComponent != null)
@@ -53,4 +62,9 @@ public class Entity {
     public void setSoundComponent(SoundComponent soundComponent) {
         this.soundComponent = soundComponent;
     }
+
+    public void setOrientation(double orientation){
+        this.orientation = orientation;
+    }
 }
+

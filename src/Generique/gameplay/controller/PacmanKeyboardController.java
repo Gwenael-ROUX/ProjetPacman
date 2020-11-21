@@ -1,6 +1,7 @@
 package Generique.gameplay.controller;
 
 import Generique.Moteur.controller.KeyboardController;
+import Generique.Moteur.core_kernel.Entity;
 import Generique.gameplay.physics.Displacement;
 
 public class PacmanKeyboardController extends KeyboardController {
@@ -34,10 +35,10 @@ public class PacmanKeyboardController extends KeyboardController {
     }
 
     @Override
-    public double move(){
+    public void update(Entity entity){
         Displacement res = nextMove;
         nextMove = Displacement.NOTHING;
-        return res.orientation;
+        entity.setOrientation(res.orientation);
     }
 }
 

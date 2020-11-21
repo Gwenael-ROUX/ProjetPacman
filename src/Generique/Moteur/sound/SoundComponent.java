@@ -1,7 +1,7 @@
 package Generique.Moteur.sound;
 
-import Generique.Moteur.core_kernel.Entity;
+import Generique.Moteur.Component;
 
-public interface SoundComponent {
-    void update(Entity entity);
+public interface SoundComponent extends Component {
+
 }
