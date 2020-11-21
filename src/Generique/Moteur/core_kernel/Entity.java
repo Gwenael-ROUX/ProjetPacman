@@ -1,8 +1,8 @@
 package Generique.Moteur.core_kernel;
 
-import Generique.Moteur.PhysicsComponent;
+import Generique.Moteur.physics.PhysicsComponent;
 import Generique.Moteur.physics.Position;
-import Generique.Moteur.SoundComponent;
+import Generique.Moteur.sound.SoundComponent;
 import Generique.Moteur.controller.ControllerComponent;
 import Generique.Moteur.graphique.GraphicsComponent;
 

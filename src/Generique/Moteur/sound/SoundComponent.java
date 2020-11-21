@@ -1,4 +1,4 @@
-package Generique.Moteur;
+package Generique.Moteur.sound;
 
 import Generique.Moteur.core_kernel.Entity;
 
