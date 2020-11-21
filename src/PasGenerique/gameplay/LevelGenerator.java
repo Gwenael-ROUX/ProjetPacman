@@ -17,14 +17,14 @@ public class LevelGenerator {
     private double v1,v2;
     private double dimCaseLong;
     private double dimCaseLarg;
-    private ShortestPathAI shortestPathAI;
+    //private ShortestPathAI shortestPathAI;
     private MapRepresentation mapRepresentation;
 
     public LevelGenerator(double v1, double v2, String chemin) {
         this.v1 = v1;
         this.v2 = v2;
         mapRepresentation = new MapRepresentation(matrix);
-        this.shortestPathAI = new ShortestPathAI(new BasicPathFinder(mapRepresentation));
+        //this.shortestPathAI = new ShortestPathAI(new BasicPathFinder(mapRepresentation));
         readFile(chemin);
         mapRepresentation.update(matrix);
     }
@@ -91,11 +91,11 @@ public class LevelGenerator {
                     pacmanImageView.setY(posY+dimCaseLarg/2);
 
                     setMatrix(i,j, pacman);
-                    shortestPathAI.setTarget(pacman);
+                    //shortestPathAI.setTarget(pacman);
                     break;
                 case "r" :
                     RedGhostBuilder builder = new RedGhostBuilder();
-                    builder.setAI(shortestPathAI);
+                    //builder.setAI(shortestPathAI);
                     director.setEntityCharacterBuilder(builder, new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
                             new BoxCollider(new Position(posX, posY), new Position(posX+dimCaseLong, posY+dimCaseLarg)));
                     director.constructEntityCharacter();
@@ -107,7 +107,7 @@ public class LevelGenerator {
                     ghostRImage.setY(posY+dimCaseLarg/2);
 
                     setMatrix(i,j, ghostR);
-                    shortestPathAI.setOrigin(ghostR);
+                    //shortestPathAI.setOrigin(ghostR);
                     break;
                 case "g" :
                     director.setEntityCharacterBuilder(new GreenGhostBuilder(), new Position(posX+dimCaseLong/2, posY+dimCaseLarg/2),
