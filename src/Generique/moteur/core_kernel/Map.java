@@ -67,6 +67,10 @@ public class Map implements Iterable<Entity> {
         return limitBottomRight;
     }
 
+    public Entity[][] getMatrix(){
+        return matrix;
+    }
+
     @Override
     public Iterator<Entity> iterator() {
         return null;
