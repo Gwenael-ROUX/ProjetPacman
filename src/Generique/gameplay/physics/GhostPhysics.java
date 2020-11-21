@@ -6,7 +6,7 @@ import Generique.moteur.physics.Collider;
 import Generique.moteur.physics.PhysicsComponent;
 
 public class GhostPhysics extends PhysicsComponent {
-    public GhostPhysics(double speed, Collider<BoxCollider> collider) {
+    public GhostPhysics(double speed, Collider collider) {
         super(speed);
         this.collider = collider;
     }

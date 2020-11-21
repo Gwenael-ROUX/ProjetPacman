@@ -6,7 +6,7 @@ import Generique.moteur.physics.Collider;
 import Generique.moteur.physics.PhysicsComponent;
 
 public class WallPhysics extends PhysicsComponent {
-    public WallPhysics(double speed, Collider<BoxCollider> collider) {
+    public WallPhysics(double speed, Collider collider) {
         super(speed);
         this.collider = collider;
     }

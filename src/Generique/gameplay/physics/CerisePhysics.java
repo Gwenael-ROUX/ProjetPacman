@@ -6,7 +6,7 @@ import Generique.moteur.physics.Collider;
 import Generique.moteur.physics.PhysicsComponent;
 
 public class CerisePhysics extends PhysicsComponent {
-    public CerisePhysics(double speed, Collider<BoxCollider> collider) {
+    public CerisePhysics(double speed, Collider collider) {
         super(speed);
         this.collider = collider;
     }

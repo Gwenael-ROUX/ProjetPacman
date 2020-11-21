@@ -1,14 +1,19 @@
 package Generique.moteur.core_kernel;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameManager {
     private Map map;
     private EventManager eventManager;
+    private List<Entity> entities;
 
 
     public GameManager(Entity[][] entities){
         map = new Map(entities);
         eventManager = EventManager.getEventManager();
+        this.entities = new ArrayList<>();
     }
 
 
@@ -29,19 +34,31 @@ public class GameManager {
     }
 
     private void updateEntitiesMove(){
+        entities.clear();
         for(Entity entity : map){
-            if(entity != null) entity.move();
+            if(entity != null){
+                entity.move();
+                entities.add(entity);
+            }
         }
     }
 
     private void updateCollisionListener(){
-        for(Entity entity1 : map){
-            if(entity1 == null) continue;
-            for(Entity entity2 : map){
-                if(entity2 == null) continue;
-                if(! entity1.equals(entity2)){
-                    // TODO : check collider
-                    entity1.getPhysicsComponent().onCollision(entity2);
+        for(int i = 0; i < entities.size()-1; i++){
+            Entity entity1 = entities.get(i);
+            for(int j = i+1; j < entities.size(); j++){
+                Entity entity2 = entities.get(j);
+                if(entity1.getPhysicsComponent() != null && entity2.getPhysicsComponent() != null
+                && entity1.getPhysicsComponent().getCollider() != null && entity2.getPhysicsComponent().getCollider() != null){
+                    if(entity1.getPhysicsComponent().getCollider().hit(entity2.getPhysicsComponent().getCollider())){
+                        entity1.getPhysicsComponent().onCollision(entity2);
+                        entity2.getPhysicsComponent().onCollision(entity1);
+                    }
+
+                    // TODO : exit + exit listener
+                    /*if(entity1.getPhysicsComponent().getCollider().exit()){
+
+                    }*/
                 }
             }
         }

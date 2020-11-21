@@ -6,7 +6,7 @@ import Generique.moteur.physics.Collider;
 import Generique.moteur.physics.PhysicsComponent;
 
 public class PacmanPhysics extends PhysicsComponent {
-    public PacmanPhysics(double speed, Collider<BoxCollider> collider) {
+    public PacmanPhysics(double speed, Collider collider) {
         super(speed);
         this.collider = collider;
     }

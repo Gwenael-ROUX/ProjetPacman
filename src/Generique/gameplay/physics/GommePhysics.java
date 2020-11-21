@@ -6,7 +6,7 @@ import Generique.moteur.physics.Collider;
 import Generique.moteur.physics.PhysicsComponent;
 
 public class GommePhysics extends PhysicsComponent {
-    public GommePhysics(double speed, Collider<BoxCollider> collider) {
+    public GommePhysics(double speed, Collider collider) {
         super(speed);
         this.collider = collider;
     }
