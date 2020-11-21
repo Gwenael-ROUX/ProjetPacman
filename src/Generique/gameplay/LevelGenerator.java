@@ -1,15 +1,10 @@
 package Generique.gameplay;
 
-import Generique.gameplay.builder.PacmanBuilder;
-import Generique.gameplay.builder.ghost.GhostBlueBuilder;
-import Generique.gameplay.builder.ghost.GhostGreenBuilder;
-import Generique.gameplay.builder.ghost.GhostRedBuilder;
-import Generique.gameplay.builder.ghost.GhostYellowBuilder;
-import Generique.gameplay.builder.object.CeriseBuilder;
-import Generique.gameplay.builder.object.GommeBuilder;
-import Generique.gameplay.builder.object.WallBuilder;
+import Generique.gameplay.builder.*;
+import Generique.gameplay.builder.object.*;
+import Generique.gameplay.builder.ghost.*;
+import Generique.moteur.core_kernel.builder.*;
 import Generique.moteur.ai.MapRepresentation;
-import Generique.moteur.core_kernel.builder.Director;
 import Generique.moteur.core_kernel.Entity;
 import Generique.moteur.core_kernel.Map;
 import Generique.moteur.physics.Position;
@@ -61,36 +56,49 @@ public class LevelGenerator {
         double posY = (dimCaseLarg * i);
 
         Director director = new Director(dimCaseLong, dimCaseLarg);
+        EntityBuilder builder;
         for (String str : tab){
             double posX = (dimCaseLong * j);
             switch (str) {
                 case "#" :
-                    director.constructEntity(new WallBuilder(), new Position(posX,posY));
+                    builder = new WallBuilder();
+                    director.constructEntity(builder, new Position(posX,posY));
+                    setMatrix(i,j, builder.getEntity());
                     break;
                 case "p" :
-                    director.constructEntity(new PacmanBuilder(), new Position(posX,posY));
+                    builder = new PacmanBuilder();
+                    director.constructEntity(builder, new Position(posX,posY));
+                    setMatrix(i,j, builder.getEntity());
                     break;
                 case "r" :
-                    director.constructEntity(new GhostRedBuilder(), new Position(posX,posY));
+                    builder = new GhostRedBuilder();
+                    director.constructEntity(builder, new Position(posX,posY));
+                    setMatrix(i,j, builder.getEntity());
                     break;
                 case "g" :
-                    director.constructEntity(new GhostGreenBuilder(), new Position(posX,posY));
+                    builder = new GhostGreenBuilder();
+                    director.constructEntity(builder, new Position(posX,posY));
+                    setMatrix(i,j, builder.getEntity());
                     break;
                 case "y" :
-                    director.constructEntity(new GhostYellowBuilder(), new Position(posX,posY));
+                    builder = new GhostYellowBuilder();
+                    director.constructEntity(builder, new Position(posX,posY));
+                    setMatrix(i,j, builder.getEntity());
                     break;
                 case "b" :
-                    director.constructEntity(new GhostBlueBuilder(), new Position(posX,posY));
+                    builder = new GhostBlueBuilder();
+                    director.constructEntity(builder, new Position(posX,posY));
+                    setMatrix(i,j, builder.getEntity());
                     break;
                 case "c" :
-                    director.constructEntity(new CeriseBuilder(), new Position(posX,posY));
+                    builder = new CeriseBuilder();
+                    director.constructEntity(builder, new Position(posX,posY));
+                    setMatrix(i,j, builder.getEntity());
                     break;
                 case "." :
-                    director.constructEntity(new GommeBuilder(), new Position(posX,posY));
-                    break;
-                case "*" :
-                    break;
-                default:
+                    builder = new GommeBuilder();
+                    director.constructEntity(builder, new Position(posX,posY));
+                    setMatrix(i,j, builder.getEntity());
                     break;
             }
             ++j;
