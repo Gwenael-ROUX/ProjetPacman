@@ -21,6 +21,8 @@ public class Entity {
         this.orientation = 0.0;
     }
 
+    public Entity(){}
+
     public void move(){
         if(controllerComponent != null)
             controllerComponent.update(this);

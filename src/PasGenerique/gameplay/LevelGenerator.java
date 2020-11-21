@@ -5,11 +5,12 @@ import PasGenerique.gameplay.builder.ghost.BlueGhostBuilder;
 import PasGenerique.gameplay.builder.ghost.GreenGhostBuilder;
 import PasGenerique.gameplay.builder.ghost.RedGhostBuilder;
 import PasGenerique.gameplay.builder.ghost.YellowGhostBuilder;
-import javafx.scene.image.ImageView;
 import PasGenerique.moteurs.Entity;
 import PasGenerique.moteurs.Position;
 import PasGenerique.moteurs.controllers.ai.*;
 import PasGenerique.moteurs.physics.BoxCollider;
+import javafx.scene.image.ImageView;
+
 import java.io.*;
 
 public class LevelGenerator {
