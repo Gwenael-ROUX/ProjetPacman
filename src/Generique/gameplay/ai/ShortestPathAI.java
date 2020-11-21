@@ -1,9 +1,9 @@
 package Generique.gameplay.ai;
 
-import Generique.Moteur.physics.Position;
-import Generique.Moteur.ai.AI;
-import Generique.Moteur.ai.BasicPathFinder;
-import Generique.Moteur.core_kernel.Entity;
+import Generique.moteur.physics.Position;
+import Generique.moteur.ai.AI;
+import Generique.moteur.ai.BasicPathFinder;
+import Generique.moteur.core_kernel.Entity;
 import Generique.gameplay.physics.Displacement;
 
 import java.util.List;
