@@ -40,6 +40,7 @@ public class GhostRedBuilder extends EntityBuilder {
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent();
         graphicsComponent.setImageView("/Image/ghost/GhostRed.png");
+        graphicsComponent.initImagePos(entity.getPosition(), dimLong, dimLarg);
         entity.setGraphicsComponent(graphicsComponent);
     }
 
