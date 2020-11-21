@@ -15,13 +15,8 @@ public class Entity {
     private GraphicsComponent graphicsComponent;
     private SoundComponent soundComponent;
 
-    public Entity(Position position, String name) {
-        this.position = position;
-        this.name = name;
-        this.orientation = 0.0;
+    public Entity() {
     }
-
-    public Entity(){}
 
     public void move(){
         if(controllerComponent != null)
@@ -63,6 +58,10 @@ public class Entity {
 
     public void setOrientation(double orientation){
         this.orientation = orientation;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPosition(Position position){

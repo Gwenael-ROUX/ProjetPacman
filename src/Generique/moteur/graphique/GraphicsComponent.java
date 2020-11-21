@@ -2,21 +2,22 @@ package Generique.moteur.graphique;
 
 import Generique.moteur.Component;
 import Generique.moteur.core_kernel.Entity;
+import Generique.moteur.core_kernel.Timer;
+import Generique.moteur.physics.Position;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public abstract class GraphicsComponent implements Component {
+public class GraphicsComponent implements Component {
     private ImageView currentImage;
     private AnimationManager animation;
 
-    public GraphicsComponent(ImageView imageView) {
-        this.currentImage = imageView;
+    public GraphicsComponent() {
     }
 
     @Override
     public  void update(Entity entity){
         if (animation != null){
-            animation.playAnimation(10);
+            animation.playAnimation(Timer.getInstance().getTime());
         }
 
         //TODO bug potentiel image décallé
@@ -26,5 +27,16 @@ public abstract class GraphicsComponent implements Component {
 
     public void setImageView(String chemin) {
         this.currentImage = new ImageView(new Image(AnimationManager.class.getResourceAsStream(chemin)));
+    }
+
+    public void setAnimation(AnimationManager animation) {
+        this.animation = animation;
+    }
+
+    public void initImagePos(Position position, double dimCaseLong, double dimCaseLarg){
+        currentImage.setFitHeight(dimCaseLarg);
+        currentImage.setFitWidth(dimCaseLong);
+        currentImage.setX(position.getX());
+        currentImage.setY(position.getY());
     }
 }
