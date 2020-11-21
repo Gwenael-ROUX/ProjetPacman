@@ -1,6 +1,6 @@
 package Generique;
 
-import Generique.Moteur.graphique.AnimationManager;
+import Generique.moteur.graphique.AnimationManager;
 
 public class Main {
     public static void main(String[] args) {

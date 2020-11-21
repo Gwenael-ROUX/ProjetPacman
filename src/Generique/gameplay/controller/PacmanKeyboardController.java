@@ -1,7 +1,7 @@
 package Generique.gameplay.controller;
 
-import Generique.Moteur.controller.KeyboardController;
-import Generique.Moteur.core_kernel.Entity;
+import Generique.moteur.controller.KeyboardController;
+import Generique.moteur.core_kernel.Entity;
 import Generique.gameplay.physics.Displacement;
 
 public class PacmanKeyboardController extends KeyboardController {
