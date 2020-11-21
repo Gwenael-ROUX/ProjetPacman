@@ -8,7 +8,7 @@ public class PacmanKeyboardController extends KeyboardController {
     private Displacement nextMove;
 
     public PacmanKeyboardController(){
-        nextMove = Displacement.NOTHING;
+        //nextMove = Displacement.NOTHING;
         createHandler();
     }
 

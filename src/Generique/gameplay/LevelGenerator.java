@@ -23,7 +23,13 @@ public class LevelGenerator {
     public LevelGenerator(double v1, double v2, String chemin) {
         this.v1 = v1;
         this.v2 = v2;
-
+        readFile(chemin);
+        for (int i = 0; i < 10; i++) {
+            System.out.println();
+            for (int j = 0; j < 10; j++) {
+                System.out.print("\t"+matrix[i][j].getName());
+            }
+        }
         this.mapRepresentation = new MapRepresentation(new Map(matrix));
     }
 
