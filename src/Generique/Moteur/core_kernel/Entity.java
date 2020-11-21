@@ -1,9 +1,9 @@
 package Generique.Moteur.core_kernel;
 
-import Generique.Moteur.ControllerComponent;
 import Generique.Moteur.PhysicsComponent;
-import Generique.Moteur.Position;
+import Generique.Moteur.physics.Position;
 import Generique.Moteur.SoundComponent;
+import Generique.Moteur.controller.ControllerComponent;
 import Generique.Moteur.graphique.GraphicsComponent;
 
 public class Entity {
@@ -20,8 +20,8 @@ public class Entity {
     }
 
     public void update(){
-        if (controllerComponent != null)
-            controllerComponent.update(this);
+        //if (controllerComponent != null)
+        //    controllerComponent.update(this);
         if (physicsComponent != null)
             physicsComponent.update(this);
         if (graphicsComponent != null)

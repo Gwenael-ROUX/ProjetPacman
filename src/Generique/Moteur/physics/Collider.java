@@ -1,7 +1,5 @@
 package Generique.Moteur.physics;
 
-import Generique.Moteur.Position;
-
 public interface Collider {
     public void move(Position newPosition);
 

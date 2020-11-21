@@ -1,11 +1,12 @@
 package Generique.Moteur.ai;
 
-public class RandomAI {
+public class RandomAI implements AI{
 
     public RandomAI(){
 
     }
 
+    @Override
     public double move(){
         // TODO
         return 0;

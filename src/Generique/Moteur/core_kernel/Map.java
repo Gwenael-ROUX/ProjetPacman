@@ -1,6 +1,6 @@
 package Generique.Moteur.core_kernel;
 
-import Generique.Moteur.Position;
+import Generique.Moteur.physics.Position;
 
 public class Map {
     private Entity[][] matrix;

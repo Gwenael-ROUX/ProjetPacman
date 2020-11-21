@@ -1,7 +1,5 @@
 package Generique.Moteur.physics;
 
-import Generique.Moteur.Position;
-
 public class BoxCollider implements Collider {
     public Position p1, p2, center;
 
