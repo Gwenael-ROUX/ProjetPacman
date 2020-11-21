@@ -1,4 +1,18 @@
 package Generique.gameplay.physics;
 
-public class GommePhysics {
+import Generique.moteur.core_kernel.Entity;
+import Generique.moteur.physics.BoxCollider;
+import Generique.moteur.physics.Collider;
+import Generique.moteur.physics.PhysicsComponent;
+
+public class GommePhysics extends PhysicsComponent {
+    public GommePhysics(double speed, Collider<BoxCollider> collider) {
+        super(speed);
+        this.collider = collider;
+    }
+
+    @Override
+    public void onCollision(Entity entity) {
+
+    }
 }

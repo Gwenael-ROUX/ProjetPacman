@@ -5,7 +5,7 @@ import Generique.moteur.core_kernel.Entity;
 
 public abstract class PhysicsComponent implements ColliderListener, Component {
     public double speed;
-    public Collider collider;
+    protected Collider<BoxCollider> collider;
 
     public PhysicsComponent(double speed){
         this.speed = speed;
@@ -33,11 +33,11 @@ public abstract class PhysicsComponent implements ColliderListener, Component {
         entity.setPosition(position);
     }
 
-    public void setCollider(Collider collider) {
+    public void setCollider(Collider<BoxCollider> collider) {
         this.collider = collider;
     }
 
-    public Collider getCollider() {
+    public Collider<BoxCollider> getCollider() {
         return collider;
     }
 

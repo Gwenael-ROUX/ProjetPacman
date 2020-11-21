@@ -17,7 +17,7 @@ public abstract class EntityBuilder {
     public abstract void buildName();
     public abstract void buildOrientation();
     public abstract void buildContComp();
-    public abstract void buildPhysComp();
+    public abstract void buildPhysComp(double dimLong, double dimLarg);
     public abstract void buildGraphComp(double dimLong, double dimLarg);
     public abstract void buildSoundComp();
 }

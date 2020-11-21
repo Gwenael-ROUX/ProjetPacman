@@ -1,9 +1,11 @@
 package Generique.gameplay.builder;
 
 import Generique.gameplay.controller.PacmanKeyboardController;
+import Generique.gameplay.physics.PacmanPhysics;
 import Generique.moteur.core_kernel.EntityBuilder;
 import Generique.moteur.graphique.AnimationManager;
 import Generique.moteur.graphique.GraphicsComponent;
+import Generique.moteur.physics.BoxCollider;
 import Generique.moteur.physics.Position;
 
 public class PacmanBuilder extends EntityBuilder {
@@ -28,8 +30,11 @@ public class PacmanBuilder extends EntityBuilder {
     }
 
     @Override
-    public void buildPhysComp() {
+    public void buildPhysComp(double dimLong, double dimLarg) {
+        Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
+        Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
+        entity.setPhysicsComponent(new PacmanPhysics(1,new BoxCollider(position1, position2)));
     }
 
     @Override
