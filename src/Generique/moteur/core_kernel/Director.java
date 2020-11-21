@@ -1,6 +1,5 @@
 package Generique.moteur.core_kernel;
 
-import Generique.moteur.core_kernel.EntityBuilder;
 import Generique.moteur.physics.Position;
 
 public class Director {
