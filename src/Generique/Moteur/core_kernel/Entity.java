@@ -66,5 +66,9 @@ public class Entity {
     public void setOrientation(double orientation){
         this.orientation = orientation;
     }
+
+    public PhysicsComponent getPhysicsComponent(){
+        return physicsComponent;
+    }
 }
 

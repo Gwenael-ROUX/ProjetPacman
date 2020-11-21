@@ -2,7 +2,9 @@ package Generique.Moteur.core_kernel;
 
 import Generique.Moteur.physics.Position;
 
-public class Map {
+import java.util.Iterator;
+
+public class Map implements Iterable<Entity> {
     private Entity[][] matrix;
 
 
@@ -42,5 +44,42 @@ public class Map {
 
     public int getHeight(){
         return matrix.length;
+    }
+
+
+    @Override
+    public Iterator<Entity> iterator() {
+        return null;
+    }
+
+    private class MapIterator implements Iterator<Entity>{
+        private int row = 0, col = 0;
+
+        @Override
+        public boolean hasNext() {
+            if(matrix.length == 0)
+                return false;
+
+            if (col < matrix.length && row < matrix[col].length){
+                return true;
+            } else if(col+1 < matrix.length){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public Entity next() {
+            if (this.hasNext()){
+                if(row == matrix[col].length){
+                    col++;
+                    row = 0;
+                }
+                return matrix[col][row++];
+            } else{
+                return null;
+            }
+        }
     }
 }
