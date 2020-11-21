@@ -10,7 +10,7 @@ public class MapRepresentation {
 
     private Map map;
     private int[][] matrixDistance;
-
+    // TODO : add crossable names
 
     public MapRepresentation(Map map){
         this.map = map;

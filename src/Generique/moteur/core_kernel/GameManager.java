@@ -40,6 +40,7 @@ public class GameManager {
             for(Entity entity2 : map){
                 if(entity2 == null) continue;
                 if(! entity1.equals(entity2)){
+                    // TODO : check collider
                     entity1.getPhysicsComponent().onCollision(entity2);
                 }
             }
