@@ -24,7 +24,7 @@ public class LevelGenerator {
         this.v1 = v1;
         this.v2 = v2;
         readFile(chemin);
-        this.mapRepresentation = new MapRepresentation(new Map(matrix));
+        this.mapRepresentation = new MapRepresentation(new Map(matrix, dimCaseLong, dimCaseLarg));
     }
 
     public void readFile(String chemin){

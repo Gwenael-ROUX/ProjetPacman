@@ -12,7 +12,5 @@ public class CerisePhysics extends PhysicsComponent {
     }
 
     @Override
-    public void onCollision(Entity entity) {
-
-    }
+    public void onCollision(Entity entity_owned, Entity entity){}
 }

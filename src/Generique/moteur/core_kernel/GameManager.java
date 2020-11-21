@@ -9,9 +9,8 @@ public class GameManager {
     private EventManager eventManager;
     private List<Entity> entities;
 
-
-    public GameManager(Entity[][] entities){
-        map = new Map(entities);
+    public GameManager(Map map){
+        this.map = map;
         eventManager = EventManager.getEventManager();
         this.entities = new ArrayList<>();
     }
@@ -22,7 +21,7 @@ public class GameManager {
 
         updateEvents();
 
-        updateCollisionListener();
+        updateCollisionAndExitListener();
 
         updateEntities();
 
@@ -43,22 +42,24 @@ public class GameManager {
         }
     }
 
-    private void updateCollisionListener(){
+    private void updateCollisionAndExitListener(){
         for(int i = 0; i < entities.size()-1; i++){
             Entity entity1 = entities.get(i);
+            if(entity1.getPhysicsComponent() != null && entity1.getPhysicsComponent().getCollider() != null){
+                if(entity1.getPhysicsComponent().getCollider().exit(map.getLimitTopLeft(), map.getLimitBottomRight())){
+                    entity1.getPhysicsComponent().onExit(entity1);
+                }
+            } else{
+                continue;
+            }
+
             for(int j = i+1; j < entities.size(); j++){
                 Entity entity2 = entities.get(j);
-                if(entity1.getPhysicsComponent() != null && entity2.getPhysicsComponent() != null
-                && entity1.getPhysicsComponent().getCollider() != null && entity2.getPhysicsComponent().getCollider() != null){
+                if(entity2.getPhysicsComponent() != null && entity2.getPhysicsComponent().getCollider() != null){
                     if(entity1.getPhysicsComponent().getCollider().hit(entity2.getPhysicsComponent().getCollider())){
-                        entity1.getPhysicsComponent().onCollision(entity2);
-                        entity2.getPhysicsComponent().onCollision(entity1);
+                        entity1.getPhysicsComponent().onCollision(entity1, entity2);
+                        entity2.getPhysicsComponent().onCollision(entity2, entity1);
                     }
-
-                    // TODO : exit + exit listener
-                    /*if(entity1.getPhysicsComponent().getCollider().exit()){
-
-                    }*/
                 }
             }
         }
@@ -69,6 +70,4 @@ public class GameManager {
             if(entity != null) entity.update();
         }
     }
-
-
 }

@@ -12,7 +12,8 @@ public class GhostPhysics extends PhysicsComponent {
     }
 
     @Override
-    public void onCollision(Entity entity) {
+    public void onCollision(Entity entity_owned, Entity entity){}
 
-    }
+    @Override
+    public void onExit(Entity entity_owned){}
 }

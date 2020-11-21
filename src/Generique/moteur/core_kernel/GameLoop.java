@@ -40,7 +40,7 @@ public class GameLoop extends Application {
         {
             public void handle(long currentNanoTime)
             {
-                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+                double t = (currentNanoTime - startNanoTime) / 10e+9;//1000000000.0;
                 timer.setTime(t);
 
                 gameManager.update();

@@ -6,10 +6,15 @@ import java.util.Iterator;
 
 public class Map implements Iterable<Entity> {
     private Entity[][] matrix;
+    private double dimCellHgt, dimCellWdt;
+    private Position limitTopLeft, limitBottomRight;
 
-
-    public Map(Entity[][] matrix){
+    public Map(Entity[][] matrix, Position limitTopLeft, Position limitBottomRight){
         this.matrix = matrix;
+        this.limitTopLeft = limitTopLeft;
+        this.limitBottomRight = limitBottomRight;
+        this.dimCellWdt = (limitBottomRight.getX() - limitTopLeft.getX()) / getWidth();
+        this.dimCellHgt = (limitBottomRight.getY() - limitTopLeft.getY()) / getHeight();
     }
 
     public Entity getEntity(int x, int y){
@@ -46,6 +51,21 @@ public class Map implements Iterable<Entity> {
         return matrix.length;
     }
 
+    public double getDimCellHgt() {
+        return dimCellHgt;
+    }
+
+    public double getDimCellWdt() {
+        return dimCellWdt;
+    }
+
+    public Position getLimitTopLeft() {
+        return limitTopLeft;
+    }
+
+    public Position getLimitBottomRight() {
+        return limitBottomRight;
+    }
 
     @Override
     public Iterator<Entity> iterator() {
