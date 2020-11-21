@@ -1,3 +1,4 @@
+/*
 import PasGenerique.gameplay.EntityCharacter;
 import PasGenerique.gameplay.LevelGenerator;
 import PasGenerique.moteurs.Entity;
@@ -125,3 +126,4 @@ public class TestUnitIA {
         assertEquals(Displacement.DOWN, shortestPathAI.move());
     }
 }
+*/
