@@ -67,8 +67,16 @@ public class Entity {
         this.orientation = orientation;
     }
 
+    public void setPosition(Position position){
+        this.position = position;
+    }
+
     public PhysicsComponent getPhysicsComponent(){
         return physicsComponent;
+    }
+
+    public double getOrientation(){
+        return orientation;
     }
 }
 
