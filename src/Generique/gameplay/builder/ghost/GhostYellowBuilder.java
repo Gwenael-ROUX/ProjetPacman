@@ -1,5 +1,6 @@
 package Generique.gameplay.builder.ghost;
 
+import Generique.gameplay.ai.RandomAI;
 import Generique.gameplay.physics.PacmanPhysics;
 import Generique.moteur.core_kernel.builder.EntityBuilder;
 import Generique.gameplay.ai.ShortestPathAI;
@@ -25,7 +26,7 @@ public class GhostYellowBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
-        entity.setControllerComponent(new ShortestPathAI());
+        entity.setControllerComponent(new RandomAI());
     }
 
     @Override
