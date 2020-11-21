@@ -2,6 +2,7 @@ package Generique.moteur.graphique;
 
 import Generique.moteur.Component;
 import Generique.moteur.core_kernel.Entity;
+import Generique.moteur.core_kernel.Timer;
 import Generique.moteur.physics.Position;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,8 +17,7 @@ public class GraphicsComponent implements Component {
     @Override
     public  void update(Entity entity){
         if (animation != null){
-            //TODO mettre le time courant
-            animation.playAnimation(10);
+            animation.playAnimation(Timer.getInstance().getTime());
         }
 
         //TODO bug potentiel image décallé

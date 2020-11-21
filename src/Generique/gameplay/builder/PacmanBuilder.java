@@ -1,6 +1,6 @@
 package Generique.gameplay.builder;
 
-import Generique.gameplay.ai.ShortestPathAI;
+import Generique.gameplay.controller.PacmanKeyboardController;
 import Generique.moteur.core_kernel.EntityBuilder;
 import Generique.moteur.graphique.AnimationManager;
 import Generique.moteur.graphique.GraphicsComponent;
@@ -24,7 +24,7 @@ public class PacmanBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
-        entity.setControllerComponent(new ShortestPathAI());
+        entity.setControllerComponent(new PacmanKeyboardController());
     }
 
     @Override
