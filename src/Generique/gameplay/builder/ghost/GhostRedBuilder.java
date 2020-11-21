@@ -1,7 +1,7 @@
 package Generique.gameplay.builder.ghost;
 
 import Generique.gameplay.physics.PacmanPhysics;
-import Generique.moteur.core_kernel.EntityBuilder;
+import Generique.moteur.core_kernel.builder.EntityBuilder;
 import Generique.gameplay.ai.ShortestPathAI;
 import Generique.moteur.graphique.GraphicsComponent;
 import Generique.moteur.physics.BoxCollider;
@@ -40,6 +40,7 @@ public class GhostRedBuilder extends EntityBuilder {
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent();
         graphicsComponent.setImageView("/Image/ghost/GhostRed.png");
+        graphicsComponent.initImagePos(entity.getPosition(), dimLong, dimLarg);
         entity.setGraphicsComponent(graphicsComponent);
     }
 

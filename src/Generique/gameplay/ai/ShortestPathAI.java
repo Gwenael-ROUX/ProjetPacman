@@ -15,7 +15,7 @@ public class ShortestPathAI implements AI {
     private Displacement lastDisplacement;
 
     public ShortestPathAI(){
-        lastDisplacement = Displacement.NOTHING;
+        //lastDisplacement = Displacement.NOTHING;
     }
 
     public ShortestPathAI(Entity origin, Entity target, BasicPathFinder pathFinder){

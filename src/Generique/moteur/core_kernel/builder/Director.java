@@ -1,4 +1,4 @@
-package Generique.moteur.core_kernel;
+package Generique.moteur.core_kernel.builder;
 
 import Generique.moteur.physics.Position;
 

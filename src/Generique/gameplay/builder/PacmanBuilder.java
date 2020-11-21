@@ -2,7 +2,7 @@ package Generique.gameplay.builder;
 
 import Generique.gameplay.controller.PacmanKeyboardController;
 import Generique.gameplay.physics.PacmanPhysics;
-import Generique.moteur.core_kernel.EntityBuilder;
+import Generique.moteur.core_kernel.builder.EntityBuilder;
 import Generique.moteur.graphique.AnimationManager;
 import Generique.moteur.graphique.GraphicsComponent;
 import Generique.moteur.physics.BoxCollider;
