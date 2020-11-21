@@ -9,7 +9,7 @@ import Generique.gameplay.builder.object.CeriseBuilder;
 import Generique.gameplay.builder.object.GommeBuilder;
 import Generique.gameplay.builder.object.WallBuilder;
 import Generique.moteur.ai.MapRepresentation;
-import Generique.moteur.core_kernel.Director;
+import Generique.moteur.core_kernel.builder.Director;
 import Generique.moteur.core_kernel.Entity;
 import Generique.moteur.core_kernel.Map;
 import Generique.moteur.physics.Position;

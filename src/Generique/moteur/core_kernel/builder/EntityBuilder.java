@@ -1,5 +1,6 @@
-package Generique.moteur.core_kernel;
+package Generique.moteur.core_kernel.builder;
 
+import Generique.moteur.core_kernel.Entity;
 import Generique.moteur.physics.Position;
 
 public abstract class EntityBuilder {
