@@ -61,10 +61,9 @@ public class GameManager {
                 continue;
             }
 
-            for(int j = i+1; j < entities.size(); j++){
-                Entity entity2 = entities.get(j);
-                if(entity2.getPhysicsComponent() != null && entity2.getPhysicsComponent().getCollider() != null){
-                    if(entity1.getPhysicsComponent().getCollider().hit(entity2.getPhysicsComponent().getCollider())){
+            for (Entity entity2 : entities) {
+                if (entity2.getPhysicsComponent() != null && entity2.getPhysicsComponent().getCollider() != null) {
+                    if (entity1.getPhysicsComponent().getCollider().hit(entity2.getPhysicsComponent().getCollider())) {
                         entity1.getPhysicsComponent().onCollision(entity1, entity2);
                         entity2.getPhysicsComponent().onCollision(entity2, entity1);
                     }
