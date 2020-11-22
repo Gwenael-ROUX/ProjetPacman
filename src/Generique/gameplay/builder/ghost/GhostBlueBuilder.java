@@ -2,6 +2,7 @@ package Generique.gameplay.builder.ghost;
 
 import Generique.gameplay.EntityType;
 import Generique.gameplay.ai.RandomAI;
+import Generique.gameplay.physics.Displacement;
 import Generique.gameplay.physics.GhostPhysics;
 import Generique.moteur.core_kernel.builder.EntityBuilder;
 import Generique.moteur.graphique.GraphicsComponent;
@@ -21,7 +22,7 @@ public class GhostBlueBuilder extends EntityBuilder {
 
     @Override
     public void buildOrientation() {
-        entity.setOrientation(0.0);
+        entity.setOrientation(Displacement.NOTHING.orientation);
     }
 
     @Override

@@ -34,6 +34,8 @@ public class GameManager {
         updateMovesAndListener();
 
         updateEntities();
+
+        buildSceneGame.update(map);
     }
 
     private void updateListEntities(){

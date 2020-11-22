@@ -3,7 +3,9 @@ package Generique.gameplay.builder;
 import Generique.gameplay.EntityType;
 import Generique.gameplay.controller.PacmanKeyboardController;
 import Generique.gameplay.model.PacmanModel;
+import Generique.gameplay.physics.Displacement;
 import Generique.gameplay.physics.PacmanPhysics;
+import Generique.moteur.core_kernel.Entity;
 import Generique.moteur.core_kernel.builder.EntityBuilder;
 import Generique.moteur.graphique.AnimationManager;
 import Generique.moteur.graphique.GraphicsComponent;
@@ -23,7 +25,7 @@ public class PacmanBuilder extends EntityBuilder {
 
     @Override
     public void buildOrientation() {
-        entity.setOrientation(0.0);
+        entity.setOrientation(Displacement.NOTHING.orientation);
     }
 
     @Override
@@ -54,7 +56,7 @@ public class PacmanBuilder extends EntityBuilder {
         animationManager.addAnimation("right","/Animation/pacmanRight",duration);
 
         animationManager.setCurrentAnimation("right");
-        graphicsComponent.setAnimation(new AnimationManager());
+        graphicsComponent.setAnimation(animationManager);
         entity.setGraphicsComponent(graphicsComponent);
     }
 

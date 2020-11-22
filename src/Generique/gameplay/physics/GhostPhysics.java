@@ -14,6 +14,8 @@ public class GhostPhysics extends PhysicsComponent {
 
     @Override
     public void onCollision(Entity entity_owned, Entity entity){
+        if (entity_owned.getOrientation() == null)
+            return;
         if(entity.getName().equals(EntityType.WALL.name) || entity.getName().equals(EntityType.GHOST.name) || entity.getName().equals(EntityType.PACMAN.name)){
             moveBack(entity_owned);
         }

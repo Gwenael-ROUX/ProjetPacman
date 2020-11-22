@@ -1,15 +1,27 @@
 package Generique;
 
 import Generique.gameplay.LevelGenerator;
+import Generique.moteur.physics.Position;
 
 public class Main {
     public static void main(String[] args) {
-        LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level1.txt");
-//        for (int i = 0; i < 10; i++) {
-//            System.out.println();
-//            for (int j = 0; j < 10; j++) {
-//                System.out.print("\t"+levelGenerator.getMapRepresentation().getMap().getEntity(i,j).getName());
-//            }
-//        }
+        double direction = 0;
+        if (direction < 0 || direction > 359){
+            System.out.println("direction peut etre fausse. doit etre entre 0 et 359 degree");
+        }
+
+        double radDirection = Math.toRadians((double)direction);
+
+        double cosDir = Math.cos(radDirection);
+        double sinDir = Math.sin(radDirection);
+
+        double newPosX = 10 * cosDir;
+        double newPosY = 10 * sinDir;
+
+        double fx = 100 + newPosX;
+        double fy = 100 + newPosY;
+
+        System.out.println(fx);
+        System.out.println(fy);
     }
 }

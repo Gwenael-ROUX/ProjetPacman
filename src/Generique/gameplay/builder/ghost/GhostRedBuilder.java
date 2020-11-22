@@ -1,7 +1,9 @@
 package Generique.gameplay.builder.ghost;
 
 import Generique.gameplay.EntityType;
+import Generique.gameplay.physics.Displacement;
 import Generique.gameplay.physics.GhostPhysics;
+import Generique.moteur.core_kernel.builder.Director;
 import Generique.moteur.core_kernel.builder.EntityBuilder;
 import Generique.gameplay.ai.ShortestPathAI;
 import Generique.moteur.graphique.GraphicsComponent;
@@ -21,7 +23,7 @@ public class GhostRedBuilder extends EntityBuilder {
 
     @Override
     public void buildOrientation() {
-        entity.setOrientation(0.0);
+        entity.setOrientation(Displacement.NOTHING.orientation);
     }
 
     @Override

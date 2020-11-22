@@ -9,7 +9,7 @@ import Generique.moteur.graphique.GraphicsComponent;
 public class Entity {
     private Position position;
     private String name;
-    private double orientation;
+    private Double orientation;
     private ControllerComponent controllerComponent;
     private PhysicsComponent physicsComponent;
     private GraphicsComponent graphicsComponent;
@@ -56,7 +56,7 @@ public class Entity {
         this.soundComponent = soundComponent;
     }
 
-    public void setOrientation(double orientation){
+    public void setOrientation(Double orientation){
         this.orientation = orientation;
     }
 
@@ -72,7 +72,7 @@ public class Entity {
         return physicsComponent;
     }
 
-    public double getOrientation(){
+    public Double getOrientation(){
         return orientation;
     }
 

@@ -1,6 +1,7 @@
 package Generique.gameplay.builder.object;
 
 import Generique.gameplay.EntityType;
+import Generique.gameplay.physics.Displacement;
 import Generique.gameplay.physics.WallPhysics;
 import Generique.moteur.core_kernel.builder.EntityBuilder;
 import Generique.moteur.graphique.GraphicsComponent;
@@ -20,7 +21,7 @@ public class WallBuilder extends EntityBuilder {
 
     @Override
     public void buildOrientation() {
-        entity.setOrientation(0);
+        entity.setOrientation(Displacement.NOTHING.orientation);
     }
 
     @Override

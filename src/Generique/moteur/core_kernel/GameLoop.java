@@ -4,7 +4,6 @@ package Generique.moteur.core_kernel;
 import Generique.gameplay.LevelGenerator;
 import Generique.moteur.graphique.AnimationManager;
 import Generique.moteur.ui.SceneGame;
-import Generique.moteur.ui.SceneMain;
 import Generique.moteur.ui.SceneManager;
 import Generique.moteur.ui.SceneManager2;
 import javafx.animation.AnimationTimer;
@@ -47,6 +46,7 @@ public class GameLoop extends Application {
         LevelGenerator levelGenerator = new LevelGenerator(512,512, "/Level/level1.txt");
         GameManager gameManager = new GameManager(levelGenerator.getMapRepresentation().getMap());
 
+        stage.setResizable(false);
         SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");
 
         final long startNanoTime = System.nanoTime();
