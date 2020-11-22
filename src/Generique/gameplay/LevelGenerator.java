@@ -99,7 +99,7 @@ public class LevelGenerator {
                     break;
                 case "." :
                     builder = new GommeBuilder();
-                    director.constructEntity(builder, new Position(posX + dimCaseLong/2,posY + dimCaseLarg/2));
+                    director.constructEntity(builder, new Position(posX ,posY));
                     setMatrix(i,j, builder.getEntity());
                     break;
             }
