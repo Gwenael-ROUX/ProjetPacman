@@ -53,6 +53,7 @@ public class PacmanBuilder extends EntityBuilder {
         animationManager.addAnimation("left","/Animation/pacmanLeft",duration);
         animationManager.addAnimation("right","/Animation/pacmanRight",duration);
 
+        animationManager.setCurrentAnimation("right");
         graphicsComponent.setAnimation(new AnimationManager());
         entity.setGraphicsComponent(graphicsComponent);
     }

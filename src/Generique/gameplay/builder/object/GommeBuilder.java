@@ -36,8 +36,8 @@ public class GommeBuilder extends EntityBuilder {
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent();
         graphicsComponent.setImage("/Image/object/gomme.png");
-        graphicsComponent.setHeight(dimLarg);
-        graphicsComponent.setWidth(dimLong);
+        graphicsComponent.setHeight(dimLarg/2);
+        graphicsComponent.setWidth(dimLong/2);
         entity.setGraphicsComponent(graphicsComponent);
     }
 

@@ -1,6 +1,8 @@
 package Generique.moteur.core_kernel;
 
 
+import Generique.gameplay.LevelGenerator;
+import Generique.moteur.graphique.AnimationManager;
 import Generique.moteur.ui.SceneGame;
 import Generique.moteur.ui.SceneMain;
 import Generique.moteur.ui.SceneManager;
@@ -23,6 +25,10 @@ public class GameLoop extends Application {
     GameManager gameManager;
     SceneManager sceneManager;
 
+//    public GameLoop(GameManager gameManager) {
+//        this.gameManager = gameManager;
+//    }
+
     @Override
     public void start(Stage stage) {
 //        stage.setTitle("Pacman");
@@ -38,9 +44,10 @@ public class GameLoop extends Application {
 //
 //        GraphicsContext gc = canvas.getGraphicsContext2D();
 //        scene.setFill(Color.BLACK);
+        LevelGenerator levelGenerator = new LevelGenerator(512,512, "/Level/level1.txt");
+        GameManager gameManager = new GameManager(levelGenerator.getMapRepresentation().getMap());
 
         SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");
-        SceneMain sceneMain =  new SceneMain();
 
         final long startNanoTime = System.nanoTime();
 
@@ -51,10 +58,10 @@ public class GameLoop extends Application {
                 double t = (currentNanoTime - startNanoTime) / 10e+9;//1000000000.0;
                 Timer.getInstance().setTime(t);
 
-                //gameManager.update();
+                gameManager.update();
             }
         }.start();
 
-         sceneManager2.show(sceneMain);
+         sceneManager2.show(gameManager.getBuildSceneGame().getSceneGame());
     }
 }

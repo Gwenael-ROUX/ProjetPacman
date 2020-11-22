@@ -12,7 +12,7 @@ public class EventManager {
     }
 
     public static EventManager getEventManager(){
-        if(eventManager != null){
+        if(eventManager == null){
             eventManager = new EventManager();
         }
         return eventManager;

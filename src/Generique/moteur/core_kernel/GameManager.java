@@ -2,6 +2,7 @@ package Generique.moteur.core_kernel;
 
 
 import Generique.moteur.physics.Position;
+import Generique.moteur.ui.BuildSceneGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +12,19 @@ public class GameManager {
     private EventManager eventManager;
     private List<Entity> entities;
     private List<Position> entitiesPosition;
+    private BuildSceneGame buildSceneGame;
 
     public GameManager(Map map){
         this.map = map;
         eventManager = EventManager.getEventManager();
         this.entities = new ArrayList<>();
         this.entitiesPosition = new ArrayList<>();
+        buildSceneGame = new BuildSceneGame(map);
     }
 
+    public BuildSceneGame getBuildSceneGame() {
+        return buildSceneGame;
+    }
 
     public void update(){
         updateListEntities();
@@ -79,7 +85,7 @@ public class GameManager {
                 Position dst_position = entities.get(i).getPosition();
                 entities.get(i).update();
 
-                map.swap((int) src_position.getX(), (int) src_position.getY(), (int) (dst_position.getX()/map.getDimCellWdt()), (int) (dst_position.getY()/map.getDimCellHgt()));
+                //map.swap((int) src_position.getX(), (int) src_position.getY(), (int) (dst_position.getX()/map.getDimCellWdt()), (int) (dst_position.getY()/map.getDimCellHgt()));
             }
         }
     }
