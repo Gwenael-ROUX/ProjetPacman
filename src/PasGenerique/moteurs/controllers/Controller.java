@@ -1,1 +1,0 @@
-package PasGenerique.moteurs.controllers;import PasGenerique.moteurs.physics.Displacement;public interface Controller {    Displacement move();}
