@@ -55,16 +55,22 @@ public class ShortestPathAI implements AI {
         if(nextPosition.getX() != position_origin.getX()){
             if(nextPosition.getX() > position_origin.getX())
                 result = Displacement.RIGHT;
-            else
+            else if(nextPosition.getX() < position_origin.getX())
                 result = Displacement.LEFT;
+            else
+                result = Displacement.NOTHING;
         } else {
             if(nextPosition.getY() > position_origin.getY())
                 result = Displacement.DOWN;
-            else
+            else if(nextPosition.getY() < position_origin.getY())
                 result = Displacement.UP;
+            else
+                result = Displacement.NOTHING;
         }
 
         lastDisplacement = result;
-        entity.setOrientation(result.orientation);
+
+        if(result != Displacement.NOTHING)
+            entity.setOrientation(result.orientation);
     }
 }

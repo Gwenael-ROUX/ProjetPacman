@@ -38,7 +38,9 @@ public class PacmanKeyboardController extends KeyboardController {
     public void update(Entity entity){
         Displacement res = nextMove;
         nextMove = Displacement.NOTHING;
-        entity.setOrientation(res.orientation);
+
+        if(res != Displacement.NOTHING)
+            entity.setOrientation(res.orientation);
     }
 }
 
