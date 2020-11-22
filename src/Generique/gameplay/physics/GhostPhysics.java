@@ -26,7 +26,7 @@ public class GhostPhysics extends PhysicsComponent {
 
     private void moveBack(Entity entity_owned){
         entity_owned.setOrientation((entity_owned.getOrientation()+180.0)%360);
-        entity_owned.move();
+        entity_owned.getPhysicsComponent().update(entity_owned);
         entity_owned.setOrientation((entity_owned.getOrientation()-180.0)%360);
     }
 }
