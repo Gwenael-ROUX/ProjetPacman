@@ -1,1 +1,0 @@
-package Generique.gameplay.Scene;import Generique.gameplay.Scene.Scene_Main;public class FakeMain {    public static void main(String[] args) {        Scene_Main.main(args);    }}

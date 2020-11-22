@@ -1,4 +1,4 @@
-package Generique.gameplay.Scene;
+package Generique.gameplay.scene;
 
 import Generique.moteur.ui.SceneManager;
 import javafx.application.Platform;
@@ -6,12 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class Scene_Menu extends GridPane {
@@ -35,9 +34,13 @@ public class Scene_Menu extends GridPane {
         Button helpButton = new Button("aide");
         Button quitButton = new Button("Quitter");
         //add(imageView,15,0);
+        Text score = new Text("text");
+        score.setX(100);
+        score.setY(100);
         add(gameButton,12,5);
         add(helpButton,12,7);
         add(quitButton,12,10);
+        score.setVisible(true);
 
         gameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
