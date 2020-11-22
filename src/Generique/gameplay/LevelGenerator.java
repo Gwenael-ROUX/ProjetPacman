@@ -102,6 +102,8 @@ public class LevelGenerator {
                     director.constructEntity(builder, new Position(posX ,posY));
                     setMatrix(i,j, builder.getEntity());
                     break;
+                case " " :
+                    break;
             }
             ++j;
         }

@@ -38,7 +38,7 @@ public class PacmanBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new PacmanPhysics(5, new BoxCollider(position1, position2), new PacmanModel()));
+        entity.setPhysicsComponent(new PacmanPhysics(3, new BoxCollider(position1, position2), new PacmanModel()));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PacmanBuilder extends EntityBuilder {
         graphicsComponent.setWidth(dimLong);
 
         AnimationManager animationManager = new AnimationManager();
-        double duration = 1.0;
+        double duration = 0.10;
         animationManager.addAnimation(Displacement.UP.orientation.toString(),"/Animation/pacmanUp",duration);
         animationManager.addAnimation(Displacement.DOWN.orientation.toString(),"/Animation/pacmanDown",duration);
         animationManager.addAnimation(Displacement.LEFT.orientation.toString(),"/Animation/pacmanLeft",duration);
