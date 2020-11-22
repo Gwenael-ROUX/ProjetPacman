@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BasicPathFinder {
-
     private MapRepresentation map;
+    private List<String> crossableEntitiesNames;
 
-    public BasicPathFinder(MapRepresentation map){
+    public BasicPathFinder(MapRepresentation map, List<String> crossableEntitiesNames){
         this.map = map;
+        this.crossableEntitiesNames = crossableEntitiesNames;
     }
 
     public List<Position> pathFinding(Entity origin, Entity target){
@@ -43,7 +44,7 @@ public class BasicPathFinder {
                     if(x < 0 || y < 0 || x >= width || y >= height) continue;
                     Entity e = map.getMap().getEntity(x, y);
                     //if((e == null || e.isCrossable() || target.equals(e)) && map.getDistance(x, y) == -1){
-                    if((e == null || e.getPhysicsComponent() == null || target.equals(e)) && map.getDistance(x, y) == -1){
+                    if((e == null || e.getPhysicsComponent() == null || target.equals(e) || isCrossable(e)) && map.getDistance(x, y) == -1){
                         newListPositions.add(new Position(x, y));
                         map.setDistance(x, y, step);
 
@@ -82,6 +83,15 @@ public class BasicPathFinder {
         }
 
         return listPositions;
+    }
+
+    public boolean isCrossable(Entity entity){
+        String entity_name = entity.getName();
+        for(String name : crossableEntitiesNames){
+            if(entity_name.equals(name))
+                return true;
+        }
+        return false;
     }
 
     public MapRepresentation getMap(){
