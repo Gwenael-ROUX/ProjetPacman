@@ -27,7 +27,7 @@ public class CeriseBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new CerisePhysics(0,new BoxCollider(position1, position2)));
+        entity.setPhysicsComponent(new CerisePhysics(new BoxCollider(position1, position2)));
     }
 
     @Override

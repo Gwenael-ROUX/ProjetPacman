@@ -1,6 +1,7 @@
 package Generique.gameplay.builder;
 
 import Generique.gameplay.controller.PacmanKeyboardController;
+import Generique.gameplay.model.PacmanModel;
 import Generique.gameplay.physics.PacmanPhysics;
 import Generique.moteur.core_kernel.builder.EntityBuilder;
 import Generique.moteur.graphique.AnimationManager;
@@ -34,7 +35,7 @@ public class PacmanBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new PacmanPhysics(1,new BoxCollider(position1, position2)));
+        entity.setPhysicsComponent(new PacmanPhysics(1, new BoxCollider(position1, position2), new PacmanModel()));
     }
 
     @Override

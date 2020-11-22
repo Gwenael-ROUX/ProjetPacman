@@ -28,7 +28,7 @@ public class GommeBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new GommePhysics(0,new BoxCollider(position1, position2)));
+        entity.setPhysicsComponent(new GommePhysics(new BoxCollider(position1, position2)));
     }
     
     @Override

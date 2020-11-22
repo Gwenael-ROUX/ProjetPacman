@@ -27,7 +27,7 @@ public class WallBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new WallPhysics(0,new BoxCollider(position1, position2)));
+        entity.setPhysicsComponent(new WallPhysics(new BoxCollider(position1, position2)));
     }
 
     @Override

@@ -1,9 +1,8 @@
 package Generique.gameplay.builder.ghost;
 
 import Generique.gameplay.ai.RandomAI;
-import Generique.gameplay.physics.PacmanPhysics;
+import Generique.gameplay.physics.GhostPhysics;
 import Generique.moteur.core_kernel.builder.EntityBuilder;
-import Generique.gameplay.ai.ShortestPathAI;
 import Generique.moteur.graphique.GraphicsComponent;
 import Generique.moteur.physics.BoxCollider;
 import Generique.moteur.physics.Position;
@@ -34,7 +33,7 @@ public class GhostGreenBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new PacmanPhysics(1,new BoxCollider(position1, position2)));
+        entity.setPhysicsComponent(new GhostPhysics(1, new BoxCollider(position1, position2)));
     }
 
     @Override
