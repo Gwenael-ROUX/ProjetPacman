@@ -13,7 +13,6 @@ public abstract class KeyboardController implements ControllerComponent {
     protected void createHandler(EventController eventController){
         eventHandler = (EventHandler<KeyEvent>) keyEvent -> {
             eventController.handle(KeyboardCode.valueOf(String.valueOf(keyEvent.getCode())));
-            System.out.println(KeyboardCode.valueOf(String.valueOf(keyEvent.getCode())));
         };
     }
 
