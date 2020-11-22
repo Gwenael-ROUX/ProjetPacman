@@ -1,6 +1,6 @@
 package Generique.moteur.physics;
 
-public class BoxCollider implements Collider<BoxCollider> {
+public class BoxCollider implements Collider {
     private Position position1;
     private Position position2;
     private Position centerPosition;
@@ -38,12 +38,14 @@ public class BoxCollider implements Collider<BoxCollider> {
         }
     }
 
+    // TODO : suppress cast in the future
     @Override
-    public boolean hit(BoxCollider collider) {
-        return (this.position1.getX() < collider.getPosition2().getX() &&
-                this.position2.getX() > collider.getPosition1().getX() &&
-                this.position1.getY() < collider.getPosition2().getY() &&
-                this.position2.getY() > collider.getPosition1().getY());
+    public boolean hit(Collider collider) {
+        BoxCollider boxCollider = (BoxCollider) collider;
+        return (this.position1.getX() < boxCollider.getPosition2().getX() &&
+                this.position2.getX() > boxCollider.getPosition1().getX() &&
+                this.position1.getY() < boxCollider.getPosition2().getY() &&
+                this.position2.getY() > boxCollider.getPosition1().getY());
     }
 
     @Override

@@ -3,8 +3,9 @@ package Generique.moteur.physics;
 import Generique.moteur.Component;
 import Generique.moteur.core_kernel.Entity;
 
-public abstract class PhysicsComponent implements ColliderListener, Component {
+public abstract class PhysicsComponent implements ColliderListener, ExitListener, Component {
     public double speed;
+    protected Collider collider;
 
     public PhysicsComponent(double speed){
         this.speed = speed;
@@ -32,6 +33,17 @@ public abstract class PhysicsComponent implements ColliderListener, Component {
         entity.setPosition(position);
     }
 
+    public void setCollider(Collider collider) {
+        this.collider = collider;
+    }
+
+    public Collider getCollider() {
+        return collider;
+    }
+
     @Override
-    public abstract void onCollision(Entity entity);
+    public void onCollision(Entity entity_owned, Entity entity){}
+
+    @Override
+    public void onExit(Entity entity_owned){}
 }

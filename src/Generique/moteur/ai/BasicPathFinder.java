@@ -43,7 +43,7 @@ public class BasicPathFinder {
                     if(x < 0 || y < 0 || x >= width || y >= height) continue;
                     Entity e = map.getMap().getEntity(x, y);
                     //if((e == null || e.isCrossable() || target.equals(e)) && map.getDistance(x, y) == -1){
-                    if((e == null || target.equals(e)) && map.getDistance(x, y) == -1){
+                    if((e == null || e.getPhysicsComponent() == null || target.equals(e)) && map.getDistance(x, y) == -1){
                         newListPositions.add(new Position(x, y));
                         map.setDistance(x, y, step);
 
