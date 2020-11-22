@@ -7,7 +7,7 @@ public enum Displacement {
     LEFT(180.0),
     NOTHING(null);
 
-    public final double orientation;
+    public final Double orientation;
 
     private Displacement(Double orientation){
         this.orientation = orientation;
