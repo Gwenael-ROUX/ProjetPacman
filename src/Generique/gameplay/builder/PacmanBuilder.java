@@ -49,7 +49,7 @@ public class PacmanBuilder extends EntityBuilder {
         graphicsComponent.setWidth(dimLong);
 
         AnimationManager animationManager = new AnimationManager();
-        double duration = 0.15;
+        double duration = 1.0;
         animationManager.addAnimation(Displacement.UP.orientation.toString(),"/Animation/pacmanUp",duration);
         animationManager.addAnimation(Displacement.DOWN.orientation.toString(),"/Animation/pacmanDown",duration);
         animationManager.addAnimation(Displacement.LEFT.orientation.toString(),"/Animation/pacmanLeft",duration);
