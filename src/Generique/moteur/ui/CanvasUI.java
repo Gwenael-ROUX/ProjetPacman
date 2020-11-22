@@ -1,82 +1,42 @@
 package Generique.moteur.ui;
 
+
 import Generique.moteur.physics.Position;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 
-public class CanvasUI {
-    private Position position;
-    private double width;
-    private double height;
+public  abstract class CanvasUI {
 
     private Canvas canvas;
-    private GraphicsContext context;
+    protected GraphicsContext graphicsContext;
+    protected double tailleX;
+    protected double tailleY;
 
-    public CanvasUI(Position position, double width, double height) {
+    protected Position position;
+
+    public CanvasUI( double sizeX, double sizeY, Position position){
+        canvas = new Canvas(sizeX,sizeY);
+        graphicsContext = canvas.getGraphicsContext2D();
+        tailleX = sizeX;
+        tailleY =sizeY;
         this.position = position;
-        this.height = height;
-        this.width = width;
-
-        canvas = new Canvas();
-        context = canvas.getGraphicsContext2D();
-
-        canvas.setHeight(this.height);
-        canvas.setWidth(this.width);
-        context.moveTo(position.getX(), position.getY());
-
-        canvas.heightProperty().bind(canvas.heightProperty());
-        canvas.widthProperty().bind(canvas.widthProperty());
     }
 
-    public void refreshProperties(){
-        canvas.setHeight(this.height);
-        canvas.setWidth(this.width);
-        context.moveTo(position.getX(), position.getY());
-
-        canvas.heightProperty().bind(canvas.heightProperty());
-        canvas.widthProperty().bind(canvas.widthProperty());
+    public Canvas getCanvas(){
+        return canvas;
     }
 
-
-    public void setPosition(Position position){
-        context.moveTo(position.getX(), position.getY());
+    public void clear(){
+        graphicsContext.clearRect(0,0,tailleX,tailleY);
     }
 
-    public void setHeight(double height) {
-        this.height = height;
+    public void setVisible(boolean visible){
+        canvas.setVisible(visible);
     }
 
-    public void setWidth(double width){
-        this.width = width;
-    }
-
-    public GraphicsContext getGraphicsContext() {
-        return this.canvas.getGraphicsContext2D();
-    }
-
-    public void clearCanvas(){
-        context.clearRect(0,0, this.width, this.height);
-    }
-
-    public void drawText(String text, double posX, double posY){
-        context.fillText(text, posX, posY);
-    }
-
-    public void drawText(String text, double posX, double posY, double maxWidth){
-        context.fillText(text, posX, posY, maxWidth);
-    }
-
-    public void drawSimpleImage(Image img, double x, double y){
-        context.drawImage(img, x, y);
-    }
-
-    public void drawAnimatedImage(Image img, double spriteWidth, double spriteHeight, double posDrawX, double posDrawY, double drawWidth, double drawHeight){
-        context.drawImage(img, 0, 0, spriteWidth, spriteHeight, posDrawX, posDrawY, drawWidth, drawHeight);
-    }
-
-    public void setVisible(boolean isVisible){
-        canvas.setVisible(isVisible);
-    }
 }

@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 public abstract class SceneManager {
 
-    private static Stage stage;
+    public static Stage stage;
 
     public static void setStage(Stage stage){
         SceneManager.stage = stage;

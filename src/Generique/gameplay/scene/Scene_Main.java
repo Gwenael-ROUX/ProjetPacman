@@ -15,6 +15,7 @@ public class Scene_Main  extends Application {
 
         Parent root = new Scene_Menu();
         stage.setTitle("Pacman");
+        stage.setResizable(false);
         stage.setScene((new Scene(root,600,600)));
         SceneManager.setStage(stage);
         stage.show();
