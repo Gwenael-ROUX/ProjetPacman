@@ -34,7 +34,7 @@ public abstract class PhysicsComponent implements ColliderListener, ExitListener
 
         entity.getPosition().setX(fx);
         entity.getPosition().setY(fy);
-
+        collider.update(entity.getPosition());
     }
 
     public void setCollider(Collider collider) {

@@ -41,7 +41,7 @@ public class LevelGenerator {
             dimCaseLarg = v2 / nbcaseY;
 
             int i = 0;
-            matrix = new Entity[nbcaseX][nbcaseY];
+            matrix = new Entity[nbcaseY][nbcaseX];
             while ((line = in.readLine()) != null) {
                 arrOfStr = line.split("");
                 putEntity(arrOfStr, i);
@@ -107,7 +107,7 @@ public class LevelGenerator {
         }
     }
 
-    public void setMatrix(int i, int j, Entity entity) { this.matrix[j][i] = entity; }
+    public void setMatrix(int i, int j, Entity entity) { this.matrix[i][j] = entity; }
     public MapRepresentation getMapRepresentation(){ return mapRepresentation; }
 
     public Entity getPacman() {

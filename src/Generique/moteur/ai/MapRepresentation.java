@@ -10,7 +10,6 @@ public class MapRepresentation {
 
     private Map map;
     private int[][] matrixDistance;
-    // TODO : add crossable names
 
     public MapRepresentation(Map map){
         this.map = map;
@@ -18,15 +17,7 @@ public class MapRepresentation {
     }
 
     public Position getPositionEntity(Entity entity){
-        if(entity == null) return null;
-
-        for(int y = 0; y < map.getHeight(); y++){
-            for(int x = 0; x < map.getWidth(); x++){
-                if(entity.equals(map.getEntity(x, y)))
-                    return new Position(x, y);
-            }
-        }
-        return null;
+        return map.getPositionEntity(entity);
     }
 
     public void setDistance(int x, int y, int dist){
@@ -57,14 +48,5 @@ public class MapRepresentation {
 
     public Map getMap(){
         return map;
-    }
-
-    public void displayDistance(){
-        for(int[] dists : matrixDistance){
-            for(int dist : dists){
-                //System.out.print(dist + "\t");
-            }
-            //System.out.println();
-        }
     }
 }

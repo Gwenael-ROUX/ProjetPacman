@@ -21,6 +21,7 @@ public class PacmanPhysics extends PhysicsComponent {
 
     @Override
     public void onCollision(Entity entity_owned, Entity entity){
+        System.out.println(entity.getName());
         if(entity.getName().equals(EntityType.WALL.name) || entity.getName().equals(EntityType.GHOST.name)){
             moveBack(entity_owned);
             if(entity.getName().equals(EntityType.GHOST.name))

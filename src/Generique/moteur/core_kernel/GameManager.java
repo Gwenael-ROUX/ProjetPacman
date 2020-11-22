@@ -65,15 +65,13 @@ public class GameManager {
                 if(entity1.getPhysicsComponent().getCollider().exit(map.getLimitTopLeft(), map.getLimitBottomRight())){
                     entity1.getPhysicsComponent().onExit(entity1);
                 }
-            } else{
-                continue;
-            }
 
-            for (Entity entity2 : entities) {
-                if (entity2.getPhysicsComponent() != null && entity2.getPhysicsComponent().getCollider() != null) {
-                    if (entity1.getPhysicsComponent().getCollider().hit(entity2.getPhysicsComponent().getCollider())) {
-                        entity1.getPhysicsComponent().onCollision(entity1, entity2);
-                        entity2.getPhysicsComponent().onCollision(entity2, entity1);
+                for (Entity entity2 : entities) {
+                    if ( (!entity1.equals(entity2)) && entity2.getPhysicsComponent() != null && entity2.getPhysicsComponent().getCollider() != null) {
+                        if (entity2.getPhysicsComponent().getCollider().hit(entity1.getPhysicsComponent().getCollider())) {
+                            entity1.getPhysicsComponent().onCollision(entity1, entity2);
+                            entity2.getPhysicsComponent().onCollision(entity2, entity1);
+                        }
                     }
                 }
             }

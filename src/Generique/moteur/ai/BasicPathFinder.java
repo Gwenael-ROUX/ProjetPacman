@@ -85,7 +85,7 @@ public class BasicPathFinder {
         return listPositions;
     }
 
-    public boolean isCrossable(Entity entity){
+    private boolean isCrossable(Entity entity){
         String entity_name = entity.getName();
         for(String name : crossableEntitiesNames){
             if(entity_name.equals(name))
