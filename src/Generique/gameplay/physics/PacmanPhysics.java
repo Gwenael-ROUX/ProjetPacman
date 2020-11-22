@@ -22,8 +22,9 @@ public class PacmanPhysics extends PhysicsComponent {
     @Override
     public void onCollision(Entity entity_owned, Entity entity){
         if(entity.getName().equals(EntityType.WALL.name) || entity.getName().equals(EntityType.GHOST.name)){
-            pacmanModel.decrementPV();
             moveBack(entity_owned);
+            if(entity.getName().equals(EntityType.GHOST.name))
+                pacmanModel.decrementPV();
         } else if(entity.getName().equals(EntityType.GOMME.name)){
             EventManager.getEventManager().addEvent(new EventGommeScore(pacmanModel));
         } else if(entity.getName().equals(EntityType.CERISE.name)){
