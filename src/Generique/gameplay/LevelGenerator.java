@@ -105,6 +105,6 @@ public class LevelGenerator {
         }
     }
 
-    public void setMatrix(int i, int j, Entity entity) { this.matrix[i][j] = entity; }
+    public void setMatrix(int i, int j, Entity entity) { this.matrix[j][i] = entity; }
     public MapRepresentation getMapRepresentation(){ return mapRepresentation; }
 }
