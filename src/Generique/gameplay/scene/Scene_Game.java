@@ -1,23 +1,22 @@
-package Generique.gameplay.Scene;
+package Generique.gameplay.scene;
 
 import PasGenerique.gameplay.EntityCharacter;
 import PasGenerique.gameplay.ImageEntity;
 import PasGenerique.gameplay.LevelGenerator;
 import PasGenerique.gameplay.builder.PacmanBuilder;
 import PasGenerique.gameplay.builder.Director;
-import javafx.application.Application;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import PasGenerique.gameplay.PacmanGame;
 import PasGenerique.moteurs.Entity;
 import PasGenerique.moteurs.Position;
 import PasGenerique.moteurs.controllers.KeyboardController;
 import PasGenerique.moteurs.controllers.ai.MapRepresentation;
 import PasGenerique.moteurs.physics.BoxCollider;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
 import java.util.ArrayList;
 import java.util.Timer;
-
 
 public class Scene_Game extends Group {
     private Timer timer;
@@ -57,6 +56,13 @@ public class Scene_Game extends Group {
         timer.scheduleAtFixedRate(game, 0, 500); // Vitesse de rafraichissement
         KeyboardController controller = (KeyboardController) pacman.getController();
         setOnKeyPressed(controller.getEventHandler());
+
+        Canvas canvas = new Canvas(600,600);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.fillText("Bonjour",20,20);
+        gc.moveTo(100,100);
+        canvas.setVisible(true);
+
     }
 }
 

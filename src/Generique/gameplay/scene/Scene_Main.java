@@ -1,10 +1,9 @@
-package Generique.gameplay.Scene;
+package Generique.gameplay.scene;
 
 import Generique.moteur.ui.SceneManager;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Scene_Main  extends Application {
