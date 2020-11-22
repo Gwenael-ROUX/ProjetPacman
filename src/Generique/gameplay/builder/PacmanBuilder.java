@@ -1,5 +1,6 @@
 package Generique.gameplay.builder;
 
+import Generique.gameplay.EntityType;
 import Generique.gameplay.controller.PacmanKeyboardController;
 import Generique.gameplay.model.PacmanModel;
 import Generique.gameplay.physics.PacmanPhysics;
@@ -17,7 +18,7 @@ public class PacmanBuilder extends EntityBuilder {
 
     @Override
     public void buildName() {
-        entity.setName("pacman");
+        entity.setName(EntityType.PACMAN.name);
     }
 
     @Override
@@ -41,9 +42,9 @@ public class PacmanBuilder extends EntityBuilder {
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent();
-
         graphicsComponent.setImage("/Image/pacman/pacmanRight.png");
-        graphicsComponent.initImagePos(entity.getPosition(), dimLong, dimLarg);
+        graphicsComponent.setHeight(dimLarg);
+        graphicsComponent.setWidth(dimLong);
 
         AnimationManager animationManager = new AnimationManager();
         double duration = 10;

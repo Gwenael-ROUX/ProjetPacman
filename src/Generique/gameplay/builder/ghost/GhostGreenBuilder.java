@@ -1,5 +1,6 @@
 package Generique.gameplay.builder.ghost;
 
+import Generique.gameplay.EntityType;
 import Generique.gameplay.ai.RandomAI;
 import Generique.gameplay.physics.GhostPhysics;
 import Generique.moteur.core_kernel.builder.EntityBuilder;
@@ -15,7 +16,7 @@ public class GhostGreenBuilder extends EntityBuilder {
 
     @Override
     public void buildName() {
-        entity.setName("ghost");
+        entity.setName(EntityType.GHOST.name);
     }
 
     @Override
@@ -40,7 +41,8 @@ public class GhostGreenBuilder extends EntityBuilder {
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent();
         graphicsComponent.setImage("/Image/ghost/GhostGreen.png");
-        graphicsComponent.initImagePos(entity.getPosition(), dimLong, dimLarg);
+        graphicsComponent.setHeight(dimLarg);
+        graphicsComponent.setWidth(dimLong);
         entity.setGraphicsComponent(graphicsComponent);
     }
 

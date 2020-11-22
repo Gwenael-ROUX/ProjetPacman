@@ -1,5 +1,6 @@
 package Generique.gameplay.builder.object;
 
+import Generique.gameplay.EntityType;
 import Generique.gameplay.physics.WallPhysics;
 import Generique.moteur.core_kernel.builder.EntityBuilder;
 import Generique.moteur.graphique.GraphicsComponent;
@@ -14,7 +15,7 @@ public class WallBuilder extends EntityBuilder {
 
     @Override
     public void buildName() {
-        entity.setName("wall");
+        entity.setName(EntityType.WALL.name);
     }
 
     @Override
@@ -33,10 +34,9 @@ public class WallBuilder extends EntityBuilder {
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent();
-
         graphicsComponent.setImage("/Image/object/mur.png");
-        graphicsComponent.initImagePos(entity.getPosition(), dimLong, dimLarg);
-
+        graphicsComponent.setHeight(dimLarg);
+        graphicsComponent.setWidth(dimLong);
         entity.setGraphicsComponent(graphicsComponent);
     }
 
