@@ -87,7 +87,7 @@ public class GameManager {
                 Position dst_position = entities.get(i).getPosition();
                 entities.get(i).update();
 
-                //map.swap((int) src_position.getX(), (int) src_position.getY(), (int) (dst_position.getX()/map.getDimCellWdt()), (int) (dst_position.getY()/map.getDimCellHgt()));
+                map.swap((int) src_position.getX(), (int) src_position.getY(), (int) (dst_position.getX()/map.getDimCellWdt()), (int) (dst_position.getY()/map.getDimCellHgt()));
             }
         }
     }

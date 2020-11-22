@@ -79,5 +79,9 @@ public class Entity {
     public GraphicsComponent getGraphicsComponent() {
         return graphicsComponent;
     }
+
+    public ControllerComponent getControllerComponent() {
+        return controllerComponent;
+    }
 }
 

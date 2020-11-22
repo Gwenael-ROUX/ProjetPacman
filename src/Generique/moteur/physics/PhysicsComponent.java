@@ -17,9 +17,9 @@ public abstract class PhysicsComponent implements ColliderListener, ExitListener
             return;
         }
         double direction =  entity.getOrientation() % 360;
-        if (direction < 0 || direction > 359){
-            System.out.println("direction peut etre fausse. doit etre entre 0 et 359 degree");
-        }
+//        if (direction < 0 || direction > 359){
+//            System.out.println("direction peut etre fausse. doit etre entre 0 et 359 degree");
+//        }
 
         double radDirection = Math.toRadians((double)direction);
 

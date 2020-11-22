@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class LevelGenerator {
+    private Entity pacman;
     private Entity[][] matrix;
     private double v1,v2;
     private double dimCaseLong;
@@ -69,6 +70,7 @@ public class LevelGenerator {
                     builder = new PacmanBuilder();
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
+                    pacman = builder.getEntity();
                     break;
                 case "r" :
                     builder = new GhostRedBuilder();
@@ -107,4 +109,8 @@ public class LevelGenerator {
 
     public void setMatrix(int i, int j, Entity entity) { this.matrix[j][i] = entity; }
     public MapRepresentation getMapRepresentation(){ return mapRepresentation; }
+
+    public Entity getPacman() {
+        return pacman;
+    }
 }

@@ -2,6 +2,8 @@ package Generique.moteur.core_kernel;
 
 
 import Generique.gameplay.LevelGenerator;
+import Generique.gameplay.controller.PacmanKeyboardController;
+import Generique.moteur.controller.KeyboardController;
 import Generique.moteur.graphique.AnimationManager;
 import Generique.moteur.ui.SceneGame;
 import Generique.moteur.ui.SceneManager;
@@ -30,24 +32,13 @@ public class GameLoop extends Application {
 
     @Override
     public void start(Stage stage) {
-//        stage.setTitle("Pacman");
-//
-//        Group root = new Group();
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//
-//        //TODO initialiser scene et canvas avec scene manager
-//
-//        Canvas canvas = new Canvas( 512, 512 );
-//        root.getChildren().add(canvas);
-//
-//        GraphicsContext gc = canvas.getGraphicsContext2D();
-//        scene.setFill(Color.BLACK);
         LevelGenerator levelGenerator = new LevelGenerator(512,512, "/Level/level1.txt");
         GameManager gameManager = new GameManager(levelGenerator.getMapRepresentation().getMap());
 
         stage.setResizable(false);
         SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");
+        PacmanKeyboardController keyboard = (PacmanKeyboardController) levelGenerator.getPacman().getControllerComponent();
+        gameManager.getBuildSceneGame().getSceneGame().setOnKeyPressed(keyboard.getEventHandler());
 
         final long startNanoTime = System.nanoTime();
 
