@@ -1,0 +1,8 @@
+*.MF
+*.class
+
+src/META-INF/
+out/
+lib/
+.idea/artifacts/ProjetPacman_jar.xml
+.idea/libraries/javafx_swt.xml
