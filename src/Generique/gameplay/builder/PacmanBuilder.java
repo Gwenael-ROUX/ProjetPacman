@@ -38,7 +38,7 @@ public class PacmanBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new PacmanPhysics(1, new BoxCollider(position1, position2), new PacmanModel()));
+        entity.setPhysicsComponent(new PacmanPhysics(5, new BoxCollider(position1, position2), new PacmanModel()));
     }
 
     @Override
@@ -49,13 +49,12 @@ public class PacmanBuilder extends EntityBuilder {
         graphicsComponent.setWidth(dimLong);
 
         AnimationManager animationManager = new AnimationManager();
-        double duration = 10;
-        animationManager.addAnimation("up","/Animation/pacmanUp",duration);
-        animationManager.addAnimation("down","/Animation/pacmanDown",duration);
-        animationManager.addAnimation("left","/Animation/pacmanLeft",duration);
-        animationManager.addAnimation("right","/Animation/pacmanRight",duration);
+        double duration = 0.15;
+        animationManager.addAnimation(Displacement.UP.orientation.toString(),"/Animation/pacmanUp",duration);
+        animationManager.addAnimation(Displacement.DOWN.orientation.toString(),"/Animation/pacmanDown",duration);
+        animationManager.addAnimation(Displacement.LEFT.orientation.toString(),"/Animation/pacmanLeft",duration);
+        animationManager.addAnimation(Displacement.RIGHT.orientation.toString(),"/Animation/pacmanRight",duration);
 
-        animationManager.setCurrentAnimation("right");
         graphicsComponent.setAnimation(animationManager);
         entity.setGraphicsComponent(graphicsComponent);
     }

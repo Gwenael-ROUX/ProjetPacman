@@ -38,6 +38,10 @@ public class AnimationManager {
         currentAnimation = animations.get(key);
     }
 
+    public Animation getCurrentAnimation() {
+        return currentAnimation;
+    }
+
     public Image playAnimation(double time){
         return currentAnimation.getCurrentImage(time);
     }

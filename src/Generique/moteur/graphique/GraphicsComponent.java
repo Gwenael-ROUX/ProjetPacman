@@ -17,7 +17,8 @@ public class GraphicsComponent implements Component {
     @Override
     public  void update(Entity entity){
         if (animation != null){
-            animation.playAnimation(Timer.getInstance().getTime());
+            if (animation.getCurrentAnimation() !=  null)
+                currentImage = animation.playAnimation(Timer.getInstance().getTime()*10);
         }
     }
 
@@ -27,6 +28,10 @@ public class GraphicsComponent implements Component {
 
     public Image getCurrentImage() {
         return currentImage;
+    }
+
+    public AnimationManager getAnimation() {
+        return animation;
     }
 
     public void setHeight(double height) {

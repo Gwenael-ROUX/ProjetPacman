@@ -40,6 +40,7 @@ public class PacmanKeyboardController extends KeyboardController {
         nextMove = Displacement.NOTHING;
 
         if(res != Displacement.NOTHING)
+            entity.getGraphicsComponent().getAnimation().setCurrentAnimation(res.orientation.toString());
             entity.setOrientation(res.orientation);
     }
 }
