@@ -22,6 +22,7 @@ public class BuildSceneGame {
                     GraphicsContext gc = sceneGame.getGc();
                     GraphicsComponent graphicsComponent = e.getGraphicsComponent();
                     gc.drawImage(graphicsComponent.getCurrentImage() ,e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
+                    System.out.println(e.getName() + " : " + e.getPosition().getX() + "   " + e.getPosition().getY());
                 }
             }
         }
