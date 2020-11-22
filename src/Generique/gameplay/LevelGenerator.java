@@ -1,8 +1,10 @@
 package Generique.gameplay;
 
+import Generique.gameplay.ai.ShortestPathAI;
 import Generique.gameplay.builder.*;
 import Generique.gameplay.builder.object.*;
 import Generique.gameplay.builder.ghost.*;
+import Generique.moteur.ai.BasicPathFinder;
 import Generique.moteur.core_kernel.builder.*;
 import Generique.moteur.ai.MapRepresentation;
 import Generique.moteur.core_kernel.Entity;
@@ -12,6 +14,8 @@ import Generique.moteur.physics.Position;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LevelGenerator {
     private Entity pacman;
@@ -19,13 +23,19 @@ public class LevelGenerator {
     private double v1,v2;
     private double dimCaseLong;
     private double dimCaseLarg;
-    private MapRepresentation mapRepresentation;
+    private Map map;
+    private BasicPathFinder basicPathFinder;
 
     public LevelGenerator(double v1, double v2, String chemin) {
         this.v1 = v1;
         this.v2 = v2;
+        basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CERISE.name));
+
         readFile(chemin);
-        this.mapRepresentation = new MapRepresentation(new Map(matrix, new Position(0,0), new Position(v1, v2)));
+
+        this.map = new Map(matrix, new Position(0,0), new Position(v1, v2));
+        MapRepresentation mapRepresentation = new MapRepresentation(map);
+        basicPathFinder.setMap(mapRepresentation);
     }
 
     public void readFile(String chemin){
@@ -73,9 +83,15 @@ public class LevelGenerator {
                     pacman = builder.getEntity();
                     break;
                 case "r" :
-                    builder = new GhostRedBuilder();
+                    ShortestPathAI shortestPathAI = new ShortestPathAI();
+                    builder = new GhostRedBuilder(shortestPathAI);
                     director.constructEntity(builder, new Position(posX,posY));
-                    setMatrix(i,j, builder.getEntity());
+                    Entity e = builder.getEntity();
+                    setMatrix(i,j, e);
+
+                    shortestPathAI.setPathFinder(basicPathFinder);
+                    shortestPathAI.setOrigin(e);
+                    shortestPathAI.setTarget(pacman);
                     break;
                 case "g" :
                     builder = new GhostGreenBuilder();
@@ -108,7 +124,8 @@ public class LevelGenerator {
     }
 
     public void setMatrix(int i, int j, Entity entity) { this.matrix[i][j] = entity; }
-    public MapRepresentation getMapRepresentation(){ return mapRepresentation; }
+
+    public Map getMap(){ return map; }
 
     public Entity getPacman() {
         return pacman;

@@ -18,12 +18,12 @@ public class ShortestPathAI implements AI {
         lastDisplacement = Displacement.NOTHING;
     }
 
-    public ShortestPathAI(Entity origin, Entity target, BasicPathFinder pathFinder){
+    /*public ShortestPathAI(Entity origin, Entity target, BasicPathFinder pathFinder){
         this.origin = origin;
         this.target = target;
         this.pathFinder = pathFinder;
         lastDisplacement = Displacement.NOTHING;
-    }
+    }*/
 
     public void setOrigin(Entity origin) {
         this.origin = origin;
@@ -39,6 +39,9 @@ public class ShortestPathAI implements AI {
 
     @Override
     public void update(Entity entity){
+        //pathFinder.getMap().showMap();
+        //pathFinder.getMap().showDistance();
+
         if(pathFinder == null) return;
 
         List<Position> listPositions = pathFinder.pathFinding(origin, target);

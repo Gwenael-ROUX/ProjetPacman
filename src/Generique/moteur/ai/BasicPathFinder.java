@@ -10,9 +10,17 @@ public class BasicPathFinder {
     private MapRepresentation map;
     private List<String> crossableEntitiesNames;
 
-    public BasicPathFinder(MapRepresentation map, List<String> crossableEntitiesNames){
+    /*public BasicPathFinder(MapRepresentation map, List<String> crossableEntitiesNames){
         this.map = map;
         this.crossableEntitiesNames = crossableEntitiesNames;
+    }*/
+
+    public BasicPathFinder(List<String> crossableEntitiesNames){
+        this.crossableEntitiesNames = crossableEntitiesNames;
+    }
+
+    public void setMap(MapRepresentation map){
+        this.map = map;
     }
 
     public List<Position> pathFinding(Entity origin, Entity target){

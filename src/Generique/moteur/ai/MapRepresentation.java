@@ -49,4 +49,25 @@ public class MapRepresentation {
     public Map getMap(){
         return map;
     }
+
+    public void showDistance(){
+        for(int y = 0; y < matrixDistance.length; y++){
+            for(int x = 0; x < matrixDistance[y].length; x++) {
+                System.out.print(matrixDistance[y][x] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    public void showMap(){
+        for(int y = 0; y < map.getMatrix().length; y++){
+            for(int x = 0; x < map.getMatrix()[y].length; x++) {
+                if(map.getMatrix()[y][x].getName() != null)
+                    System.out.print(map.getMatrix()[y][x].getName() + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 }

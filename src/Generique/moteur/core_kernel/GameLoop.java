@@ -13,7 +13,7 @@ public class GameLoop extends Application {
     @Override
     public void start(Stage stage) {
         LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level1.txt");
-        GameManager gameManager = new GameManager(levelGenerator.getMapRepresentation().getMap());
+        GameManager gameManager = new GameManager(levelGenerator.getMap());
 
         stage.setResizable(false);
         SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");

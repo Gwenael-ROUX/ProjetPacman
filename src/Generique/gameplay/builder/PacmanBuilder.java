@@ -38,7 +38,7 @@ public class PacmanBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new PacmanPhysics(5, new BoxCollider(position1, position2), new PacmanModel()));
+        entity.setPhysicsComponent(new PacmanPhysics(2, new BoxCollider(position1, position2), new PacmanModel()));
     }
 
     @Override
