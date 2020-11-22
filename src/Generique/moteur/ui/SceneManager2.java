@@ -22,12 +22,16 @@ public class SceneManager2 {
         stage.show();
     }
 
-    private void setRoot(Parent root) {
+    public void setRoot(Parent root) {
         Scene scene = stage.getScene();
         if (scene == null) {
             scene = new Scene(root);
             stage.setScene(scene);
         }
         scene.setRoot(root);
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 }
