@@ -15,7 +15,8 @@ public class BoxCollider implements Collider {
     }
 
     @Override
-    public void update(Position position) {
+    public void update(Position position_) {
+        Position position = new Position(position_.getX()+(position2.getX()-position1.getX())/2, position_.getY()+(position2.getY()-position1.getY())/2);
         if (position.getX()>centerPosition.getX()){
             position1.setX(position1.getX()+(position.getX()-centerPosition.getX()));
             position2.setX(position2.getX()+(position.getX()-centerPosition.getX()));
