@@ -19,9 +19,7 @@ public class GameLoop extends Application {
         SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");
         PacmanKeyboardController keyboard = (PacmanKeyboardController) levelGenerator.getPacman().getControllerComponent();
         sceneManager2.setRoot(gameManager.getBuildSceneGame().getSceneGame());
-        sceneManager2.getStage().getScene().setOnKeyPressed(keyEvent -> {
-            System.out.println(keyEvent.getCode());
-        });
+        sceneManager2.getStage().getScene().setOnKeyPressed(keyboard.getEventHandler());
 
         final long startNanoTime = System.nanoTime();
 
