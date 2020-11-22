@@ -37,7 +37,7 @@ public class PacmanKeyboardController extends KeyboardController {
     @Override
     public void update(Entity entity){
         Displacement res = nextMove;
-        nextMove = Displacement.NOTHING;
+        //nextMove = Displacement.NOTHING;
 
         if(res != Displacement.NOTHING)
             entity.getGraphicsComponent().getAnimation().setCurrentAnimation(res.orientation.toString());
