@@ -42,7 +42,7 @@ public class PacmanBuilder extends EntityBuilder {
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent();
 
-        graphicsComponent.setImageView("/Image/pacman/pacmanRight.png");
+        graphicsComponent.setImage("/Image/pacman/pacmanRight.png");
         graphicsComponent.initImagePos(entity.getPosition(), dimLong, dimLarg);
 
         AnimationManager animationManager = new AnimationManager();

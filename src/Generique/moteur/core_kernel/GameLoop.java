@@ -43,36 +43,18 @@ public class GameLoop extends Application {
         SceneMain sceneMain =  new SceneMain();
 
         final long startNanoTime = System.nanoTime();
-        Timer timer = Timer.getInstance();
 
         new AnimationTimer()
         {
             public void handle(long currentNanoTime)
             {
                 double t = (currentNanoTime - startNanoTime) / 10e+9;//1000000000.0;
-                timer.setTime(t);
-
-                sceneManager2.stage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent keyEvent) {
-                        if (keyEvent.getCode() == KeyCode.D)
-                            sceneManager2.setScene(new SceneGame());
-                    }
-                });
+                Timer.getInstance().setTime(t);
 
                 //gameManager.update();
-
-//                gc.drawImage(pacman, 0, 0, 30,30);
-//                gc.drawImage(pacman, 470,470, 30,30);
-//                if (t > 3) {
-//                    System.out.println("c bon");
-//                    root.getChildren().remove(canvas);
-//                    Canvas canvas2 = new Canvas( 400, 400 );
-//                    root.getChildren().add(canvas2);
-//                }
             }
         }.start();
 
-        sceneManager2.show(sceneMain);
+         sceneManager2.show(sceneMain);
     }
 }

@@ -19,14 +19,13 @@ public class AnimationManager {
     }
 
     public void addAnimation(String key, String folder, double duration){
-        ArrayList<ImageView> list = new ArrayList<>();
+        ArrayList<Image> list = new ArrayList<>();
         URL url = AnimationManager.class.getResource(folder);
         if (url != null) {
             try {
                 File apps = new File(url.toURI());
                 for (File image : Objects.requireNonNull(apps.listFiles())) {
-                    ImageView im = new ImageView(new Image(AnimationManager.class.getResourceAsStream
-                            (folder+"/"+image.getName())));
+                    Image im = new Image(AnimationManager.class.getResourceAsStream(folder+"/"+image.getName()));
                     list.add(im);
                 }
             } catch (URISyntaxException ignored) {
@@ -39,7 +38,7 @@ public class AnimationManager {
         currentAnimation = animations.get(key);
     }
 
-    public ImageView playAnimation(double time){
+    public Image playAnimation(double time){
         return currentAnimation.getCurrentImage(time);
     }
 }

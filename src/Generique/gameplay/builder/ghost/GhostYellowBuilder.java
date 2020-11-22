@@ -39,7 +39,7 @@ public class GhostYellowBuilder extends EntityBuilder {
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent();
-        graphicsComponent.setImageView("/Image/ghost/GhostYellow.png");
+        graphicsComponent.setImage("/Image/ghost/GhostYellow.png");
         graphicsComponent.initImagePos(entity.getPosition(), dimLong, dimLarg);
         entity.setGraphicsComponent(graphicsComponent);
     }

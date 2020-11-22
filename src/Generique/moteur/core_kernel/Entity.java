@@ -75,5 +75,9 @@ public class Entity {
     public double getOrientation(){
         return orientation;
     }
+
+    public GraphicsComponent getGraphicsComponent() {
+        return graphicsComponent;
+    }
 }
 

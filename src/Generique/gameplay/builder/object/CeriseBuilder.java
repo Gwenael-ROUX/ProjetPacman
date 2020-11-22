@@ -34,7 +34,7 @@ public class CeriseBuilder extends EntityBuilder {
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent();
 
-        graphicsComponent.setImageView("/Image/object/cerise.png");
+        graphicsComponent.setImage("/Image/object/cerise.png");
         graphicsComponent.initImagePos(entity.getPosition(), dimLong, dimLarg);
 
         entity.setGraphicsComponent(graphicsComponent);
