@@ -3,23 +3,28 @@ import java.io.IOException;
 
 public class Main{
     public static void main(String[] args) {
-        try {
-            playClip("/pacman_chomp.wav");
-        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        playClip("/pacman_chomp.wav");
+        playClip("/pacman_beginning.wav");
+
     }
 
-    private static void playClip(String clipFile) throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
-        AudioListener listener = new AudioListener();
-        try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Main.class.getResourceAsStream("/Sound/" + clipFile))) {
-            Clip clip = AudioSystem.getClip();
-            try (clip) {
-                clip.addLineListener(listener);
-                clip.open(audioInputStream);
-                clip.start();
-                listener.waitUntilDone();
+    private static synchronized void playClip(String clipFile) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AudioListener listener = new AudioListener();
+                try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Main.class.getResourceAsStream("/Sound/" + clipFile))) {
+                    Clip clip = AudioSystem.getClip();
+                    try (clip) {
+                        clip.addLineListener(listener);
+                        clip.open(audioInputStream);
+                        clip.start();
+                        listener.waitUntilDone();
+                    }
+                } catch (IOException | UnsupportedAudioFileException | LineUnavailableException | InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+        }).start();
     }
 }
