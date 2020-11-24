@@ -29,14 +29,14 @@ public class Sound extends Thread {
             e.printStackTrace();
         } finally {
             clip.close();
-            SoundManager.getInstance().stopASound(this.name);
+            SoundManager.getInstance().removeSound(this.name);
         }
     }
 
     public void stopSound() {
         clip.close();
         clip.stop();
-        SoundManager.getInstance().stopASound(this.name);
+        SoundManager.getInstance().removeSound(this.name);
     }
 
     public float getVolume() {

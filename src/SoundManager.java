@@ -23,9 +23,12 @@ public class SoundManager {
         for (Sound sound : currentSounds) {
             if (sound.getSoundName().equals(name)) {
                 sound.stopSound();
-                currentSounds.remove(sound);
             }
         }
+    }
+
+    public void removeSound(String name) {
+        currentSounds.removeIf(sound -> sound.getSoundName().equals(name));
     }
 
     public void stopAllSound() {
