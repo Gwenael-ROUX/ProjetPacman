@@ -15,7 +15,7 @@ public class SceneManager2 {
     }
 
     public void show(Parent root) {
-        setRoot(root);
+        //setRoot(root);
         stage.show();
     }
 
