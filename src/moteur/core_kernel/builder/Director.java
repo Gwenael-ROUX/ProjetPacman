@@ -20,6 +20,5 @@ public class Director {
         entityBuilder.buildContComp();
         entityBuilder.buildPhysComp(dimCaseLong, dimCaseLarg);
         entityBuilder.buildGraphComp(dimCaseLong, dimCaseLarg);
-        entityBuilder.buildSoundComp();
     }
 }

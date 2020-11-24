@@ -45,9 +45,4 @@ public class WallBuilder extends EntityBuilder {
     public void buildContComp() {
 
     }
-
-    @Override
-    public void buildSoundComp() {
-
-    }
 }

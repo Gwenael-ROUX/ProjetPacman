@@ -1,3 +1,5 @@
+package moteur.sound;
+
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 

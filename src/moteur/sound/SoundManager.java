@@ -1,3 +1,5 @@
+package moteur.sound;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SoundManager {
@@ -11,8 +13,9 @@ public class SoundManager {
         return instance;
     }
 
-    public void addSound(String soundName, String name, boolean isLoop) {
+    public void addSound(String soundName, String name, boolean isLoop, float volume) {
         Sound sound = new Sound(soundName, name);
+        sound.setVolume(volume);
         sound.setLoop(isLoop);
         sound.start();
         currentSounds.add(sound);

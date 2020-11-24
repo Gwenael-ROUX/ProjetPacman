@@ -1,5 +1,9 @@
+package moteur.sound;
+
 import javax.sound.sampled.*;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
 
 public class Sound extends Thread {
     private AudioListener listener = new AudioListener();
@@ -10,7 +14,7 @@ public class Sound extends Thread {
     Sound(String soundName, String name) {
         super();
         this.name = name;
-        try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Main.class.getResourceAsStream("/Sound/" + soundName))) {
+        try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Sound.class.getResource("/Sound/" + soundName))) {
             this.clip = AudioSystem.getClip();
             this.clip.addLineListener(listener);
             this.clip.open(audioInputStream);

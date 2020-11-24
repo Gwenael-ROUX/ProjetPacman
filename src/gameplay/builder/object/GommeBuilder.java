@@ -46,9 +46,4 @@ public class GommeBuilder extends EntityBuilder {
     public void buildContComp() {
 
     }
-
-    @Override
-    public void buildSoundComp() {
-
-    }
 }

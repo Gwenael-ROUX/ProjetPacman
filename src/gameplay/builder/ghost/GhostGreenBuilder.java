@@ -46,9 +46,4 @@ public class GhostGreenBuilder extends EntityBuilder {
         graphicsComponent.setWidth(dimLong);
         entity.setGraphicsComponent(graphicsComponent);
     }
-
-    @Override
-    public void buildSoundComp() {
-
-    }
 }

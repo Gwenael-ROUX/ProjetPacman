@@ -57,9 +57,4 @@ public class PacmanBuilder extends EntityBuilder {
         graphicsComponent.setAnimation(animationManager);
         entity.setGraphicsComponent(graphicsComponent);
     }
-
-    @Override
-    public void buildSoundComp() {
-
-    }
 }
