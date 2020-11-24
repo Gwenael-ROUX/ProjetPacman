@@ -1,9 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SoundManager {
     private static SoundManager instance;
-    private List<Sound> currentSounds = new ArrayList<>();
+    private ConcurrentLinkedQueue<Sound> currentSounds = new ConcurrentLinkedQueue<>();
 
     public static SoundManager getInstance() {
         if (instance == null) {
@@ -37,7 +36,7 @@ public class SoundManager {
         }
     }
 
-    public List<Sound> getCurrentSounds() {
+    public ConcurrentLinkedQueue<Sound> getCurrentSounds() {
         return currentSounds;
     }
 }
