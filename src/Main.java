@@ -1,26 +1,25 @@
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
+import java.io.IOException;
 
-public class Main {
+public class Main{
     public static void main(String[] args) {
-        playSound("pacman_chomp.wav");
+        try {
+            playClip("/pacman_chomp.wav");
+        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-    public static synchronized void playSound(final String url) {
-        new Thread(new Runnable() {
-            // The wrapper thread is unnecessary, unless it blocks on the
-            // Clip finishing; see comments.
-            public void run() {
-                try {
-                    Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            Main.class.getResourceAsStream("/Sound/" + url));
-                    clip.open(inputStream);
-                    clip.start();
-                } catch (Exception e) {
-                    System.err.println(e.getMessage());
-                }
+
+    private static void playClip(String clipFile) throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
+        AudioListener listener = new AudioListener();
+        try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Main.class.getResourceAsStream("/Sound/" + clipFile))) {
+            Clip clip = AudioSystem.getClip();
+            try (clip) {
+                clip.addLineListener(listener);
+                clip.open(audioInputStream);
+                clip.start();
+                listener.waitUntilDone();
             }
-        }).start();
+        }
     }
 }
