@@ -3,9 +3,9 @@ import java.io.IOException;
 
 public class Main{
     public static void main(String[] args) {
-        playClip("/pacman_chomp.wav");
-        playClip("/pacman_beginning.wav");
-
+        Sound sound = new Sound("pacman_chomp.wav");
+        sound.start();
+        Sound sound2 = new Sound("pacman_beginning.wav");
     }
 
     private static synchronized void playClip(String clipFile) {
