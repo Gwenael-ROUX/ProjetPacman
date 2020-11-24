@@ -4,9 +4,12 @@ import java.io.IOException;
 public class Sound extends Thread {
     private AudioListener listener = new AudioListener();
     private Clip clip;
+    private boolean isLoop = false;
+    private String name;
 
-    Sound(String soundName) {
+    Sound(String soundName, String name) {
         super();
+        this.name = name;
         try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Main.class.getResourceAsStream("/Sound/" + soundName))) {
             this.clip = AudioSystem.getClip();
             this.clip.addLineListener(listener);
@@ -18,18 +21,22 @@ public class Sound extends Thread {
 
     private void play() {
         try {
+            if (isLoop)
+                clip.loop(Integer.MAX_VALUE);
             clip.start();
             listener.waitUntilDone();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             clip.close();
+            SoundManager.getInstance().stopASound(this.name);
         }
     }
 
     public void stopSound() {
         clip.close();
         clip.stop();
+        SoundManager.getInstance().stopASound(this.name);
     }
 
     public float getVolume() {
@@ -42,6 +49,14 @@ public class Sound extends Thread {
             throw new IllegalArgumentException("Volume not valid: " + volume);
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(20f * (float) Math.log10(volume));
+    }
+
+    public void setLoop(boolean loop) {
+        isLoop = loop;
+    }
+
+    public String getSoundName() {
+        return name;
     }
 
     @Override
