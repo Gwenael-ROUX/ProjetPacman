@@ -39,13 +39,11 @@ public class ShortestPathAI implements AI {
 
     @Override
     public void update(Entity entity){
-        //pathFinder.getMap().showMap();
-        pathFinder.getMap().showDistance();
 
         if(pathFinder == null) return;
 
         Position position_origin = pathFinder.getMap().getPositionEntity(origin);
-        if(! canChangeDirection(position_origin)){
+        if(! canChangeDirection()){
             return;
         }
 
@@ -74,13 +72,17 @@ public class ShortestPathAI implements AI {
                 result = Displacement.NOTHING;
         }
 
+        //pathFinder.getMap().showDistance();
+        //System.out.println(listPositions);
+        //System.out.println("Position : " + nextPosition.getX() + ", " + nextPosition.getY());
+
         lastDisplacement = result;
 
         if(result != Displacement.NOTHING)
             entity.setOrientation(result.orientation);
     }
 
-    private boolean canChangeDirection(Position position){
+    private boolean canChangeDirection(){
         return (origin.getPosition().getX()%pathFinder.getMap().getMap().getDimCellWdt() == 0)
             && (origin.getPosition().getY()%pathFinder.getMap().getMap().getDimCellHgt() == 0);
     }

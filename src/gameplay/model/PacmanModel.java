@@ -18,5 +18,6 @@ public class PacmanModel {
 
     public void addScore(int value){
         score += value;
+        //System.out.println("Score : " + score);
     }
 }

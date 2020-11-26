@@ -41,13 +41,15 @@ public class GameManager {
     private void updateListEntities(){
         entities.clear();
         entitiesPosition.clear();
-        Entity[][] matrix = map.getMatrix();
+        List<Entity>[][] matrix = map.getMatrix();
 
         for(int y = 0; y < matrix.length; y++){
             for(int x = 0; x < matrix[y].length; x++) {
-                if (matrix[y][x] != null) {
-                    entitiesPosition.add(new Position(x, y));
-                    entities.add(matrix[y][x]);
+                if (matrix[y][x] != null && matrix[y][x].size() != 0) {
+                    for(Entity e : matrix[y][x]){
+                        entitiesPosition.add(new Position(x, y));
+                        entities.add(e);
+                    }
                 }
             }
         }
@@ -81,13 +83,18 @@ public class GameManager {
     private void updateEntities(){
         for(int i = 0; i < entities.size(); i++){
             if(entities.get(i) != null){
+                /*if(entities.get(i).getName().equals("pacman")){
+                    System.out.println(entities.get(i).getGraphicsComponent().getCurrentImage());
+                }*/
                 Position src_position = entitiesPosition.get(i);
                 Position dst_position = entities.get(i).getPosition();
                 entities.get(i).update();
 
                 int dst_x = (int) ((dst_position.getX() + map.getDimCellWdt()/2) / map.getDimCellWdt());
+                //int dst_x = (int) (dst_position.getX() / map.getDimCellWdt());
                 int dst_y = (int) ((dst_position.getY() + map.getDimCellHgt()/2) / map.getDimCellHgt());
-                map.swap((int) src_position.getX(), (int) src_position.getY(), dst_x, dst_y);
+                //int dst_y = (int) (dst_position.getY() / map.getDimCellHgt());
+                map.swap((int) src_position.getX(), (int) src_position.getY(), dst_x, dst_y, entities.get(i));
             }
         }
     }

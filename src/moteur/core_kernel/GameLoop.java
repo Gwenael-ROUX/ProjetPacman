@@ -22,7 +22,7 @@ public class GameLoop extends Application {
 
     @Override
     public void start(Stage stage) {
-        LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level3.txt");
+        LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level2.txt");
         GameManager gameManager = new GameManager(levelGenerator.getMap());
 
         stage.setResizable(false);
@@ -39,7 +39,7 @@ public class GameLoop extends Application {
         {
             public void handle(long currentNanoTime)
             {
-                double t = (currentNanoTime - startNanoTime) / 10e+9;//1000000000.0;
+                double t = (currentNanoTime - startNanoTime) * 10-9;
                 Timer.getInstance().setTime(t);
 
                 gameManager.update();

@@ -14,12 +14,14 @@ import moteur.physics.Position;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LevelGenerator {
     private Entity pacman;
     private Entity ghost;
-    private Entity[][] matrix;
+    private List<Entity>[][] matrix;
     private double v1,v2;
     private double dimCaseLong;
     private double dimCaseLarg;
@@ -51,7 +53,7 @@ public class LevelGenerator {
             dimCaseLarg = v2 / nbcaseY;
 
             int i = 0;
-            matrix = new Entity[nbcaseY][nbcaseX];
+            matrix = new ArrayList[nbcaseY][nbcaseX];
             while ((line = in.readLine()) != null) {
                 arrOfStr = line.split("");
                 putEntity(arrOfStr, i);
@@ -70,6 +72,7 @@ public class LevelGenerator {
         EntityBuilder builder;
         for (String str : tab){
             double posX = (dimCaseLong * j);
+            matrix[i][j] = new ArrayList<>();
             switch (str) {
                 case "#" :
                     builder = new WallBuilder();
@@ -90,7 +93,6 @@ public class LevelGenerator {
                     setMatrix(i,j, e);
 
                     shortestPathAI.setPathFinder(basicPathFinder);
-                    shortestPathAI.setOrigin(e);
                     shortestPathAI.setTarget(pacman);
                     break;
                 case "g" :
@@ -126,7 +128,7 @@ public class LevelGenerator {
         }
     }
 
-    public void setMatrix(int i, int j, Entity entity) { this.matrix[i][j] = entity; }
+    public void setMatrix(int i, int j, Entity entity) { this.matrix[i][j].add(entity); }
 
     public Map getMap(){ return map; }
 

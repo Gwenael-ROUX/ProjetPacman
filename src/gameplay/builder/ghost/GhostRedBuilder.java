@@ -11,7 +11,7 @@ import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
 public class GhostRedBuilder extends EntityBuilder {
-    private AI ai;
+    private ShortestPathAI ai;
 
     public GhostRedBuilder(ShortestPathAI shortestPathAI) {
         ai = shortestPathAI;
@@ -34,6 +34,7 @@ public class GhostRedBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
+        ai.setOrigin(entity);
         entity.setControllerComponent(ai);
     }
 

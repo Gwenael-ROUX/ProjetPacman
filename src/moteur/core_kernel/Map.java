@@ -2,14 +2,16 @@ package moteur.core_kernel;
 
 import moteur.physics.Position;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
-public class Map implements Iterable<Entity> {
-    private Entity[][] matrix;
+public class Map {// implements Iterable<Entity> {
+    private List<Entity>[][] matrix;
     private double dimCellHgt, dimCellWdt;
     private Position limitTopLeft, limitBottomRight;
 
-    public Map(Entity[][] matrix, Position limitTopLeft, Position limitBottomRight){
+    public Map(List<Entity>[][] matrix, Position limitTopLeft, Position limitBottomRight){
         this.matrix = matrix;
         this.limitTopLeft = limitTopLeft;
         this.limitBottomRight = limitBottomRight;
@@ -17,18 +19,18 @@ public class Map implements Iterable<Entity> {
         this.dimCellHgt = (limitBottomRight.getY() - limitTopLeft.getY()) / getHeight();
     }
 
-    public Entity getEntity(int x, int y){
+    public List<Entity> getEntity(int x, int y){
         return matrix[y][x];
     }
 
     public void setEntity(int x, int y, Entity entity){
-        matrix[y][x] = entity;
+        matrix[y][x].add(entity);
     }
 
-    public void swap(int srcX, int srcY, int dstX, int dstY){
-        Entity e = matrix[dstY][dstX];
-        matrix[dstY][dstX] = matrix[srcY][srcX];
-        matrix[srcY][srcX] = e;
+    public void swap(int srcX, int srcY, int dstX, int dstY, Entity entity){
+        int idx = matrix[srcY][srcX].indexOf(entity);
+        if(idx != -1)
+            matrix[dstY][dstX].add(matrix[srcY][srcX].remove(idx));
     }
 
     public Position getPositionEntity(Entity entity){
@@ -36,8 +38,10 @@ public class Map implements Iterable<Entity> {
 
         for(int y = 0; y < matrix.length; y++){
             for(int x = 0; x < matrix[y].length; x++){
-                if(entity.equals(matrix[y][x]))
-                    return new Position(x, y);
+                for(Entity e : matrix[y][x]){
+                    if(entity.equals(e))
+                        return new Position(x, y);
+                }
             }
         }
         return null;
@@ -67,11 +71,11 @@ public class Map implements Iterable<Entity> {
         return limitBottomRight;
     }
 
-    public Entity[][] getMatrix(){
+    public List<Entity>[][] getMatrix(){
         return matrix;
     }
 
-    @Override
+    /*@Override
     public Iterator<Entity> iterator() {
         return null;
     }
@@ -105,5 +109,5 @@ public class Map implements Iterable<Entity> {
                 return null;
             }
         }
-    }
+    }*/
 }

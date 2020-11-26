@@ -5,6 +5,8 @@ import moteur.core_kernel.Map;
 import moteur.graphique.GraphicsComponent;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.List;
+
 public class BuildSceneGame {
     private Map currentMap;
     private SceneGame sceneGame;
@@ -16,13 +18,15 @@ public class BuildSceneGame {
     }
 
     public void build() {
-        for (Entity[] ent : currentMap.getMatrix()) {
-            for (Entity e : ent) {
-                if (e != null){
-                    GraphicsContext gc = sceneGame.getGc();
-                    GraphicsComponent graphicsComponent = e.getGraphicsComponent();
-                    gc.drawImage(graphicsComponent.getCurrentImage() ,e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
-                    //System.out.println(e.getName() + " : " + e.getPosition().getX() + "   " + e.getPosition().getY());
+        for (List<Entity>[] ent : currentMap.getMatrix()) {
+            for (List<Entity> le : ent) {
+                for(Entity e : le){
+                    if (e != null){
+                        GraphicsContext gc = sceneGame.getGc();
+                        GraphicsComponent graphicsComponent = e.getGraphicsComponent();
+                        gc.drawImage(graphicsComponent.getCurrentImage(), e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
+                        //System.out.println(e.getName() + " : " + e.getPosition().getX() + "   " + e.getPosition().getY());
+                    }
                 }
             }
         }
@@ -33,18 +37,24 @@ public class BuildSceneGame {
     }
 
     public void update(Map map) {
+        GraphicsContext gc = sceneGame.getGc();
+        //gc.clearRect(0, 0, map.getWidth(), map.getHeight());
         for (int i = 0; i < currentMap.getMatrix().length; ++i) {
-            for (int j = 0; j < currentMap.getMatrix().length; ++j) {
-                Entity e = currentMap.getEntity(i,j);
-                if (e != null){
-                    GraphicsContext gc = sceneGame.getGc();
-                    GraphicsComponent graphicsComponent = e.getGraphicsComponent();
-                    gc.clearRect(e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
-                    Entity newEntity = map.getEntity(i,j);
-                    gc.drawImage(newEntity.getGraphicsComponent().getCurrentImage() ,newEntity.getPosition().getX(), newEntity.getPosition().getY(), newEntity.getGraphicsComponent().getWidth(), newEntity.getGraphicsComponent().getHeight());
+            for (int j = 0; j < currentMap.getMatrix()[i].length; ++j) {
+                for(Entity e : currentMap.getMatrix()[i][j]){
+                    if (e != null){
+                        GraphicsComponent graphicsComponent = e.getGraphicsComponent();
+                        gc.clearRect(e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
+                    }
+                }
+                for(Entity e : map.getMatrix()[i][j]){
+                    if (e != null){
+                        gc.drawImage(e.getGraphicsComponent().getCurrentImage(), e.getPosition().getX(), e.getPosition().getY(), e.getGraphicsComponent().getWidth(), e.getGraphicsComponent().getHeight());
+                    }
                 }
             }
         }
+
         this.currentMap = map;
     }
 }
