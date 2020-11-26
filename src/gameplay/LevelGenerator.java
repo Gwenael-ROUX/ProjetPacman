@@ -32,10 +32,11 @@ public class LevelGenerator {
         this.v1 = v1;
         this.v2 = v2;
         basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CERISE.name));
+        map = new Map(new Position(0,0), new Position(v1, v2));
 
         readFile(chemin);
 
-        this.map = new Map(matrix, new Position(0,0), new Position(v1, v2));
+        map.setMatrix(matrix);
         MapRepresentation mapRepresentation = new MapRepresentation(map);
         basicPathFinder.setMap(mapRepresentation);
     }
@@ -80,7 +81,7 @@ public class LevelGenerator {
                     setMatrix(i,j, builder.getEntity());
                     break;
                 case "p" :
-                    builder = new PacmanBuilder();
+                    builder = new PacmanBuilder(map);
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     pacman = builder.getEntity();

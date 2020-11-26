@@ -11,20 +11,22 @@ public class Map {// implements Iterable<Entity> {
     private double dimCellHgt, dimCellWdt;
     private Position limitTopLeft, limitBottomRight;
 
-    public Map(List<Entity>[][] matrix, Position limitTopLeft, Position limitBottomRight){
-        this.matrix = matrix;
+    public Map(Position limitTopLeft, Position limitBottomRight){
         this.limitTopLeft = limitTopLeft;
         this.limitBottomRight = limitBottomRight;
-        this.dimCellWdt = (limitBottomRight.getX() - limitTopLeft.getX()) / getWidth();
-        this.dimCellHgt = (limitBottomRight.getY() - limitTopLeft.getY()) / getHeight();
     }
 
     public List<Entity> getEntity(int x, int y){
         return matrix[y][x];
     }
 
-    public void setEntity(int x, int y, Entity entity){
+    public void addEntity(int x, int y, Entity entity){
         matrix[y][x].add(entity);
+    }
+
+    public void deleteEntity(Position position, Entity entity){
+        if(position == null) return;
+        matrix[(int)position.getY()][(int)position.getX()].remove(entity);
     }
 
     public void swap(int srcX, int srcY, int dstX, int dstY, Entity entity){
@@ -73,6 +75,12 @@ public class Map {// implements Iterable<Entity> {
 
     public List<Entity>[][] getMatrix(){
         return matrix;
+    }
+
+    public void setMatrix(List<Entity>[][] matrix){
+        this.matrix = matrix;
+        this.dimCellWdt = (limitBottomRight.getX() - limitTopLeft.getX()) / getWidth();
+        this.dimCellHgt = (limitBottomRight.getY() - limitTopLeft.getY()) / getHeight();
     }
 
     /*@Override

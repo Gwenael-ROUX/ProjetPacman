@@ -1,21 +1,24 @@
 package gameplay.physics;
 
 import gameplay.EntityType;
-import gameplay.events.EventCeriseScore;
-import gameplay.events.EventGommeScore;
+import gameplay.events.EventEatCherry;
+import gameplay.events.EventEatGum;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.EventManager;
+import moteur.core_kernel.Map;
 import moteur.physics.Collider;
 import moteur.physics.PhysicsComponent;
 
 public class PacmanPhysics extends PhysicsComponent {
     private PacmanModel pacmanModel;
+    private Map map;
 
-    public PacmanPhysics(double speed, Collider collider, PacmanModel pacmanModel) {
+    public PacmanPhysics(double speed, Collider collider, PacmanModel pacmanModel, Map map) {
         super(speed);
         this.collider = collider;
         this.pacmanModel = pacmanModel;
+        this.map = map;
     }
 
     @Override
@@ -25,9 +28,9 @@ public class PacmanPhysics extends PhysicsComponent {
             if(entity.getName().equals(EntityType.GHOST.name))
                 pacmanModel.decrementPV();
         } else if(entity.getName().equals(EntityType.GOMME.name)){
-            EventManager.getEventManager().addEvent(new EventGommeScore(pacmanModel));
+            EventManager.getEventManager().addEvent(new EventEatGum(pacmanModel, entity, map));
         } else if(entity.getName().equals(EntityType.CERISE.name)){
-            EventManager.getEventManager().addEvent(new EventCeriseScore(pacmanModel));
+            EventManager.getEventManager().addEvent(new EventEatCherry(pacmanModel, entity, map));
         }
     }
 
