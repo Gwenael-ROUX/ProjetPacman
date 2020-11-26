@@ -51,7 +51,7 @@ public class BasicPathFinder {
                     int x = (int) pos.getX()+neighbor[0], y = (int) pos.getY()+neighbor[1];
                     if(x < 0 || y < 0 || x >= width || y >= height) continue;
 
-                    if(map.getMap().getEntity(x, y) == null || map.getMap().getEntity(x, y).size() == 0){
+                    if((map.getMap().getEntity(x, y) == null || map.getMap().getEntity(x, y).size() == 0) && map.getDistance(x, y) == -1){
                         newListPositions.add(new Position(x, y));
                         map.setDistance(x, y, step);
                     } else{

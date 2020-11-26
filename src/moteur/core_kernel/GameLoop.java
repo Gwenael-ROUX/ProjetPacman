@@ -22,7 +22,7 @@ public class GameLoop extends Application {
 
     @Override
     public void start(Stage stage) {
-        LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level2.txt");
+        LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level3.txt");
         GameManager gameManager = new GameManager(levelGenerator.getMap());
 
         stage.setResizable(false);
