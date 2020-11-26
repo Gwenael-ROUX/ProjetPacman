@@ -39,8 +39,8 @@ public class GhostKeyboardController extends KeyboardController {
         Displacement res = nextMove;
         //nextMove = Displacement.NOTHING;
 
-        if(res != Displacement.NOTHING)
-            entity.getGraphicsComponent().getAnimation().setCurrentAnimation(res.orientation.toString());
+        //if(res != Displacement.NOTHING)
+            //entity.getGraphicsComponent().getAnimation().setCurrentAnimation(res.orientation.toString());
         entity.setOrientation(res.orientation);
     }
 }

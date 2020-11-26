@@ -18,6 +18,7 @@ import java.util.Arrays;
 
 public class LevelGenerator {
     private Entity pacman;
+    private Entity ghost;
     private Entity[][] matrix;
     private double v1,v2;
     private double dimCaseLong;
@@ -96,6 +97,7 @@ public class LevelGenerator {
                     builder = new GhostGreenBuilder();
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
+                    ghost = builder.getEntity();
                     break;
                 case "y" :
                     builder = new GhostYellowBuilder();
@@ -130,5 +132,9 @@ public class LevelGenerator {
 
     public Entity getPacman() {
         return pacman;
+    }
+
+    public Entity getGhost(){
+        return ghost;
     }
 }

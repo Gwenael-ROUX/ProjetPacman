@@ -28,7 +28,7 @@ public class PacmanKeyboardController extends KeyboardController {
                     nextMove = Displacement.RIGHT;
                     break;
                 default:
-                    nextMove = Displacement.NOTHING;
+                    //nextMove = Displacement.NOTHING;
                     break;
             }
         });
@@ -41,7 +41,7 @@ public class PacmanKeyboardController extends KeyboardController {
 
         if(res != Displacement.NOTHING)
             entity.getGraphicsComponent().getAnimation().setCurrentAnimation(res.orientation.toString());
-            entity.setOrientation(res.orientation);
+        entity.setOrientation(res.orientation);
     }
 }
 

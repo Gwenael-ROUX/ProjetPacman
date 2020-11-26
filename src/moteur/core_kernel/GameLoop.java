@@ -2,11 +2,18 @@ package moteur.core_kernel;
 
 
 import gameplay.LevelGenerator;
+import gameplay.controller.GhostKeyboardController;
 import gameplay.controller.PacmanKeyboardController;
+import moteur.controller.GeneralKeyboardController;
+import moteur.controller.KeyboardController;
 import moteur.ui.SceneManager2;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class GameLoop extends Application {
     public static void main(String[] args) {
@@ -20,9 +27,11 @@ public class GameLoop extends Application {
 
         stage.setResizable(false);
         SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");
-        PacmanKeyboardController keyboard = (PacmanKeyboardController) levelGenerator.getPacman().getControllerComponent();
+        KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();
+        KeyboardController keyboard2 = (KeyboardController) levelGenerator.getGhost().getControllerComponent();
         sceneManager2.setRoot(gameManager.getBuildSceneGame().getSceneGame());
-        sceneManager2.getStage().getScene().setOnKeyPressed(keyboard.getEventHandler());
+        GeneralKeyboardController keyboardController = new GeneralKeyboardController(new ArrayList<>(Arrays.asList(keyboard1, keyboard2)));
+        sceneManager2.getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
 
         final long startNanoTime = System.nanoTime();
 
