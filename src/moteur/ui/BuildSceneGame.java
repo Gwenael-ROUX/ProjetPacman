@@ -46,15 +46,10 @@ public class BuildSceneGame {
     public void update(Map map) {
         GraphicsContext gc = sceneGame.getGc();
         //gc.clearRect(0, 0, map.getWidth(), map.getHeight());
+        sceneGame.getChildren().removeAll(sceneGame.getChildren());
+        
         for (int i = 0; i < currentMap.getMatrix().length; ++i) {
             for (int j = 0; j < currentMap.getMatrix()[i].length; ++j) {
-                for(Entity e : currentMap.getMatrix()[i][j]){
-                    if (e != null){
-                        GraphicsComponent graphicsComponent = e.getGraphicsComponent();
-                        //gc.clearRect(e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
-                        sceneGame.getChildren().remove(e.getGraphicsComponent().getCurrentImage());
-                    }
-                }
                 for(Entity e : map.getMatrix()[i][j]){
                     if (e != null){
                         GraphicsComponent graphicsComponent = e.getGraphicsComponent();
