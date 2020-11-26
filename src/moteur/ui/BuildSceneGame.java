@@ -1,5 +1,6 @@
 package moteur.ui;
 
+import javafx.scene.image.ImageView;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Map;
 import moteur.graphique.GraphicsComponent;
@@ -22,9 +23,15 @@ public class BuildSceneGame {
             for (List<Entity> le : ent) {
                 for(Entity e : le){
                     if (e != null){
-                        GraphicsContext gc = sceneGame.getGc();
+                        //GraphicsContext gc = sceneGame.getGc();
                         GraphicsComponent graphicsComponent = e.getGraphicsComponent();
-                        gc.drawImage(graphicsComponent.getCurrentImage(), e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
+                        ImageView imageView = graphicsComponent.getCurrentImage();
+                        imageView.setX(e.getPosition().getX());
+                        imageView.setY(e.getPosition().getY());
+                        imageView.setFitHeight(graphicsComponent.getHeight());
+                        imageView.setFitWidth(graphicsComponent.getWidth());
+                        sceneGame.getChildren().add(imageView);
+                        //gc.drawImage(graphicsComponent.getCurrentImage(), e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
                         //System.out.println(e.getName() + " : " + e.getPosition().getX() + "   " + e.getPosition().getY());
                     }
                 }
@@ -44,12 +51,20 @@ public class BuildSceneGame {
                 for(Entity e : currentMap.getMatrix()[i][j]){
                     if (e != null){
                         GraphicsComponent graphicsComponent = e.getGraphicsComponent();
-                        gc.clearRect(e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
+                        //gc.clearRect(e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
+                        sceneGame.getChildren().remove(e.getGraphicsComponent().getCurrentImage());
                     }
                 }
                 for(Entity e : map.getMatrix()[i][j]){
                     if (e != null){
-                        gc.drawImage(e.getGraphicsComponent().getCurrentImage(), e.getPosition().getX(), e.getPosition().getY(), e.getGraphicsComponent().getWidth(), e.getGraphicsComponent().getHeight());
+                        GraphicsComponent graphicsComponent = e.getGraphicsComponent();
+                        ImageView imageView = graphicsComponent.getCurrentImage();
+                        imageView.setX(e.getPosition().getX());
+                        imageView.setY(e.getPosition().getY());
+                        imageView.setFitHeight(graphicsComponent.getHeight());
+                        imageView.setFitWidth(graphicsComponent.getWidth());
+                        sceneGame.getChildren().add(imageView);
+                        //gc.drawImage(e.getGraphicsComponent().getCurrentImage(), e.getPosition().getX(), e.getPosition().getY(), e.getGraphicsComponent().getWidth(), e.getGraphicsComponent().getHeight());
                     }
                 }
             }

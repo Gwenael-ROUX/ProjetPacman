@@ -21,7 +21,6 @@ public class AnimationManager {
         try{
             BufferedReader in = new BufferedReader(new InputStreamReader(LevelGenerator.class.getResourceAsStream(folder)));
             String line;
-            line = in.readLine();
             while ((line = in.readLine()) != null) {
                 Image im = new Image(AnimationManager.class.getResourceAsStream(line));
                 list.add(im);
