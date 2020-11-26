@@ -45,7 +45,6 @@ public class BuildSceneGame {
 
     public void update(Map map) {
         GraphicsContext gc = sceneGame.getGc();
-        //gc.clearRect(0, 0, map.getWidth(), map.getHeight());
         sceneGame.getChildren().removeAll(sceneGame.getChildren());
         
         for (int i = 0; i < currentMap.getMatrix().length; ++i) {

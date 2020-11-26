@@ -5,6 +5,7 @@ import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.core_kernel.Map;
 import moteur.physics.Position;
+import moteur.sound.SoundManager;
 
 public class EventEatGum extends Event {
     private PacmanModel pacmanModel;
@@ -24,5 +25,6 @@ public class EventEatGum extends Event {
 
         pacmanModel.addScore(10);
         map.deleteEntity(position, entity);
+        SoundManager.getInstance().addSound("pacman_chomp.wav", "chomp", false, 0.2f);
     }
 }
