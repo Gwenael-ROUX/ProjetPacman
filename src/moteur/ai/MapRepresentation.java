@@ -63,8 +63,10 @@ public class MapRepresentation {
     public void showMap(){
         for(int y = 0; y < map.getMatrix().length; y++){
             for(int x = 0; x < map.getMatrix()[y].length; x++) {
-                if(map.getMatrix()[y][x].getName() != null)
+                if(map.getMatrix()[y][x] != null)
                     System.out.print(map.getMatrix()[y][x].getName() + "\t");
+                //else
+                //    System.out.println(" " + "\t");
             }
             System.out.println();
         }
