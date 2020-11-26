@@ -94,6 +94,7 @@ public class LevelGenerator {
 
                     shortestPathAI.setPathFinder(basicPathFinder);
                     shortestPathAI.setTarget(pacman);
+                    shortestPathAI.setOrigin(e);
                     break;
                 case "g" :
                     builder = new GhostGreenBuilder();
