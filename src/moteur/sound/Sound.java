@@ -10,10 +10,12 @@ public class Sound extends Thread {
     private Clip clip;
     private boolean isLoop = false;
     private String name;
+    private Long start;
 
-    Sound(String soundName, String name) {
+    Sound(String soundName, String name, Long start) {
         super();
         this.name = name;
+        this.start = start;
         try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Sound.class.getResource("/Sound/" + soundName))) {
             this.clip = AudioSystem.getClip();
             this.clip.addLineListener(listener);
@@ -27,6 +29,7 @@ public class Sound extends Thread {
         try {
             if (isLoop)
                 clip.loop(Integer.MAX_VALUE);
+            clip.setMicrosecondPosition(start*1000);
             clip.start();
             listener.waitUntilDone();
         } catch (InterruptedException e) {
@@ -37,10 +40,10 @@ public class Sound extends Thread {
         }
     }
 
-    public void stopSound() {
-        clip.close();
-        clip.stop();
-        SoundManager.getInstance().removeSound(this.name);
+    public synchronized void stopSound() {
+        clip.setMicrosecondPosition(clip.getMicrosecondLength());
+        if (isLoop)
+            clip.close();
     }
 
     public float getVolume() {
