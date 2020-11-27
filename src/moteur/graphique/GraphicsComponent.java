@@ -9,10 +9,12 @@ import javafx.scene.image.Image;
 public class GraphicsComponent implements Component {
     private ImageView currentImage;
     private AnimationManager animation;
+    private Integer layer;
     private double height;
     private double width;
 
-    public GraphicsComponent() {
+    public GraphicsComponent(Integer layer) {
+        this.layer = layer;
     }
 
     @Override
@@ -68,5 +70,13 @@ public class GraphicsComponent implements Component {
 
     public void setCurrentImage(ImageView currentImage) {
         this.currentImage = currentImage;
+    }
+
+    public Integer getLayer() {
+        return layer;
+    }
+
+    public void setLayer(Integer layer) {
+        this.layer = layer;
     }
 }

@@ -40,7 +40,7 @@ public class GhostBlueBuilder extends EntityBuilder {
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
-        GraphicsComponent graphicsComponent = new GraphicsComponent();
+        GraphicsComponent graphicsComponent = new GraphicsComponent(2);
         graphicsComponent.setImage("/Image/ghost/GhostBlue.png");
         graphicsComponent.setHeight(dimLarg);
         graphicsComponent.setWidth(dimLong);

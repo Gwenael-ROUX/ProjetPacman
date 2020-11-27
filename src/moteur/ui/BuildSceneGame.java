@@ -1,9 +1,13 @@
 package moteur.ui;
 
+import javafx.collections.transformation.SortedList;
 import javafx.scene.image.ImageView;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Map;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class BuildSceneGame {
@@ -14,14 +18,23 @@ public class BuildSceneGame {
     }
 
     public void build(Map map) {
+        Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
+
+        ArrayList<Entity> sortedList = new ArrayList<>();
+
         for (List<Entity>[] ent : map.getMatrix()) {
             for (List<Entity> le : ent) {
                 for(Entity e : le){
                     if (e != null){
-                        sceneGame.getChildren().add(e.getGraphicsComponent().getCurrentImage());
+                        sortedList.add(e);
                     }
                 }
             }
+        }
+
+        sortedList.sort(comparator);
+        for (Entity e: sortedList){
+            sceneGame.getChildren().add(e.getGraphicsComponent().getCurrentImage());
         }
     }
 
