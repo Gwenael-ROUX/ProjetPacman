@@ -13,8 +13,8 @@ public class SoundManager {
         return instance;
     }
 
-    public void addSound(String soundName, String name, boolean isLoop, float volume) {
-        Sound sound = new Sound(soundName, name);
+    public void addSound(String soundName, String name, boolean isLoop, float volume, Long start) {
+        Sound sound = new Sound(soundName, name, start);
         sound.setVolume(volume);
         sound.setLoop(isLoop);
         sound.start();
