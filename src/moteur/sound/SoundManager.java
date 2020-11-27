@@ -22,6 +22,7 @@ public class SoundManager {
     }
 
     public void stopASound(String name) {
+        System.out.println(currentSounds.size());
         for (Sound sound : currentSounds) {
             if (sound.getSoundName().equals(name)) {
                 sound.stopSound();

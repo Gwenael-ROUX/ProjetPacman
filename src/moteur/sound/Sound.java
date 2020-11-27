@@ -37,10 +37,10 @@ public class Sound extends Thread {
         }
     }
 
-    public void stopSound() {
-        clip.close();
-        clip.stop();
-        SoundManager.getInstance().removeSound(this.name);
+    public synchronized void stopSound() {
+        clip.setMicrosecondPosition(clip.getMicrosecondLength());
+        if (isLoop)
+            clip.close();
     }
 
     public float getVolume() {
