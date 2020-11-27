@@ -4,8 +4,12 @@ package moteur.core_kernel;
 import gameplay.LevelGenerator;
 import gameplay.controller.GhostKeyboardController;
 import gameplay.controller.PacmanKeyboardController;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import moteur.controller.GeneralKeyboardController;
 import moteur.controller.KeyboardController;
+import moteur.ui.SceneGame;
 import moteur.ui.SceneManager2;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -25,7 +29,7 @@ public class GameLoop extends Application {
         LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level2.txt");
         GameManager gameManager = new GameManager(levelGenerator.getMap());
 
-        stage.setResizable(false);
+        //stage.setResizable(false);
         SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");
         KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();
         KeyboardController keyboard2 = (KeyboardController) levelGenerator.getGhost().getControllerComponent();

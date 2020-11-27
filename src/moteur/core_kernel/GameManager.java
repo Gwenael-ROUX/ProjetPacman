@@ -19,7 +19,8 @@ public class GameManager {
         eventManager = EventManager.getEventManager();
         this.entities = new ArrayList<>();
         this.entitiesPosition = new ArrayList<>();
-        buildSceneGame = new BuildSceneGame(map);
+        buildSceneGame = new BuildSceneGame();
+        buildSceneGame.build(map);
     }
 
     public BuildSceneGame getBuildSceneGame() {
@@ -35,7 +36,7 @@ public class GameManager {
 
         updateEntities();
 
-        buildSceneGame.update(map);
+        buildSceneGame.update();
     }
 
     private void updateListEntities(){

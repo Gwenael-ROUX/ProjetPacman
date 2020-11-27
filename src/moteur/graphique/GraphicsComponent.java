@@ -23,10 +23,17 @@ public class GraphicsComponent implements Component {
                 currentImage.setImage(im);
             }
         }
+        if (currentImage != null) {
+            currentImage.setLayoutX(entity.getPosition().getX());
+            currentImage.setLayoutY(entity.getPosition().getY());
+        }
     }
 
     public void setImage(String chemin) {
-        this.currentImage = new ImageView(new Image(AnimationManager.class.getResourceAsStream(chemin)));
+        if (chemin == null)
+            currentImage = null;
+        else
+            this.currentImage = new ImageView(new Image(AnimationManager.class.getResourceAsStream(chemin)));
     }
 
     public ImageView getCurrentImage() {
@@ -39,10 +46,12 @@ public class GraphicsComponent implements Component {
 
     public void setHeight(double height) {
         this.height = height;
+        currentImage.setFitHeight(height);
     }
 
     public void setWidth(double width) {
         this.width = width;
+        currentImage.setFitWidth(width);
     }
 
     public double getHeight() {
@@ -55,5 +64,9 @@ public class GraphicsComponent implements Component {
 
     public void setAnimation(AnimationManager animation) {
         this.animation = animation;
+    }
+
+    public void setCurrentImage(ImageView currentImage) {
+        this.currentImage = currentImage;
     }
 }
