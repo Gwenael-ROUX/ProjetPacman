@@ -10,9 +10,7 @@ public class SceneManager2 {
     public SceneManager2(Stage stage, String title) {
         this.stage = stage;
         this.stage.setTitle(title);
-        //this.stage.sizeToScene();
-        this.stage.setWidth(1000);
-        this.stage.setHeight(1000);
+        this.stage.sizeToScene();
         this.stage.centerOnScreen();
     }
 
