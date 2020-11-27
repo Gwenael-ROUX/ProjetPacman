@@ -17,6 +17,8 @@ public class GhostPhysics extends PhysicsComponent {
             return;
         if(entity.getName().equals(EntityType.WALL.name) || entity.getName().equals(EntityType.GHOST.name) || entity.getName().equals(EntityType.PACMAN.name)){
             moveBack(entity_owned);
+            if(entity_owned.getPhysicsComponent().getCollider().hit(entity.getPhysicsComponent().getCollider()))
+                moveFoward(entity_owned);
         }
     }
 
@@ -30,5 +32,10 @@ public class GhostPhysics extends PhysicsComponent {
         entity_owned.setOrientation((entity_owned.getOrientation()+180.0)%360);
         entity_owned.getPhysicsComponent().update(entity_owned);
         entity_owned.setOrientation((entity_owned.getOrientation()-180.0)%360);
+    }
+
+    private void moveFoward(Entity entity_owned){
+        if(entity_owned.getOrientation() == null) return;
+        entity_owned.getPhysicsComponent().update(entity_owned);
     }
 }
