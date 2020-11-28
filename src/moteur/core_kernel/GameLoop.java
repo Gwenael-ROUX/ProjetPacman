@@ -59,7 +59,7 @@ public class GameLoop extends Application {
          sceneManager2.show(gameManager.getBuildSceneGame().getSceneGame());
     }
 
-    public static void SetTimeMultiplicator(float timeModification){
+    public static void SetTimeAnimation(float timeModification){
         timeMultiplicator = timeModification;
     }
 }
