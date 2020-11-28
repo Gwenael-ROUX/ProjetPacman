@@ -20,5 +20,6 @@ public class EventPacmanDie extends Event {
     @Override
     public void handle() {
         System.out.println("Game over !");
+        GameLoop.SetTimeMultiplicator(0.1f);
     }
 }

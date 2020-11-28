@@ -20,6 +20,12 @@ import java.util.Arrays;
 
 
 public class GameLoop extends Application {
+    private static double t;
+
+    public static float timeMultiplicator = 1f;
+    private static long startTimeModifMult;
+
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -43,7 +49,7 @@ public class GameLoop extends Application {
         {
             public void handle(long currentNanoTime)
             {
-                double t = (currentNanoTime - startNanoTime) * 10e-10;
+                t = (currentNanoTime - startNanoTime) * 10e-10 * timeMultiplicator;
                 Timer.getInstance().setTime(t);
 
                 gameManager.update();
@@ -51,5 +57,9 @@ public class GameLoop extends Application {
         }.start();
 
          sceneManager2.show(gameManager.getBuildSceneGame().getSceneGame());
+    }
+
+    public static void SetTimeMultiplicator(float timeModification){
+        timeMultiplicator = timeModification;
     }
 }
