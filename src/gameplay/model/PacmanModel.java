@@ -1,5 +1,9 @@
 package gameplay.model;
 
+import gameplay.events.EventEatGum;
+import gameplay.events.EventPacmanDie;
+import moteur.core_kernel.EventManager;
+
 public class PacmanModel {
     private int score, pv;
 
@@ -14,6 +18,11 @@ public class PacmanModel {
 
     public void decrementPV(){
         pv--;
+        System.out.println("point de vie restant : " + pv);
+    }
+
+    public boolean checkPVnull(){
+        return pv <= 0 ;
     }
 
     public void addScore(int value){

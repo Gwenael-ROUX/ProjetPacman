@@ -3,6 +3,7 @@ package gameplay.physics;
 import gameplay.EntityType;
 import gameplay.events.EventEatCherry;
 import gameplay.events.EventEatGum;
+import gameplay.events.EventPacmanDie;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.EventManager;
@@ -27,8 +28,12 @@ public class PacmanPhysics extends PhysicsComponent {
             moveBack(entity_owned);
             if(entity_owned.getPhysicsComponent().getCollider().hit(entity.getPhysicsComponent().getCollider()))
                 moveFoward(entity_owned);
-            if(entity.getName().equals(EntityType.GHOST.name))
+            if(entity.getName().equals(EntityType.GHOST.name)){
                 pacmanModel.decrementPV();
+                if (pacmanModel.checkPVnull()){
+                    EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, map));
+                }
+            }
         } else if(entity.getName().equals(EntityType.GOMME.name)){
             EventManager.getEventManager().addEvent(new EventEatGum(pacmanModel, entity, map));
         } else if(entity.getName().equals(EntityType.CERISE.name)){
