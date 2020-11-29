@@ -9,7 +9,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 
-// TODO : TEST Temporary suppress gameplay package to see motor dependencies
 public class GameLoop extends Application {
 
     private static double time;

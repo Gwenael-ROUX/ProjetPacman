@@ -2,21 +2,24 @@ package gameplay;
 
 import moteur.controller.GeneralKeyboardController;
 import moteur.controller.KeyboardController;
+import moteur.core_kernel.Entity;
 import moteur.core_kernel.GameLoop;
 import moteur.core_kernel.GameManager;
+import moteur.physics.Position;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PacmanGame {
 
-    private int nbLevel;
-    private int currentLevel;
+    private static int nbLevel;
+    private static int currentLevel;
     private static PacmanGame pacmanGame;
     private static GameManager gameManager;
+    private static LevelGenerator levelGenerator;
 
     private PacmanGame(int nbLevel, float timeMultiplicator, String title){
-        this.nbLevel = nbLevel;
+        PacmanGame.nbLevel = nbLevel;
         currentLevel = 1;
         GameLoop.setTimeAnimation(timeMultiplicator);
         GameLoop.setTitle(title);
@@ -40,8 +43,20 @@ public class PacmanGame {
         GameLoop.stopGame();
     }
 
+    public void resetGame(){
+        for(Entity e : levelGenerator.getInitPositionEntities().keySet()){
+            Position actualPosition = levelGenerator.getMap().getPositionEntity(e);
+            Position initPosition = levelGenerator.getInitPositionEntities().get(e);
+            gameManager.getMap().swap((int)actualPosition.getX(), (int)actualPosition.getY(), (int)initPosition.getX(), (int)initPosition.getY(), e);
+            double new_x = initPosition.getX()*levelGenerator.getMap().getDimCellWdt()-levelGenerator.getMap().getDimCellWdt()/2.0;
+            double new_y = initPosition.getY()*levelGenerator.getMap().getDimCellHgt()-levelGenerator.getMap().getDimCellHgt()/2.0;
+            e.setPosition(new Position(new_x, new_y));
+        }
+        gameManager.breakCurrentUpdate();
+    }
+
     public void launch(){
-        LevelGenerator levelGenerator = new LevelGenerator(512,512,"/Level/level" + currentLevel + ".txt");
+        levelGenerator = new LevelGenerator(512,512,"/Level/level" + currentLevel + ".txt");
         gameManager = new GameManager(levelGenerator.getMap());
 
         KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();

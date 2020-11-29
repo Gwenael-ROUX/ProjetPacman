@@ -13,6 +13,7 @@ public class GameManager {
     private List<Entity> entities;
     private List<Position> entitiesPosition;
     private BuildSceneGame buildSceneGame;
+    private boolean breakUpdate;
 
     public GameManager(Map map){
         this.map = map;
@@ -21,20 +22,22 @@ public class GameManager {
         this.entitiesPosition = new ArrayList<>();
         buildSceneGame = new BuildSceneGame();
         buildSceneGame.build(map);
-    }
-
-    public BuildSceneGame getBuildSceneGame() {
-        return buildSceneGame;
+        breakUpdate = false;
     }
 
     public void update(){
+        breakUpdate = false;
+
         updateListEntities();
 
-        updateEvents();
+        if(! breakUpdate)
+            updateEvents();
 
-        updateMovesAndListener();
+        if(! breakUpdate)
+            updateMovesAndListener();
 
-        updateEntities();
+        if(! breakUpdate)
+            updateEntities();
 
         buildSceneGame.update();
     }
@@ -98,5 +101,17 @@ public class GameManager {
                 map.swap((int) src_position.getX(), (int) src_position.getY(), dst_x, dst_y, entities.get(i));
             }
         }
+    }
+
+    public Map getMap(){
+        return map;
+    }
+
+    public BuildSceneGame getBuildSceneGame() {
+        return buildSceneGame;
+    }
+
+    public void breakCurrentUpdate(){
+        breakUpdate = true;
     }
 }

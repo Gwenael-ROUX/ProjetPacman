@@ -1,6 +1,7 @@
 package gameplay.physics;
 
 import gameplay.EntityType;
+import gameplay.PacmanGame;
 import gameplay.events.EventEatCherry;
 import gameplay.events.EventEatGum;
 import gameplay.events.EventPacmanDie;
@@ -32,6 +33,8 @@ public class PacmanPhysics extends PhysicsComponent {
                 pacmanModel.decrementPV();
                 if (pacmanModel.checkPVnull()){
                     EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, map));
+                } else{
+                    PacmanGame.getGame().resetGame();
                 }
             }
         } else if(entity.getName().equals(EntityType.GOMME.name)){
