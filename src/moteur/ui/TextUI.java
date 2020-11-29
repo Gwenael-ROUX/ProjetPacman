@@ -18,8 +18,8 @@ public class TextUI extends CanvasUI {
 
     public void drawText(String text, Color color, double taille){
         setHeight(taille);
-        graphicsContext.setFill(color);
         this.color =color;
+        graphicsContext.setFill(this.color);
         graphicsContext.fillText(text, position.getX(),position.getY());
     }
 

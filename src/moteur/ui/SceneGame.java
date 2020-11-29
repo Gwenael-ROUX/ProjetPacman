@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SceneGame extends Pane {
     public SceneGame() {
-        setStyle("-fx-background-color: #000000;");;
+        setStyle("-fx-background-color: #000000;");
     }
 
     public void initLevel(Map map) {
