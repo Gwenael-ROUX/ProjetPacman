@@ -21,7 +21,7 @@ public class GameLoop extends Application {
 
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
         if(gameManager == null) return;
         //stage.setResizable(false);
         SceneManager2 sceneManager2 = new SceneManager2(stage, title);

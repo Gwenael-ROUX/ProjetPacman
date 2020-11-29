@@ -2,8 +2,10 @@ package moteur.ui;
 
 import javafx.collections.transformation.SortedList;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Map;
+import moteur.physics.Position;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,6 +14,7 @@ import java.util.List;
 
 public class BuildSceneGame {
     private SceneGame sceneGame;
+
 
     public BuildSceneGame() {
         this.sceneGame = new SceneGame();
@@ -47,6 +50,8 @@ public class BuildSceneGame {
         for (int i = 0; i < sceneGame.getChildren().size(); i++) {
             if (((ImageView) sceneGame.getChildren().get(i)).getImage() == null)
                 sceneGame.getChildren().remove(sceneGame.getChildren().get(i));
+            else{
+            }
         }
     }
 }
