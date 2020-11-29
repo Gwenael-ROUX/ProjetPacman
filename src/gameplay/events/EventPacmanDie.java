@@ -1,11 +1,10 @@
 package gameplay.events;
 
+import gameplay.PacmanGame;
 import gameplay.model.PacmanModel;
-import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.core_kernel.GameLoop;
 import moteur.core_kernel.Map;
-import moteur.physics.Position;
 
 public class EventPacmanDie extends Event {
 
@@ -20,6 +19,6 @@ public class EventPacmanDie extends Event {
     @Override
     public void handle() {
         System.out.println("Game over !");
-        GameLoop.SetTimeAnimation(0.1f);
+        PacmanGame.getGame().stopGame();
     }
 }
