@@ -4,6 +4,7 @@ import gameplay.ai.ShortestPathAI;
 import gameplay.builder.*;
 import gameplay.builder.object.*;
 import gameplay.builder.ghost.*;
+import javafx.geometry.Pos;
 import moteur.ai.BasicPathFinder;
 import moteur.core_kernel.builder.*;
 import moteur.ai.MapRepresentation;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class LevelGenerator {
@@ -27,15 +29,21 @@ public class LevelGenerator {
     private double dimCaseLarg;
     private Map map;
     private BasicPathFinder basicPathFinder;
+    private ShortestPathAI shortestPathAI;
+    private HashMap<Entity, Position> initPositionEntities;
 
     public LevelGenerator(double v1, double v2, String chemin) {
         this.v1 = v1;
         this.v2 = v2;
+        initPositionEntities = new HashMap<>();
         basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CERISE.name));
+        shortestPathAI = new ShortestPathAI();
+        shortestPathAI.setPathFinder(basicPathFinder);
         map = new Map(new Position(0,0), new Position(v1, v2));
 
         readFile(chemin);
 
+        map.setLimitBottomRight(new Position(dimCaseLong*matrix[0].length, dimCaseLarg*matrix.length));
         map.setMatrix(matrix);
         MapRepresentation mapRepresentation = new MapRepresentation(map);
         basicPathFinder.setMap(mapRepresentation);
@@ -50,8 +58,8 @@ public class LevelGenerator {
             String[] arrOfStr = line.split(";");
             int nbcaseX = Integer.parseInt(arrOfStr[0]);
             int nbcaseY = Integer.parseInt(arrOfStr[1]);
-            dimCaseLong = v1 / nbcaseX;
-            dimCaseLarg = v2 / nbcaseY;
+            dimCaseLong = Math.floor(v1 / nbcaseX);
+            dimCaseLarg = Math.floor(v2 / nbcaseY);
 
             int i = 0;
             matrix = new ArrayList[nbcaseY][nbcaseX];
@@ -85,16 +93,17 @@ public class LevelGenerator {
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     pacman = builder.getEntity();
+                    initPositionEntities.put(pacman, new Position(j,i));
+
+                    shortestPathAI.setTarget(pacman);
                     break;
                 case "r" :
-                    ShortestPathAI shortestPathAI = new ShortestPathAI();
                     builder = new GhostRedBuilder(shortestPathAI);
                     director.constructEntity(builder, new Position(posX,posY));
                     Entity e = builder.getEntity();
                     setMatrix(i,j, e);
+                    initPositionEntities.put(e, new Position(j,i));
 
-                    shortestPathAI.setPathFinder(basicPathFinder);
-                    shortestPathAI.setTarget(pacman);
                     shortestPathAI.setOrigin(e);
                     break;
                 case "g" :
@@ -102,16 +111,19 @@ public class LevelGenerator {
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     ghost = builder.getEntity();
+                    initPositionEntities.put(ghost, new Position(j,i));
                     break;
                 case "y" :
                     builder = new GhostYellowBuilder();
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
+                    initPositionEntities.put(builder.getEntity(), new Position(j,i));
                     break;
                 case "b" :
                     builder = new GhostBlueBuilder();
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
+                    initPositionEntities.put(builder.getEntity(), new Position(j,i));
                     break;
                 case "c" :
                     builder = new CeriseBuilder();
@@ -140,5 +152,9 @@ public class LevelGenerator {
 
     public Entity getGhost(){
         return ghost;
+    }
+
+    public HashMap<Entity, Position> getInitPositionEntities(){
+        return initPositionEntities;
     }
 }

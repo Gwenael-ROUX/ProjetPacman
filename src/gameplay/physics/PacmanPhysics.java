@@ -1,8 +1,10 @@
 package gameplay.physics;
 
 import gameplay.EntityType;
+import gameplay.PacmanGame;
 import gameplay.events.EventEatCherry;
 import gameplay.events.EventEatGum;
+import gameplay.events.EventPacmanDie;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.EventManager;
@@ -25,8 +27,16 @@ public class PacmanPhysics extends PhysicsComponent {
     public void onCollision(Entity entity_owned, Entity entity){
         if(entity.getName().equals(EntityType.WALL.name) || entity.getName().equals(EntityType.GHOST.name)){
             moveBack(entity_owned);
-            if(entity.getName().equals(EntityType.GHOST.name))
+            if(entity_owned.getPhysicsComponent().getCollider().hit(entity.getPhysicsComponent().getCollider()))
+                moveFoward(entity_owned);
+            if(entity.getName().equals(EntityType.GHOST.name)){
                 pacmanModel.decrementPV();
+                if (pacmanModel.checkPVnull()){
+                    EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, map));
+                } else{
+                    PacmanGame.getGame().resetGame();
+                }
+            }
         } else if(entity.getName().equals(EntityType.GOMME.name)){
             EventManager.getEventManager().addEvent(new EventEatGum(pacmanModel, entity, map));
         } else if(entity.getName().equals(EntityType.CERISE.name)){
@@ -44,5 +54,10 @@ public class PacmanPhysics extends PhysicsComponent {
         entity_owned.setOrientation((entity_owned.getOrientation()+180.0)%360);
         entity_owned.getPhysicsComponent().update(entity_owned);
         entity_owned.setOrientation((entity_owned.getOrientation()-180.0)%360);
+    }
+
+    private void moveFoward(Entity entity_owned){
+        if(entity_owned.getOrientation() == null) return;
+        entity_owned.getPhysicsComponent().update(entity_owned);
     }
 }

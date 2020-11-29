@@ -83,6 +83,14 @@ public class Map {// implements Iterable<Entity> {
         this.dimCellHgt = (limitBottomRight.getY() - limitTopLeft.getY()) / getHeight();
     }
 
+    public void setLimitTopLeft(Position limitTopLeft) {
+        this.limitTopLeft = limitTopLeft;
+    }
+
+    public void setLimitBottomRight(Position limitBottomRight) {
+        this.limitBottomRight = limitBottomRight;
+    }
+
     /*@Override
     public Iterator<Entity> iterator() {
         return null;
