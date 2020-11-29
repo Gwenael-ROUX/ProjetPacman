@@ -48,8 +48,8 @@ public class PacmanGame {
             Position actualPosition = levelGenerator.getMap().getPositionEntity(e);
             Position initPosition = levelGenerator.getInitPositionEntities().get(e);
             gameManager.getMap().swap((int)actualPosition.getX(), (int)actualPosition.getY(), (int)initPosition.getX(), (int)initPosition.getY(), e);
-            double new_x = initPosition.getX()*levelGenerator.getMap().getDimCellWdt()-levelGenerator.getMap().getDimCellWdt()/2.0;
-            double new_y = initPosition.getY()*levelGenerator.getMap().getDimCellHgt()-levelGenerator.getMap().getDimCellHgt()/2.0;
+            double new_x = initPosition.getX()*levelGenerator.getMap().getDimCellWdt();
+            double new_y = initPosition.getY()*levelGenerator.getMap().getDimCellHgt();
             e.setPosition(new Position(new_x, new_y));
         }
         gameManager.breakCurrentUpdate();
