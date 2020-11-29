@@ -19,8 +19,8 @@ public class BuildSceneGame {
 
     public void build(Map map) {
         Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
-        sceneGame.setPrefWidth(map.getMatrix().length * map.getDimCellWdt());
-        sceneGame.setPrefHeight(map.getMatrix().length * map.getDimCellHgt());
+        sceneGame.setPrefWidth(map.getWidth() * map.getDimCellWdt());
+        sceneGame.setPrefHeight(map.getHeight() * map.getDimCellHgt());
         ArrayList<Entity> sortedList = new ArrayList<>();
 
         for (List<Entity>[] ent : map.getMatrix()) {

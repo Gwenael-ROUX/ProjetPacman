@@ -20,22 +20,26 @@ import java.util.Arrays;
 
 
 public class GameLoop extends Application {
-    public static void main(String[] args) {
-        launch(args);
+    private GameManager gameManager;
+    private SceneManager2 sceneManager2;
+
+    public GameLoop(GameManager gameManager, SceneManager2 sceneManager2) {
+        this.gameManager = gameManager;
+        this.sceneManager2 = sceneManager2;
     }
 
     @Override
     public void start(Stage stage) {
-        LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level2.txt");
-        GameManager gameManager = new GameManager(levelGenerator.getMap());
-
-        //stage.setResizable(false);
-        SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");
-        KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();
-        KeyboardController keyboard2 = (KeyboardController) levelGenerator.getGhost().getControllerComponent();
-        sceneManager2.setRoot(gameManager.getBuildSceneGame().getSceneGame());
-        GeneralKeyboardController keyboardController = new GeneralKeyboardController(new ArrayList<>(Arrays.asList(keyboard1, keyboard2)));
-        sceneManager2.getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
+//        LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level2.txt");
+//        GameManager gameManager = new GameManager(levelGenerator.getMap());
+//
+//        stage.setResizable(false);
+//        SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");
+//        KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();
+//        KeyboardController keyboard2 = (KeyboardController) levelGenerator.getGhost().getControllerComponent();
+//        sceneManager2.setRoot(gameManager.getBuildSceneGame().getSceneGame());
+//        GeneralKeyboardController keyboardController = new GeneralKeyboardController(new ArrayList<>(Arrays.asList(keyboard1, keyboard2)));
+//        sceneManager2.getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
 
         final long startNanoTime = System.nanoTime();
 
