@@ -17,6 +17,7 @@ public class PacmanModel {
     }
 
     public void decrementPV(){
+        if(checkPVnull()) return;
         pv--;
         System.out.println("point de vie restant : " + pv);
     }
