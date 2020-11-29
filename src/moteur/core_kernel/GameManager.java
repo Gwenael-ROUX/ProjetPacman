@@ -20,8 +20,8 @@ public class GameManager {
         eventManager = EventManager.getEventManager();
         this.entities = new ArrayList<>();
         this.entitiesPosition = new ArrayList<>();
-        buildSceneGame = new BuildSceneGame();
-        buildSceneGame.build(map);
+        buildSceneGame = new BuildSceneGame(map);
+        buildSceneGame.build();
         breakUpdate = false;
     }
 

@@ -12,12 +12,13 @@ import java.util.List;
 
 public class BuildSceneGame {
     private SceneGame sceneGame;
-
-    public BuildSceneGame() {
+    private Map map;
+    public BuildSceneGame(Map map) {
+        this.map = map;
         this.sceneGame = new SceneGame();
     }
 
-    public void build(Map map) {
+    public void build() {
         Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
         sceneGame.setPrefWidth(map.getWidth() * map.getDimCellWdt());
         sceneGame.setPrefHeight(map.getHeight() * map.getDimCellHgt());
