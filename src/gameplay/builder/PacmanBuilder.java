@@ -5,6 +5,7 @@ import gameplay.controller.PacmanKeyboardController;
 import gameplay.model.PacmanModel;
 import gameplay.physics.Displacement;
 import gameplay.physics.PacmanPhysics;
+import moteur.core_kernel.Map;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.AnimationManager;
 import moteur.graphique.GraphicsComponent;
@@ -12,6 +13,12 @@ import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
 public class PacmanBuilder extends EntityBuilder {
+    private Map map;
+
+    public PacmanBuilder(Map map){
+        this.map = map;
+    }
+
     @Override
     public void buildPosition(Position position) {
         entity.setPosition(position);
@@ -37,12 +44,12 @@ public class PacmanBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new PacmanPhysics(2, new BoxCollider(position1, position2), new PacmanModel()));
+        entity.setPhysicsComponent(new PacmanPhysics(2, new BoxCollider(position1, position2), new PacmanModel(), map));
     }
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
-        GraphicsComponent graphicsComponent = new GraphicsComponent();
+        GraphicsComponent graphicsComponent = new GraphicsComponent(1);
         graphicsComponent.setImage("/Image/pacman/pacmanRight.png");
         graphicsComponent.setHeight(dimLarg);
         graphicsComponent.setWidth(dimLong);
@@ -56,10 +63,5 @@ public class PacmanBuilder extends EntityBuilder {
 
         graphicsComponent.setAnimation(animationManager);
         entity.setGraphicsComponent(graphicsComponent);
-    }
-
-    @Override
-    public void buildSoundComp() {
-
     }
 }

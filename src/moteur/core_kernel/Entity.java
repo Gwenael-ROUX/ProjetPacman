@@ -2,7 +2,6 @@ package moteur.core_kernel;
 
 import moteur.physics.PhysicsComponent;
 import moteur.physics.Position;
-import moteur.sound.SoundComponent;
 import moteur.controller.ControllerComponent;
 import moteur.graphique.GraphicsComponent;
 
@@ -13,7 +12,6 @@ public class Entity {
     private ControllerComponent controllerComponent;
     private PhysicsComponent physicsComponent;
     private GraphicsComponent graphicsComponent;
-    private SoundComponent soundComponent;
 
     public Entity() {
     }
@@ -28,8 +26,6 @@ public class Entity {
     public void update(){
         if (graphicsComponent != null)
             graphicsComponent.update(this);
-        if (soundComponent != null)
-            soundComponent.update(this);
     }
 
     public Position getPosition() {
@@ -50,10 +46,6 @@ public class Entity {
 
     public void setGraphicsComponent(GraphicsComponent graphicsComponent) {
         this.graphicsComponent = graphicsComponent;
-    }
-
-    public void setSoundComponent(SoundComponent soundComponent) {
-        this.soundComponent = soundComponent;
     }
 
     public void setOrientation(Double orientation){

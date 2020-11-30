@@ -2,6 +2,7 @@ package gameplay.builder.ghost;
 
 import gameplay.EntityType;
 import gameplay.ai.RandomAI;
+import gameplay.controller.GhostKeyboardController;
 import gameplay.physics.Displacement;
 import gameplay.physics.GhostPhysics;
 import moteur.core_kernel.builder.EntityBuilder;
@@ -27,7 +28,8 @@ public class GhostGreenBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
-        entity.setControllerComponent(new RandomAI());
+        //entity.setControllerComponent(new RandomAI());
+        entity.setControllerComponent(new GhostKeyboardController());
     }
 
     @Override
@@ -40,15 +42,10 @@ public class GhostGreenBuilder extends EntityBuilder {
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
-        GraphicsComponent graphicsComponent = new GraphicsComponent();
+        GraphicsComponent graphicsComponent = new GraphicsComponent(2);
         graphicsComponent.setImage("/Image/ghost/GhostGreen.png");
         graphicsComponent.setHeight(dimLarg);
         graphicsComponent.setWidth(dimLong);
         entity.setGraphicsComponent(graphicsComponent);
-    }
-
-    @Override
-    public void buildSoundComp() {
-
     }
 }

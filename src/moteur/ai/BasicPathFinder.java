@@ -50,14 +50,28 @@ public class BasicPathFinder {
                 for(int[] neighbor : neighbors){
                     int x = (int) pos.getX()+neighbor[0], y = (int) pos.getY()+neighbor[1];
                     if(x < 0 || y < 0 || x >= width || y >= height) continue;
-                    Entity e = map.getMap().getEntity(x, y);
-                    //if((e == null || e.isCrossable() || target.equals(e)) && map.getDistance(x, y) == -1){
-                    if((e == null || e.getPhysicsComponent() == null || target.equals(e) || isCrossable(e)) && map.getDistance(x, y) == -1){
+
+                    if((map.getMap().getEntity(x, y) == null || map.getMap().getEntity(x, y).size() == 0) && map.getDistance(x, y) == -1){
                         newListPositions.add(new Position(x, y));
                         map.setDistance(x, y, step);
+                    } else{
+                        int dist = -1;
+                        for(Entity e : map.getMap().getEntity(x, y)){
+                            //if((e == null || e.isCrossable() || target.equals(e)) && map.getDistance(x, y) == -1){
+                            if((e == null || e.getPhysicsComponent() == null || target.equals(e) || isCrossable(e)) && map.getDistance(x, y) == -1){
+                                dist = step;
 
-                        if(target.equals(e))
-                            isFinished = true;
+                                if(target.equals(e))
+                                    isFinished = true;
+                            } else if(!isFinished && e != null && !isCrossable(e)){
+                                dist = -1;
+                                break;
+                            }
+                        }
+                        if(dist >= 0){
+                            newListPositions.add(new Position(x, y));
+                            map.setDistance(x, y, dist);
+                        }
                     }
                 }
             }
@@ -73,7 +87,7 @@ public class BasicPathFinder {
             return new ArrayList<>();
 
         int dist = map.getDistance(x, y);
-        while(map.getDistance(x, y) != 0){
+        while(map.getDistance(x, y) > 0){
 
             for(int[] neighbor : neighbors){
                 int newX = x+neighbor[0], newY = y+neighbor[1];

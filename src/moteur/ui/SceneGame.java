@@ -1,23 +1,35 @@
 package moteur.ui;
 
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import moteur.core_kernel.Entity;
+import moteur.core_kernel.Map;
+import moteur.core_kernel.Timer;
+
+import java.util.List;
 
 public class SceneGame extends Pane {
-    private GraphicsContext gc;
     public SceneGame() {
         setStyle("-fx-background-color: #000000;");
-        Canvas canvas = new Canvas( 600, 600 );
-        getChildren().add(canvas);
-        gc = canvas.getGraphicsContext2D();
-
-        //gc.drawImage(pacman, 0, 0, 30,30);
-//        gc.clearRect(0, 0, 30,30);
-//        gc.drawImage(pacman, 0, 0, 30,30);
     }
 
-    public GraphicsContext getGc() {
-        return gc;
+    public void initLevel(Map map) {
+        for (List<Entity>[] ent : map.getMatrix()) {
+            for (List<Entity> le : ent) {
+                for(Entity e : le){
+                    if (e != null){
+                        getChildren().add(e.getGraphicsComponent().getCurrentImage());
+                    }
+                }
+            }
+        }
+    }
+
+    public void update() {
+        for (int i = 0; i < getChildren().size(); i++) {
+            if (((ImageView) getChildren().get(i)).getImage() == null)
+                getChildren().remove(getChildren().get(i));
+        }
     }
 }

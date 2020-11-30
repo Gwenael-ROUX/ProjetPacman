@@ -13,41 +13,47 @@ public class GameManager {
     private List<Entity> entities;
     private List<Position> entitiesPosition;
     private BuildSceneGame buildSceneGame;
+    private boolean breakUpdate;
 
     public GameManager(Map map){
         this.map = map;
         eventManager = EventManager.getEventManager();
         this.entities = new ArrayList<>();
         this.entitiesPosition = new ArrayList<>();
-        buildSceneGame = new BuildSceneGame(map);
-    }
-
-    public BuildSceneGame getBuildSceneGame() {
-        return buildSceneGame;
+        buildSceneGame = new BuildSceneGame();
+        buildSceneGame.build(map);
+        breakUpdate = false;
     }
 
     public void update(){
+        breakUpdate = false;
+
         updateListEntities();
 
-        updateEvents();
+        if(! breakUpdate)
+            updateEvents();
 
-        updateMovesAndListener();
+        if(! breakUpdate)
+            updateMovesAndListener();
 
-        updateEntities();
+        if(! breakUpdate)
+            updateEntities();
 
-        buildSceneGame.update(map);
+        buildSceneGame.update();
     }
 
     private void updateListEntities(){
         entities.clear();
         entitiesPosition.clear();
-        Entity[][] matrix = map.getMatrix();
+        List<Entity>[][] matrix = map.getMatrix();
 
         for(int y = 0; y < matrix.length; y++){
             for(int x = 0; x < matrix[y].length; x++) {
-                if (matrix[y][x] != null) {
-                    entitiesPosition.add(new Position(x, y));
-                    entities.add(matrix[y][x]);
+                if (matrix[y][x] != null && matrix[y][x].size() != 0) {
+                    for(Entity e : matrix[y][x]){
+                        entitiesPosition.add(new Position(x, y));
+                        entities.add(e);
+                    }
                 }
             }
         }
@@ -81,12 +87,31 @@ public class GameManager {
     private void updateEntities(){
         for(int i = 0; i < entities.size(); i++){
             if(entities.get(i) != null){
+                /*if(entities.get(i).getName().equals("pacman")){
+                    System.out.println(entities.get(i).getGraphicsComponent().getCurrentImage());
+                }*/
                 Position src_position = entitiesPosition.get(i);
                 Position dst_position = entities.get(i).getPosition();
                 entities.get(i).update();
 
-                map.swap((int) src_position.getX(), (int) src_position.getY(), (int) (dst_position.getX()/map.getDimCellWdt()), (int) (dst_position.getY()/map.getDimCellHgt()));
+                int dst_x = (int) ((dst_position.getX() + map.getDimCellWdt()/2) / map.getDimCellWdt());
+                //int dst_x = (int) (dst_position.getX() / map.getDimCellWdt());
+                int dst_y = (int) ((dst_position.getY() + map.getDimCellHgt()/2) / map.getDimCellHgt());
+                //int dst_y = (int) (dst_position.getY() / map.getDimCellHgt());
+                map.swap((int) src_position.getX(), (int) src_position.getY(), dst_x, dst_y, entities.get(i));
             }
         }
+    }
+
+    public Map getMap(){
+        return map;
+    }
+
+    public BuildSceneGame getBuildSceneGame() {
+        return buildSceneGame;
+    }
+
+    public void breakCurrentUpdate(){
+        breakUpdate = true;
     }
 }

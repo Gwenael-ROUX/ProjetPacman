@@ -1,13 +1,13 @@
 package gameplay.controller;
 
+import gameplay.physics.Displacement;
 import moteur.controller.KeyboardController;
 import moteur.core_kernel.Entity;
-import gameplay.physics.Displacement;
 
-public class PacmanKeyboardController extends KeyboardController {
+public class GhostKeyboardController extends KeyboardController {
     private Displacement nextMove;
 
-    public PacmanKeyboardController(){
+    public GhostKeyboardController(){
         nextMove = Displacement.NOTHING;
         createHandler();
     }
@@ -15,16 +15,16 @@ public class PacmanKeyboardController extends KeyboardController {
     private void createHandler(){
         createHandler(KeyEvent -> {
             switch (KeyEvent) {
-                case Z :
+                case UP :
                     nextMove = Displacement.UP;
                     break;
-                case Q :
+                case LEFT :
                     nextMove = Displacement.LEFT;
                     break;
-                case S :
+                case DOWN :
                     nextMove = Displacement.DOWN;
                     break;
-                case D :
+                case RIGHT :
                     nextMove = Displacement.RIGHT;
                     break;
                 default:
@@ -39,9 +39,8 @@ public class PacmanKeyboardController extends KeyboardController {
         Displacement res = nextMove;
         //nextMove = Displacement.NOTHING;
 
-        if(res != Displacement.NOTHING)
-            entity.getGraphicsComponent().getAnimation().setCurrentAnimation(res.orientation.toString());
+        //if(res != Displacement.NOTHING)
+            //entity.getGraphicsComponent().getAnimation().setCurrentAnimation(res.orientation.toString());
         entity.setOrientation(res.orientation);
     }
 }
-

@@ -1,42 +1,73 @@
 package moteur.core_kernel;
 
 
-import gameplay.LevelGenerator;
-import gameplay.controller.PacmanKeyboardController;
+import moteur.controller.GeneralKeyboardController;
+import moteur.controller.KeyboardController;
 import moteur.ui.SceneManager2;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+
 public class GameLoop extends Application {
-    public static void main(String[] args) {
-        launch(args);
-    }
+
+    private static double time;
+    private static float timeMultiplicator = 1f;
+    private static String title = "";
+    private static long startTimeModifMult;
+    private static AnimationTimer animationTimer;
+    private static GeneralKeyboardController keyboardController;
+    private static GameManager gameManager;
+
 
     @Override
-    public void start(Stage stage) {
-        LevelGenerator levelGenerator = new LevelGenerator(600,600, "/Level/level3.txt");
-        GameManager gameManager = new GameManager(levelGenerator.getMap());
-
-        stage.setResizable(false);
-        SceneManager2 sceneManager2 = new SceneManager2(stage, "pacman");
-        PacmanKeyboardController keyboard = (PacmanKeyboardController) levelGenerator.getPacman().getControllerComponent();
+    public void start(Stage stage) throws Exception {
+        if(gameManager == null) return;
+        //stage.setResizable(false);
+        SceneManager2 sceneManager2 = new SceneManager2(stage, title);
         sceneManager2.setRoot(gameManager.getBuildSceneGame().getSceneGame());
-        sceneManager2.getStage().getScene().setOnKeyPressed(keyboard.getEventHandler());
+
+        if(keyboardController != null)
+            sceneManager2.getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
 
         final long startNanoTime = System.nanoTime();
 
-        new AnimationTimer()
+        animationTimer = new AnimationTimer()
         {
             public void handle(long currentNanoTime)
             {
-                double t = (currentNanoTime - startNanoTime) / 10e+9;//1000000000.0;
-                Timer.getInstance().setTime(t);
+                time = (currentNanoTime - startNanoTime) * 10e-10 * timeMultiplicator;
+                Timer.getInstance().setTime(time);
 
                 gameManager.update();
             }
-        }.start();
+        };
+        animationTimer.start();
 
          sceneManager2.show(gameManager.getBuildSceneGame().getSceneGame());
+    }
+
+    public static void startGame(){
+        launch();
+    }
+
+    public static void setTimeAnimation(float timeModification){
+        timeMultiplicator = timeModification;
+    }
+
+    public static void setTitle(String title){
+        GameLoop.title = title;
+    }
+
+    public static void stopGame(){
+        animationTimer.stop();
+    }
+
+    public static void setGameManager(GameManager gameManager){
+        GameLoop.gameManager = gameManager;
+    }
+
+    public static void setKeyboardController(GeneralKeyboardController keyboardController){
+        GameLoop.keyboardController = keyboardController;
     }
 }

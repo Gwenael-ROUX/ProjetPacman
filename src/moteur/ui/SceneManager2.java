@@ -1,5 +1,7 @@
 package moteur.ui;
 
+import gameplay.scene.Scene_Game;
+import gameplay.scene.Scene_Menu;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -7,7 +9,7 @@ import javafx.stage.Stage;
 public class SceneManager2 {
     private Stage stage;
 
-    public SceneManager2(Stage stage, String title) {
+    public SceneManager2(Stage stage, String title) throws Exception {
         this.stage = stage;
         this.stage.setTitle(title);
         this.stage.sizeToScene();
@@ -15,7 +17,7 @@ public class SceneManager2 {
     }
 
     public void show(Parent root) {
-        setRoot(root);
+        //setRoot(root);
         stage.show();
     }
 
@@ -31,4 +33,5 @@ public class SceneManager2 {
     public Stage getStage() {
         return stage;
     }
+
 }

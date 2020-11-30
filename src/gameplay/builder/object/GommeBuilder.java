@@ -35,7 +35,7 @@ public class GommeBuilder extends EntityBuilder {
     
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
-        GraphicsComponent graphicsComponent = new GraphicsComponent();
+        GraphicsComponent graphicsComponent = new GraphicsComponent(0);
         graphicsComponent.setImage("/Image/object/gomme.png");
         graphicsComponent.setHeight(dimLarg);
         graphicsComponent.setWidth(dimLong);
@@ -44,11 +44,6 @@ public class GommeBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
-
-    }
-
-    @Override
-    public void buildSoundComp() {
 
     }
 }

@@ -1,8 +1,6 @@
 package moteur.graphique;
 
-import gameplay.LevelGenerator;
 import javafx.scene.image.Image;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,9 +17,8 @@ public class AnimationManager {
         ArrayList<Image> list = new ArrayList<>();
 
         try{
-            BufferedReader in = new BufferedReader(new InputStreamReader(LevelGenerator.class.getResourceAsStream(folder)));
+            BufferedReader in = new BufferedReader(new InputStreamReader(AnimationManager.class.getResourceAsStream(folder)));
             String line;
-            line = in.readLine();
             while ((line = in.readLine()) != null) {
                 Image im = new Image(AnimationManager.class.getResourceAsStream(line));
                 list.add(im);

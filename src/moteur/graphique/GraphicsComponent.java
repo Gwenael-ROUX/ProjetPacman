@@ -1,32 +1,44 @@
 package moteur.graphique;
 
+import javafx.scene.image.ImageView;
 import moteur.Component;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Timer;
 import javafx.scene.image.Image;
 
 public class GraphicsComponent implements Component {
-    private Image currentImage;
+    private ImageView currentImage;
     private AnimationManager animation;
+    private Integer layer;
     private double height;
     private double width;
 
-    public GraphicsComponent() {
+    public GraphicsComponent(Integer layer) {
+        this.layer = layer;
     }
 
     @Override
     public  void update(Entity entity){
         if (animation != null){
-            if (animation.getCurrentAnimation() !=  null)
-                currentImage = animation.playAnimation(Timer.getInstance().getTime()*10);
+            if (animation.getCurrentAnimation() !=  null) {
+                Image im = animation.playAnimation(Timer.getInstance().getTime());
+                currentImage.setImage(im);
+            }
+        }
+        if (currentImage != null) {
+            currentImage.setLayoutX(entity.getPosition().getX());
+            currentImage.setLayoutY(entity.getPosition().getY());
         }
     }
 
     public void setImage(String chemin) {
-        this.currentImage = new Image(AnimationManager.class.getResourceAsStream(chemin));
+        if (chemin == null)
+            currentImage = null;
+        else
+            this.currentImage = new ImageView(new Image(AnimationManager.class.getResourceAsStream(chemin)));
     }
 
-    public Image getCurrentImage() {
+    public ImageView getCurrentImage() {
         return currentImage;
     }
 
@@ -36,10 +48,12 @@ public class GraphicsComponent implements Component {
 
     public void setHeight(double height) {
         this.height = height;
+        currentImage.setFitHeight(height);
     }
 
     public void setWidth(double width) {
         this.width = width;
+        currentImage.setFitWidth(width);
     }
 
     public double getHeight() {
@@ -52,5 +66,17 @@ public class GraphicsComponent implements Component {
 
     public void setAnimation(AnimationManager animation) {
         this.animation = animation;
+    }
+
+    public void setCurrentImage(ImageView currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public Integer getLayer() {
+        return layer;
+    }
+
+    public void setLayer(Integer layer) {
+        this.layer = layer;
     }
 }

@@ -1,30 +1,44 @@
 package moteur.ui;
 
+import javafx.collections.transformation.SortedList;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Map;
-import moteur.graphique.GraphicsComponent;
-import javafx.scene.canvas.GraphicsContext;
+import moteur.physics.Position;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class BuildSceneGame {
-    private Map currentMap;
     private SceneGame sceneGame;
 
-    public BuildSceneGame(Map map) {
-        this.currentMap = map;
+
+    public BuildSceneGame() {
         this.sceneGame = new SceneGame();
-        build();
     }
 
-    public void build() {
-        for (Entity[] ent : currentMap.getMatrix()) {
-            for (Entity e : ent) {
-                if (e != null){
-                    GraphicsContext gc = sceneGame.getGc();
-                    GraphicsComponent graphicsComponent = e.getGraphicsComponent();
-                    gc.drawImage(graphicsComponent.getCurrentImage() ,e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
-                    //System.out.println(e.getName() + " : " + e.getPosition().getX() + "   " + e.getPosition().getY());
+    public void build(Map map) {
+        Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
+        sceneGame.setPrefWidth(map.getMatrix().length * map.getDimCellWdt());
+        sceneGame.setPrefHeight(map.getMatrix().length * map.getDimCellHgt());
+        ArrayList<Entity> sortedList = new ArrayList<>();
+
+        for (List<Entity>[] ent : map.getMatrix()) {
+            for (List<Entity> le : ent) {
+                for(Entity e : le){
+                    if (e != null){
+                        sortedList.add(e);
+                    }
                 }
             }
+        }
+
+        sortedList.sort(comparator);
+        for (Entity e: sortedList){
+            sceneGame.getChildren().add(e.getGraphicsComponent().getCurrentImage());
         }
     }
 
@@ -32,19 +46,12 @@ public class BuildSceneGame {
         return sceneGame;
     }
 
-    public void update(Map map) {
-        for (int i = 0; i < currentMap.getMatrix().length; ++i) {
-            for (int j = 0; j < currentMap.getMatrix().length; ++j) {
-                Entity e = currentMap.getEntity(i,j);
-                if (e != null){
-                    GraphicsContext gc = sceneGame.getGc();
-                    GraphicsComponent graphicsComponent = e.getGraphicsComponent();
-                    gc.clearRect(e.getPosition().getX(), e.getPosition().getY(), graphicsComponent.getWidth(), graphicsComponent.getHeight());
-                    Entity newEntity = map.getEntity(i,j);
-                    gc.drawImage(newEntity.getGraphicsComponent().getCurrentImage() ,newEntity.getPosition().getX(), newEntity.getPosition().getY(), newEntity.getGraphicsComponent().getWidth(), newEntity.getGraphicsComponent().getHeight());
-                }
+    public void update() {
+        for (int i = 0; i < sceneGame.getChildren().size(); i++) {
+            if (((ImageView) sceneGame.getChildren().get(i)).getImage() == null)
+                sceneGame.getChildren().remove(sceneGame.getChildren().get(i));
+            else{
             }
         }
-        this.currentMap = map;
     }
 }
