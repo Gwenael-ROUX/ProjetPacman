@@ -1,3 +1,0 @@
-/Animation/pacmanUp/1.png
-/Animation/pacmanUp/2.png
-/Animation/pacmanUp/3.png

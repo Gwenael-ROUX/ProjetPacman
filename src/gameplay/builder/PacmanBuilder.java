@@ -50,16 +50,16 @@ public class PacmanBuilder extends EntityBuilder {
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent(1);
-        graphicsComponent.setImage("/Image/pacman/pacmanRight.png");
+        graphicsComponent.setImage("/Image/pacnoel/right.png");
         graphicsComponent.setHeight(dimLarg);
         graphicsComponent.setWidth(dimLong);
 
         AnimationManager animationManager = new AnimationManager();
         double duration = 0.10;
-        animationManager.addAnimation(Displacement.UP.orientation.toString(),"/Animation/pacmanUp/pacmanUp.txt",duration);
-        animationManager.addAnimation(Displacement.DOWN.orientation.toString(),"/Animation/pacmanDown/pacmanDown.txt",duration);
-        animationManager.addAnimation(Displacement.LEFT.orientation.toString(),"/Animation/pacmanLeft/pacmanLeft.txt",duration);
-        animationManager.addAnimation(Displacement.RIGHT.orientation.toString(),"/Animation/pacmanRight/pacmanRight.txt",duration);
+        animationManager.addAnimation(Displacement.UP.orientation.toString(), "/Animation/pacnoel/pacnoelUp/init.txt",duration);
+        animationManager.addAnimation(Displacement.DOWN.orientation.toString(), "/Animation/pacnoel/pacnoelDown/init.txt",duration);
+        animationManager.addAnimation(Displacement.LEFT.orientation.toString(), "/Animation/pacnoel/pacnoelLeft/init.txt",duration);
+        animationManager.addAnimation(Displacement.RIGHT.orientation.toString(), "/Animation/pacnoel/pacnoelRight/init.txt",duration);
 
         graphicsComponent.setAnimation(animationManager);
         entity.setGraphicsComponent(graphicsComponent);
