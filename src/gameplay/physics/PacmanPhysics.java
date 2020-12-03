@@ -2,10 +2,7 @@ package gameplay.physics;
 
 import gameplay.EntityType;
 import gameplay.PacmanGame;
-import gameplay.events.EventEatCherry;
-import gameplay.events.EventEatGum;
-import gameplay.events.EventEatXMassTree;
-import gameplay.events.EventPacmanDie;
+import gameplay.events.*;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.EventManager;
@@ -36,7 +33,7 @@ public class PacmanPhysics extends PhysicsComponent {
         } else if(entity.getName().equals(EntityType.CERISE.name)){
             EventManager.getEventManager().addEvent(new EventEatCherry(pacmanModel, entity, map));
         } else if(entity.getName().equals(EntityType.TREE.name)){
-            EventManager.getEventManager().addEvent(new EventEatXMassTree(pacmanModel, entity, map, 500));
+            EventManager.getEventManager().addEvent(new EventEatXMassTree(pacmanModel, entity, entity_owned, map));
         }
     }
 
@@ -65,11 +62,16 @@ public class PacmanPhysics extends PhysicsComponent {
 
     private void updateGhostCollision(Entity entity_owned, Entity entity){
         moveBack(entity_owned);
-        pacmanModel.decrementPV();
-        if (pacmanModel.checkPVnull()){
-            EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, map));
+        if (pacmanModel.isNoel()){
+            EventManager.getEventManager().addEvent(new EventEatGhost(entity));
+            PacmanGame.getGame().resetEntity(entity);
         } else {
-            PacmanGame.getGame().resetGame();
+            pacmanModel.decrementPV();
+            if (pacmanModel.checkPVnull()){
+                EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, map));
+            } else{
+                PacmanGame.getGame().resetGame();
+            }
         }
     }
 
