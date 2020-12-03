@@ -1,6 +1,7 @@
 package gameplay.controller;
 
 import gameplay.EntityType;
+import gameplay.model.PacmanModel;
 import moteur.controller.KeyboardController;
 import moteur.core_kernel.Entity;
 import gameplay.physics.Displacement;
@@ -13,10 +14,12 @@ import java.util.List;
 public class PacmanKeyboardController extends KeyboardController {
     private Displacement nextMove;
     private Displacement move;
+    private PacmanModel pacmanModel;
     private Map map;
 
-    public PacmanKeyboardController(Map map){
+    public PacmanKeyboardController(Map map, PacmanModel pacmanModel){
         this.map = map;
+        this.pacmanModel = pacmanModel;
         nextMove = Displacement.NOTHING;
         move = Displacement.NOTHING;
         createHandler();
@@ -81,7 +84,10 @@ public class PacmanKeyboardController extends KeyboardController {
         }
 
         if(move != Displacement.NOTHING)
-            entity.getGraphicsComponent().getAnimation().setCurrentAnimation(move.orientation.toString());
+            if (pacmanModel.isNoel())
+                entity.getGraphicsComponent().getAnimation().setCurrentAnimation(move.orientation.toString()+EntityType.TREE.name);
+            else
+                entity.getGraphicsComponent().getAnimation().setCurrentAnimation(move.orientation.toString());
         entity.setOrientation(move.orientation);
     }
 

@@ -1,7 +1,7 @@
 package gameplay.builder.object;
 
 import gameplay.EntityType;
-import gameplay.physics.CerisePhysics;
+import gameplay.physics.ObjectPhysics;
 import gameplay.physics.Displacement;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.GraphicsComponent;
@@ -29,7 +29,7 @@ public class CeriseBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new CerisePhysics(new BoxCollider(position1, position2)));
+        entity.setPhysicsComponent(new ObjectPhysics(new BoxCollider(position1, position2)));
     }
 
     @Override
