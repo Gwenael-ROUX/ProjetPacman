@@ -16,10 +16,12 @@ public class PacmanKeyboardController extends KeyboardController {
     private Displacement move;
     private PacmanModel pacmanModel;
     private Map map;
+    private int last_pv;
 
     public PacmanKeyboardController(Map map, PacmanModel pacmanModel){
         this.map = map;
         this.pacmanModel = pacmanModel;
+        last_pv = pacmanModel.getPV();
         nextMove = Displacement.NOTHING;
         move = Displacement.NOTHING;
         createHandler();
@@ -64,6 +66,13 @@ public class PacmanKeyboardController extends KeyboardController {
     }
 
     private void updateMove(Entity entity){
+        if(last_pv != pacmanModel.getPV()){
+            move = Displacement.NOTHING;
+            nextMove = Displacement.NOTHING;
+            //entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString());
+
+            last_pv = pacmanModel.getPV();
+        }
         if(nextMove != Displacement.NOTHING){
             Position position = map.getPositionEntity(entity);
             int x = (int)position.getX(), y = (int)position.getY();

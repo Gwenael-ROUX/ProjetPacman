@@ -20,6 +20,10 @@ public class PacmanModel {
         System.out.println("point de vie restant : " + pv);
     }
 
+    public int getPV(){
+        return pv;
+    }
+
     public boolean checkPVnull(){
         return pv <= 0 ;
     }
