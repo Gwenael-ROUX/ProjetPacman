@@ -5,12 +5,19 @@ import gameplay.ai.RandomAI;
 import gameplay.controller.GhostKeyboardController;
 import gameplay.physics.Displacement;
 import gameplay.physics.GhostPhysics;
+import moteur.core_kernel.Map;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
 public class GhostGreenBuilder extends EntityBuilder {
+    private Map map;
+
+    public GhostGreenBuilder(Map map){
+        this.map = map;
+    }
+
     @Override
     public void buildPosition(Position position) {
         entity.setPosition(position);
@@ -29,7 +36,7 @@ public class GhostGreenBuilder extends EntityBuilder {
     @Override
     public void buildContComp() {
         //entity.setControllerComponent(new RandomAI());
-        entity.setControllerComponent(new GhostKeyboardController());
+        entity.setControllerComponent(new GhostKeyboardController(map));
     }
 
     @Override
