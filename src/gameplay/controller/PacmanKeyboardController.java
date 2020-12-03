@@ -49,14 +49,29 @@ public class PacmanKeyboardController extends KeyboardController {
 
     @Override
     public void update(Entity entity){
+        updateMove(entity);
+        updateGraphics(entity);
+
+        entity.setOrientation(move.orientation);
+    }
+
+    private void updateGraphics(Entity entity){
+        if(move != Displacement.NOTHING)
+            if (pacmanModel.isNoel())
+                entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString()+EntityType.TREE.name);
+            else
+                entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString());
+    }
+
+    private void updateMove(Entity entity){
         if(nextMove != Displacement.NOTHING){
             Position position = map.getPositionEntity(entity);
             int x = (int)position.getX(), y = (int)position.getY();
             List<Entity> entities = new ArrayList<>();
-            //System.out.println(entity.getPosition().getX()%map.getDimCellWdt());
-            //System.out.println(entity.getPosition().getY()%map.getDimCellHgt());
 
-            if(entity.getPosition().getX()%map.getDimCellWdt() == 0 && entity.getPosition().getY()%map.getDimCellHgt() == 0){
+            if((entity.getOrientation() == null)
+                    || ((entity.getPosition().getX()%map.getDimCellWdt() <= entity.getPhysicsComponent().getSpeed()))
+                    && (entity.getPosition().getY()%map.getDimCellHgt() <= entity.getPhysicsComponent().getSpeed())) {
                 switch (nextMove) {
                     case UP :
                         entities = map.getEntity(x, y-1);
@@ -73,23 +88,23 @@ public class PacmanKeyboardController extends KeyboardController {
                 }
 
                 if(canCross(entities)) {
+                    double new_x = entity.getPosition().getX() - (entity.getPosition().getX()%map.getDimCellWdt());
+                    double new_y = entity.getPosition().getY() - (entity.getPosition().getY()%map.getDimCellHgt());
+                    Position new_position = new Position(new_x, new_y);
+                    entity.setPosition(new_position);
+                    entity.getPhysicsComponent().getCollider().update(new_position);
                     move = nextMove;
                     nextMove = Displacement.NOTHING;
                 }
-                for(Entity e : entities)
+
+                /*for(Entity e : entities)
                     System.out.println(e.getName());
+                showMap(map);
                 System.out.println(move);
                 System.out.println(nextMove);
-                System.out.println("===================");
+                System.out.println("===================");*/
             }
         }
-
-        if(move != Displacement.NOTHING)
-            if (pacmanModel.isNoel())
-                entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString()+EntityType.TREE.name);
-            else
-                entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString());
-        entity.setOrientation(move.orientation);
     }
 
     private boolean canCross(List<Entity> entities){
@@ -98,6 +113,28 @@ public class PacmanKeyboardController extends KeyboardController {
                 return false;
         }
         return true;
+    }
+
+    private boolean isPacman(List<Entity> entities){
+        for(Entity entity : entities){
+            if(EntityType.PACMAN.name.equals(entity.getName()))
+                return true;
+        }
+        return false;
+    }
+
+    private void showMap(Map map){
+        for(int y = 0; y < map.getHeight(); y++){
+            for(int x = 0; x < map.getWidth(); x++){
+                if(isPacman(map.getEntity(x, y)))
+                    System.out.print(" X ");
+                else if(canCross(map.getEntity(x, y)))
+                    System.out.print("   ");
+                else
+                    System.out.print(" O ");
+            }
+            System.out.println();
+        }
     }
 }
 
