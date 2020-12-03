@@ -41,7 +41,7 @@ public class PacmanPhysics extends PhysicsComponent {
             if(entity.getName().equals(EntityType.GHOST.name)){
                 pacmanModel.decrementPV();
                 if (pacmanModel.checkPVnull()){
-                    EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, map));
+                    EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, map));
                 } else{
                     PacmanGame.getGame().resetGame();
                 }
