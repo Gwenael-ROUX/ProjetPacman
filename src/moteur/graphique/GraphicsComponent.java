@@ -64,7 +64,7 @@ public class GraphicsComponent implements Component {
         return width;
     }
 
-    public void setAnimation(AnimationManager animation) {
+    public void setAnimationManager(AnimationManager animation) {
         this.animation = animation;
     }
 

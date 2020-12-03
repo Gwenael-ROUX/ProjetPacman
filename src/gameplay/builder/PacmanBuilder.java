@@ -69,7 +69,8 @@ public class PacmanBuilder extends EntityBuilder {
         animationManager.addAnimation(Displacement.LEFT.orientation.toString(), "/Animation/pacman/pacmanLeft/init.txt",duration);
         animationManager.addAnimation(Displacement.RIGHT.orientation.toString(), "/Animation/pacman/pacmanRight/init.txt",duration);
 
-        graphicsComponent.setAnimation(animationManager);
+        animationManager.addAnimation("mort", "/Animation/mort/init.txt",0.02);
+        graphicsComponent.setAnimationManager(animationManager);
         entity.setGraphicsComponent(graphicsComponent);
     }
 }
