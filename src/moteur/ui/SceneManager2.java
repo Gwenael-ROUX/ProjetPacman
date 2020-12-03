@@ -3,20 +3,19 @@ package moteur.ui;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import moteur.core_kernel.Map;
 
-public class SceneManager {
+public class SceneManager2 {
     private Stage stage;
-    private SceneView sceneView;
 
-    public SceneManager(Stage stage, String title) {
+    public SceneManager2(Stage stage, String title) throws Exception {
         this.stage = stage;
         this.stage.setTitle(title);
         this.stage.sizeToScene();
         this.stage.centerOnScreen();
     }
 
-    public void show(GameView sceneGame) {
+    public void show(Parent root) {
+        //setRoot(root);
         stage.show();
     }
 
@@ -27,15 +26,6 @@ public class SceneManager {
             stage.setScene(scene);
         }
         scene.setRoot(root);
-    }
-
-    public void update(Map map) {
-        sceneView.update(map);
-    }
-
-    public void setSceneView(SceneView sceneView) {
-        this.sceneView = sceneView;
-        setRoot(sceneView);
     }
 
     public Stage getStage() {
