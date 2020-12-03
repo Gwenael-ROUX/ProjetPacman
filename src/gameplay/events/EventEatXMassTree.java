@@ -3,6 +3,7 @@ package gameplay.events;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
+import moteur.core_kernel.EventManager;
 import moteur.core_kernel.Map;
 import moteur.physics.Position;
 import moteur.sound.SoundManager;
@@ -24,6 +25,7 @@ public class EventEatXMassTree extends Event {
 
         map.deleteEntity(position, entity);
         entity.getGraphicsComponent().getCurrentImage().setImage(null);
-        //SoundManager.getInstance().addSound("pacman_chomp.wav", "chomp", false, 0.2f, 500L);
+        //SoundManager.getInstance().addSound("isNoel.wav", "isNoel", false, 0.2f, 0L);
+        EventManager.getEventManager().addEvent(new EventEndNoel(pacmanModel, entity, 1000));
     }
 }
