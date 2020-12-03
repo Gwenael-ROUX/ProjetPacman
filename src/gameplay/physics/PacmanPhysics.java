@@ -27,17 +27,7 @@ public class PacmanPhysics extends PhysicsComponent {
     @Override
     public void onCollision(Entity entity_owned, Entity entity){
         if(entity.getName().equals(EntityType.WALL.name) || entity.getName().equals(EntityType.GHOST.name)){
-            double x = entity_owned.getPosition().getX(), y = entity_owned.getPosition().getY();
-            double new_x = (Math.abs(entity.getPosition().getX() - x) == 0) ? x : x - Math.abs(entity_owned.getGraphicsComponent().getWidth() - Math.abs(entity.getPosition().getX() - x));
-            double new_y = (Math.abs(entity.getPosition().getY() - y) == 0) ? y : y - Math.abs(entity_owned.getGraphicsComponent().getHeight() - Math.abs(entity.getPosition().getY() - y));
-            /*System.out.println("================");
-            System.out.println(new Position(x, y));
-            System.out.println(new Position(new_x, new_y));
-            System.out.println("================");*/
-            //moveBack(entity_owned);
-            entity_owned.setPosition(new Position(new_x, new_y));
-            //if(entity_owned.getPhysicsComponent().getCollider().hit(entity.getPhysicsComponent().getCollider()))
-            //    moveFoward(entity_owned);
+            updatePositionEntityPosition(entity_owned, entity);
             if(entity.getName().equals(EntityType.GHOST.name)){
                 pacmanModel.decrementPV();
                 if (pacmanModel.checkPVnull()){
@@ -56,6 +46,24 @@ public class PacmanPhysics extends PhysicsComponent {
     @Override
     public void onExit(Entity entity_owned){
         moveBack(entity_owned);
+    }
+
+    private void updatePositionEntityPosition(Entity entity_owned, Entity entity){
+        if(entity_owned.getOrientation() != null){
+            double x = entity_owned.getPosition().getX(), y = entity_owned.getPosition().getY();
+            double new_x = x, new_y = y;
+            if(entity_owned.getOrientation().equals(Displacement.RIGHT.orientation)){
+                new_x = x - (x+entity_owned.getGraphicsComponent().getWidth() - entity.getPosition().getX());
+            } else if (entity_owned.getOrientation().equals(Displacement.LEFT.orientation)) {
+                new_x = x + (entity.getPosition().getX() - x+entity_owned.getGraphicsComponent().getWidth());
+            } else if (entity_owned.getOrientation().equals(Displacement.UP.orientation)) {
+                new_y = y + (entity.getPosition().getY() - y+entity_owned.getGraphicsComponent().getHeight());
+            } else if (entity_owned.getOrientation().equals(Displacement.DOWN.orientation)) {
+                new_y = y - (y+entity_owned.getGraphicsComponent().getHeight() - entity.getPosition().getY());
+            }
+            entity_owned.setPosition(new Position(new_x, new_y));
+            entity_owned.setOrientation(Displacement.NOTHING.orientation);
+        }
     }
 
     private void moveBack(Entity entity_owned){
