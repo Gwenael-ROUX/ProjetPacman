@@ -86,9 +86,9 @@ public class PacmanKeyboardController extends KeyboardController {
 
         if(move != Displacement.NOTHING)
             if (pacmanModel.isNoel())
-                entity.getGraphicsComponent().getAnimation().setCurrentAnimation(move.orientation.toString()+EntityType.TREE.name);
+                entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString()+EntityType.TREE.name);
             else
-                entity.getGraphicsComponent().getAnimation().setCurrentAnimation(move.orientation.toString());
+                entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString());
         entity.setOrientation(move.orientation);
     }
 

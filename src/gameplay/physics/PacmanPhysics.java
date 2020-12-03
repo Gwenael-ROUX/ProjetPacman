@@ -4,6 +4,7 @@ import gameplay.EntityType;
 import gameplay.PacmanGame;
 import gameplay.events.EventEatCherry;
 import gameplay.events.EventEatGum;
+import gameplay.events.EventEatXMassTree;
 import gameplay.events.EventPacmanDie;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
@@ -40,6 +41,9 @@ public class PacmanPhysics extends PhysicsComponent {
             EventManager.getEventManager().addEvent(new EventEatGum(pacmanModel, entity, map));
         } else if(entity.getName().equals(EntityType.CERISE.name)){
             EventManager.getEventManager().addEvent(new EventEatCherry(pacmanModel, entity, map));
+        }
+        else if(entity.getName().equals(EntityType.TREE.name)){
+            EventManager.getEventManager().addEvent(new EventEatXMassTree(pacmanModel, entity, map, 500));
         }
     }
 
