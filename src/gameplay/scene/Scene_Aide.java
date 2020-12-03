@@ -7,13 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import moteur.ui.SceneManager2;
-
-import java.awt.*;
+import moteur.ui.SceneManager;
 
 public class Scene_Aide extends StackPane {
 
-    Scene_Aide(SceneManager2 sceneManager2){
+    Scene_Aide(SceneManager sceneManager2){
 
         Pane stackPane = new Pane();
 

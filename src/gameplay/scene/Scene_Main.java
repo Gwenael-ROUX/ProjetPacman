@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import moteur.ui.SceneManager2;
+import moteur.ui.SceneManager;
 
 public class Scene_Main  extends Application {
 
@@ -12,7 +12,7 @@ public class Scene_Main  extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        SceneManager2 sceneManager2 = new SceneManager2(stage, "Pacman");
+        SceneManager sceneManager2 = new SceneManager(stage, "Pacman");
         Parent root = new Scene_Menu(sceneManager2);
         stage.setResizable(false);
         stage.setScene((new Scene(root,600,600)));

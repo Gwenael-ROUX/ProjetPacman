@@ -1,25 +1,27 @@
 package moteur.ui;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Map;
+import moteur.core_kernel.Timer;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class BuildSceneGame {
-    private GameView sceneGame;
-    private Map map;
-    public BuildSceneGame(Map map) {
-        this.map = map;
-        this.sceneGame = new GameView();
-    }
+public class GameView extends SceneView {
 
-    public void build() {
+    @Override
+    public void init(Map map, SceneManager sceneManager) {
+        setStyle("-fx-background-color: #000000;");
+
         Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
-        sceneGame.setPrefWidth(map.getWidth() * map.getDimCellWdt());
-        sceneGame.setPrefHeight(map.getHeight() * map.getDimCellHgt());
+        setPrefWidth(map.getWidth() * map.getDimCellWdt());
+        setPrefHeight(map.getHeight() * map.getDimCellHgt());
         ArrayList<Entity> sortedList = new ArrayList<>();
 
         for (List<Entity>[] ent : map.getMatrix()) {
@@ -34,18 +36,15 @@ public class BuildSceneGame {
 
         sortedList.sort(comparator);
         for (Entity e: sortedList){
-            sceneGame.getChildren().add(e.getGraphicsComponent().getCurrentImage());
+            getChildren().add(e.getGraphicsComponent().getCurrentImage());
         }
     }
 
-    public GameView getSceneGame() {
-        return sceneGame;
-    }
-
-    public void update() {
-        for (int i = 0; i < sceneGame.getChildren().size(); i++) {
-            if (((ImageView) sceneGame.getChildren().get(i)).getImage() == null)
-                sceneGame.getChildren().remove(sceneGame.getChildren().get(i));
+    @Override
+    public void update(Map map) {
+        for (int i = 0; i < getChildren().size(); i++) {
+            if (((ImageView) getChildren().get(i)).getImage() == null)
+                getChildren().remove(getChildren().get(i));
             else{
             }
         }

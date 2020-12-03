@@ -3,6 +3,7 @@ package moteur.core_kernel;
 
 import moteur.physics.Position;
 import moteur.ui.BuildSceneGame;
+import moteur.ui.SceneManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +15,13 @@ public class GameManager {
     private List<Position> entitiesPosition;
     private BuildSceneGame buildSceneGame;
     private boolean breakUpdate;
+    private SceneManager sceneManager;
 
     public GameManager(Map map){
         this.map = map;
         eventManager = EventManager.getEventManager();
         this.entities = new ArrayList<>();
         this.entitiesPosition = new ArrayList<>();
-        buildSceneGame = new BuildSceneGame();
-        buildSceneGame.build(map);
         breakUpdate = false;
     }
 
@@ -39,7 +39,7 @@ public class GameManager {
         if(! breakUpdate)
             updateEntities();
 
-        buildSceneGame.update();
+        sceneManager.update(map);
     }
 
     private void updateListEntities(){
