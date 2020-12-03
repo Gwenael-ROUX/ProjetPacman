@@ -36,7 +36,7 @@ public class PacmanBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
-        entity.setControllerComponent(new PacmanKeyboardController());
+        entity.setControllerComponent(new PacmanKeyboardController(map));
     }
 
     @Override

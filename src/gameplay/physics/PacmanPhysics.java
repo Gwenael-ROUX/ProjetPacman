@@ -11,6 +11,7 @@ import moteur.core_kernel.EventManager;
 import moteur.core_kernel.Map;
 import moteur.physics.Collider;
 import moteur.physics.PhysicsComponent;
+import moteur.physics.Position;
 
 public class PacmanPhysics extends PhysicsComponent {
     private PacmanModel pacmanModel;
@@ -26,9 +27,17 @@ public class PacmanPhysics extends PhysicsComponent {
     @Override
     public void onCollision(Entity entity_owned, Entity entity){
         if(entity.getName().equals(EntityType.WALL.name) || entity.getName().equals(EntityType.GHOST.name)){
-            moveBack(entity_owned);
-            if(entity_owned.getPhysicsComponent().getCollider().hit(entity.getPhysicsComponent().getCollider()))
-                moveFoward(entity_owned);
+            double x = entity_owned.getPosition().getX(), y = entity_owned.getPosition().getY();
+            double new_x = (Math.abs(entity.getPosition().getX() - x) == 0) ? x : x - Math.abs(entity_owned.getGraphicsComponent().getWidth() - Math.abs(entity.getPosition().getX() - x));
+            double new_y = (Math.abs(entity.getPosition().getY() - y) == 0) ? y : y - Math.abs(entity_owned.getGraphicsComponent().getHeight() - Math.abs(entity.getPosition().getY() - y));
+            /*System.out.println("================");
+            System.out.println(new Position(x, y));
+            System.out.println(new Position(new_x, new_y));
+            System.out.println("================");*/
+            //moveBack(entity_owned);
+            entity_owned.setPosition(new Position(new_x, new_y));
+            //if(entity_owned.getPhysicsComponent().getCollider().hit(entity.getPhysicsComponent().getCollider()))
+            //    moveFoward(entity_owned);
             if(entity.getName().equals(EntityType.GHOST.name)){
                 pacmanModel.decrementPV();
                 if (pacmanModel.checkPVnull()){
