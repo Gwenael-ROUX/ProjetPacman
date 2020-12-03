@@ -1,25 +1,29 @@
 package moteur.ui;
 
+import javafx.collections.transformation.SortedList;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Map;
+import moteur.physics.Position;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class BuildSceneGame {
-    private GameView sceneGame;
-    private Map map;
-    public BuildSceneGame(Map map) {
-        this.map = map;
-        this.sceneGame = new GameView();
+    private SceneGame sceneGame;
+
+
+    public BuildSceneGame() {
+        this.sceneGame = new SceneGame();
     }
 
-    public void build() {
+    public void build(Map map) {
         Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
-        sceneGame.setPrefWidth(map.getWidth() * map.getDimCellWdt());
-        sceneGame.setPrefHeight(map.getHeight() * map.getDimCellHgt());
+        sceneGame.setPrefWidth(map.getMatrix().length * map.getDimCellWdt());
+        sceneGame.setPrefHeight(map.getMatrix().length * map.getDimCellHgt());
         ArrayList<Entity> sortedList = new ArrayList<>();
 
         for (List<Entity>[] ent : map.getMatrix()) {
@@ -38,7 +42,7 @@ public class BuildSceneGame {
         }
     }
 
-    public GameView getSceneGame() {
+    public SceneGame getSceneGame() {
         return sceneGame;
     }
 

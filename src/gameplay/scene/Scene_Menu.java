@@ -1,5 +1,6 @@
 package gameplay.scene;
 
+import gameplay.PacmanGame;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -61,8 +62,8 @@ public class Scene_Menu extends StackPane {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
-                    GameLoop gameLoop = new GameLoop();
-                    gameLoop.start(sceneManager2.getStage());
+                    PacmanGame pacmanGame = new PacmanGame(3, 1f, "Pacman");
+                    pacmanGame.launch();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
