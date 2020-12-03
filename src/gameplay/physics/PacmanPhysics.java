@@ -63,7 +63,7 @@ public class PacmanPhysics extends PhysicsComponent {
     private void updateGhostCollision(Entity entity_owned, Entity entity){
         moveBack(entity_owned);
         if (pacmanModel.isNoel()){
-            EventManager.getEventManager().addEvent(new EventEatGhost(entity));
+            EventManager.getEventManager().addEvent(new EventEatGhost(pacmanModel, entity));
             PacmanGame.getGame().resetEntity(entity);
         } else {
             pacmanModel.decrementPV();
