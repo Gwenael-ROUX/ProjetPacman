@@ -26,8 +26,6 @@ public class EventManager {
         List<Event> toRemove = new ArrayList<>();
 
         for(Event event : events){
-            event.handle();
-            
             if(event.getTime() > 0)
                 event.update();
             else
@@ -35,6 +33,7 @@ public class EventManager {
         }
 
         for(Event event : toRemove){
+            event.handle();
             events.remove(event);
         }
     }
