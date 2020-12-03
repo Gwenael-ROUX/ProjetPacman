@@ -45,14 +45,18 @@ public class PacmanGame {
 
     public void resetGame(){
         for(Entity e : levelGenerator.getInitPositionEntities().keySet()){
-            Position actualPosition = levelGenerator.getMap().getPositionEntity(e);
-            Position initPosition = levelGenerator.getInitPositionEntities().get(e);
-            gameManager.getMap().swap((int)actualPosition.getX(), (int)actualPosition.getY(), (int)initPosition.getX(), (int)initPosition.getY(), e);
-            double new_x = initPosition.getX()*levelGenerator.getMap().getDimCellWdt();
-            double new_y = initPosition.getY()*levelGenerator.getMap().getDimCellHgt();
-            e.setPosition(new Position(new_x, new_y));
+            resetEntity(e);
         }
         gameManager.breakCurrentUpdate();
+    }
+
+    public void resetEntity(Entity entity){
+        Position actualPosition = levelGenerator.getMap().getPositionEntity(entity);
+        Position initPosition = levelGenerator.getInitPositionEntities().get(entity);
+        gameManager.getMap().swap((int)actualPosition.getX(), (int)actualPosition.getY(), (int)initPosition.getX(), (int)initPosition.getY(), entity);
+        double new_x = initPosition.getX()*levelGenerator.getMap().getDimCellWdt();
+        double new_y = initPosition.getY()*levelGenerator.getMap().getDimCellHgt();
+        entity.setPosition(new Position(new_x, new_y));
     }
 
     public void launch(){
