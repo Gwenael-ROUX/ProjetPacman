@@ -2,8 +2,7 @@ package moteur.core_kernel;
 
 
 import moteur.controller.GeneralKeyboardController;
-import moteur.controller.KeyboardController;
-import moteur.ui.SceneManager2;
+import moteur.ui.SceneManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -24,7 +23,7 @@ public class GameLoop extends Application {
     public void start(Stage stage) throws Exception {
         if(gameManager == null) return;
         //stage.setResizable(false);
-        SceneManager2 sceneManager2 = new SceneManager2(stage, title);
+        SceneManager sceneManager2 = new SceneManager(stage, title);
         sceneManager2.setRoot(gameManager.getBuildSceneGame().getSceneGame());
 
         if(keyboardController != null)
