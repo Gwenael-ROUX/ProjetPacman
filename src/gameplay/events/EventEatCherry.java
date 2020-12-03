@@ -8,12 +8,11 @@ import moteur.physics.Position;
 
 public class EventEatCherry extends Event {
     private PacmanModel pacmanModel;
-    private Entity entity;
     private Map map;
 
     public EventEatCherry(PacmanModel pacmanModel, Entity entity, Map map) {
+        super(entity);
         this.pacmanModel = pacmanModel;
-        this.entity = entity;
         this.map = map;
     }
 

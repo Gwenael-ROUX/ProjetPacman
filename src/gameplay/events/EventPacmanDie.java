@@ -2,16 +2,17 @@ package gameplay.events;
 
 import gameplay.PacmanGame;
 import gameplay.model.PacmanModel;
+import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.core_kernel.GameLoop;
 import moteur.core_kernel.Map;
 
 public class EventPacmanDie extends Event {
-
     private PacmanModel pacmanModel;
     private Map map;
 
-    public EventPacmanDie(PacmanModel pacmanModel, Map map) {
+    public EventPacmanDie(PacmanModel pacmanModel, Entity entity, Map map) {
+        super(entity);
         this.pacmanModel = pacmanModel;
         this.map = map;
     }
