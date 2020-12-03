@@ -51,10 +51,12 @@ public class PacmanKeyboardController extends KeyboardController {
 
     @Override
     public void update(Entity entity){
-        updateMove(entity);
-        updateGraphics(entity);
+        if(!pacmanModel.isDead()){
+            updateMove(entity);
+            updateGraphics(entity);
 
-        entity.setOrientation(move.orientation);
+            entity.setOrientation(move.orientation);
+        }
     }
 
     private void updateGraphics(Entity entity){

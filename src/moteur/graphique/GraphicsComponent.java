@@ -57,20 +57,6 @@ public class GraphicsComponent implements Component {
         currentImage.setFitWidth(width);
     }
 
-    public void playOneAnimation(Entity entity, int iter){
-        for (int i = 0; i < iter; i++) {
-            Image im = animation.playAnimation(i);
-            currentImage.setImage(im);
-            currentImage.setLayoutX(entity.getPosition().getX());
-            currentImage.setLayoutY(entity.getPosition().getY());
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public double getHeight() {
         return height;
     }
