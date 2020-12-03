@@ -3,6 +3,7 @@ package moteur.graphique;
 import javafx.scene.image.ImageView;
 import moteur.Component;
 import moteur.core_kernel.Entity;
+import moteur.core_kernel.GameLoop;
 import moteur.core_kernel.Timer;
 import javafx.scene.image.Image;
 
@@ -54,6 +55,20 @@ public class GraphicsComponent implements Component {
     public void setWidth(double width) {
         this.width = width;
         currentImage.setFitWidth(width);
+    }
+
+    public void playOneAnimation(Entity entity, int iter){
+        for (int i = 0; i < iter; i++) {
+            Image im = animation.playAnimation(i);
+            currentImage.setImage(im);
+            currentImage.setLayoutX(entity.getPosition().getX());
+            currentImage.setLayoutY(entity.getPosition().getY());
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public double getHeight() {

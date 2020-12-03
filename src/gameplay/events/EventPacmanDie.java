@@ -2,10 +2,8 @@ package gameplay.events;
 
 import gameplay.PacmanGame;
 import gameplay.model.PacmanModel;
-import moteur.core_kernel.Entity;
-import moteur.core_kernel.Event;
-import moteur.core_kernel.GameLoop;
-import moteur.core_kernel.Map;
+import moteur.core_kernel.*;
+import moteur.sound.SoundManager;
 
 public class EventPacmanDie extends Event {
     private PacmanModel pacmanModel;
@@ -22,7 +20,10 @@ public class EventPacmanDie extends Event {
     @Override
     public void handle() {
         entity_owned.getGraphicsComponent().getAnimationManager().setCurrentAnimation("mort");
+        SoundManager.getInstance().addSound("mort.wav", "mort", false, 0.8f, 0L);
         System.out.println("Game over !");
-        PacmanGame.getGame().stopGame();
+        //entity_owned.getGraphicsComponent().playOneAnimation(entity, 100);
+        //PacmanGame.getGame().stopGame();
+        EventManager.getEventManager().addEvent(new EventAnimMort(entity, 300));
     }
 }

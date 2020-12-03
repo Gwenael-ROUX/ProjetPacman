@@ -68,7 +68,10 @@ public class PacmanPhysics extends PhysicsComponent {
         } else {
             pacmanModel.decrementPV();
             if (pacmanModel.checkPVnull()){
-                EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, entity_owned, map));
+                if (!pacmanModel.isDead()){
+                    EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, entity_owned, map));
+                }
+                pacmanModel.setDead(true);
             } else{
                 PacmanGame.getGame().resetGame();
             }
