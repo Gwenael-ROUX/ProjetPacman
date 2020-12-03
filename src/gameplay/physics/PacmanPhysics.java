@@ -28,7 +28,7 @@ public class PacmanPhysics extends PhysicsComponent {
             updatePositionEntityPosition(entity_owned, entity);
             if(entity.getName().equals(EntityType.GHOST.name)){
                 if (pacmanModel.isNoel()){
-                    EventManager.getEventManager().addEvent(new EventEatGhost(pacmanModel, entity, map));
+                    EventManager.getEventManager().addEvent(new EventEatGhost(entity));
                     PacmanGame.getGame().resetEntity(entity);
                 }
                 else{
@@ -45,7 +45,6 @@ public class PacmanPhysics extends PhysicsComponent {
         } else if(entity.getName().equals(EntityType.CERISE.name)){
             EventManager.getEventManager().addEvent(new EventEatCherry(pacmanModel, entity, map));
         } else if(entity.getName().equals(EntityType.TREE.name)){
-            System.out.println("treeeeeeeeeeeeeeeeeeeeeeeeeeee");
             EventManager.getEventManager().addEvent(new EventEatXMassTree(pacmanModel, entity, entity_owned, map));
         }
     }

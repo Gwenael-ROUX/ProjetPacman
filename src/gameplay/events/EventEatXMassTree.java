@@ -29,7 +29,7 @@ public class EventEatXMassTree extends Event {
         map.deleteEntity(position, entity);
         entity.getGraphicsComponent().getCurrentImage().setImage(null);
         pacmanModel.setNoel(true);
-        SoundManager.getInstance().addSound("isNoel.wav", "isNoel", false, 0.8f, 0L);
+        //SoundManager.getInstance().addSound("isNoel.wav", "isNoel", false, 0.8f, 0L);
         EventManager.getEventManager().addEvent(new EventEndNoel(pacmanModel, entityowned, 660));
     }
 }
