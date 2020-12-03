@@ -20,10 +20,9 @@ public class EventPacmanDie extends Event {
     @Override
     public void handle() {
         entity_owned.getGraphicsComponent().getAnimationManager().setCurrentAnimation("mort");
-        SoundManager.getInstance().addSound("mort.wav", "mort", false, 0.8f, 0L);
+        SoundManager.getInstance().stopAllSound();
+        SoundManager.getInstance().addSound("mort.wav", "mort", false, 0.8f, 400L);
         System.out.println("Game over !");
-        //entity_owned.getGraphicsComponent().playOneAnimation(entity, 100);
-        //PacmanGame.getGame().stopGame();
-        EventManager.getEventManager().addEvent(new EventAnimMort(entity, 300));
+        EventManager.getEventManager().addEvent(new EventAnimMort(entity, 500));
     }
 }

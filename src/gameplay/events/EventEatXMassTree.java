@@ -29,6 +29,7 @@ public class EventEatXMassTree extends Event {
         entity.getGraphicsComponent().getCurrentImage().setImage(null);
         pacmanModel.setNoel(true);
         pacmanModel.addScore(100);
+        SoundManager.getInstance().stopAllSound();
         SoundManager.getInstance().addSound("isNoel.wav", "isNoel", false, 0.8f, 0L);
         EventManager.getEventManager().addEvent(new EventEndNoel(pacmanModel, entityowned, 660));
     }
