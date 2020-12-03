@@ -22,7 +22,7 @@ public class EventEatGhost extends Event {
         Position position = map.getPositionEntity(entity);
         if(position == null) return;
 
-        map.deleteEntity(position, entity);
+        //map.deleteEntity(position, entity);
         //entity.getGraphicsComponent().getCurrentImage().setImage(null);
         //SoundManager.getInstance().addSound("pacman_chomp.wav", "chomp", false, 0.2f, 500L);
     }

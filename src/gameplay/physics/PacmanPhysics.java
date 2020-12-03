@@ -2,10 +2,7 @@ package gameplay.physics;
 
 import gameplay.EntityType;
 import gameplay.PacmanGame;
-import gameplay.events.EventEatCherry;
-import gameplay.events.EventEatGum;
-import gameplay.events.EventEatXMassTree;
-import gameplay.events.EventPacmanDie;
+import gameplay.events.*;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.EventManager;
@@ -30,20 +27,26 @@ public class PacmanPhysics extends PhysicsComponent {
         if(entity.getName().equals(EntityType.WALL.name) || entity.getName().equals(EntityType.GHOST.name)){
             updatePositionEntityPosition(entity_owned, entity);
             if(entity.getName().equals(EntityType.GHOST.name)){
-                pacmanModel.decrementPV();
-                if (pacmanModel.checkPVnull()){
-                    EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, map));
-                } else{
-                    PacmanGame.getGame().resetGame();
+                if (pacmanModel.isNoel()){
+                    EventManager.getEventManager().addEvent(new EventEatGhost(pacmanModel, entity, map));
+                    PacmanGame.getGame().resetEntity(entity);
+                }
+                else{
+                    pacmanModel.decrementPV();
+                    if (pacmanModel.checkPVnull()){
+                        EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, map));
+                    } else{
+                        PacmanGame.getGame().resetGame();
+                    }
                 }
             }
         } else if(entity.getName().equals(EntityType.GOMME.name)){
             EventManager.getEventManager().addEvent(new EventEatGum(pacmanModel, entity, map));
         } else if(entity.getName().equals(EntityType.CERISE.name)){
             EventManager.getEventManager().addEvent(new EventEatCherry(pacmanModel, entity, map));
-        }
-        else if(entity.getName().equals(EntityType.TREE.name)){
-            EventManager.getEventManager().addEvent(new EventEatXMassTree(pacmanModel, entity, map, 500));
+        } else if(entity.getName().equals(EntityType.TREE.name)){
+            System.out.println("treeeeeeeeeeeeeeeeeeeeeeeeeeee");
+            EventManager.getEventManager().addEvent(new EventEatXMassTree(pacmanModel, entity, entity_owned, map));
         }
     }
 
