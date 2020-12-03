@@ -14,9 +14,12 @@ import moteur.physics.Position;
 
 public class PacmanBuilder extends EntityBuilder {
     private Map map;
+    private  PacmanModel pacmanModel;
+
 
     public PacmanBuilder(Map map){
         this.map = map;
+        this.pacmanModel = new PacmanModel();
     }
 
     @Override
@@ -36,7 +39,7 @@ public class PacmanBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
-        entity.setControllerComponent(new PacmanKeyboardController());
+        entity.setControllerComponent(new PacmanKeyboardController(map,pacmanModel));
     }
 
     @Override
@@ -44,7 +47,7 @@ public class PacmanBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new PacmanPhysics(2, new BoxCollider(position1, position2), new PacmanModel(), map));
+        entity.setPhysicsComponent(new PacmanPhysics(2, new BoxCollider(position1, position2), pacmanModel, map));
     }
 
     @Override
@@ -56,10 +59,15 @@ public class PacmanBuilder extends EntityBuilder {
 
         AnimationManager animationManager = new AnimationManager();
         double duration = 0.10;
-        animationManager.addAnimation(Displacement.UP.orientation.toString(),"/Animation/pacmanUp/pacmanUp.txt",duration);
-        animationManager.addAnimation(Displacement.DOWN.orientation.toString(),"/Animation/pacmanDown/pacmanDown.txt",duration);
-        animationManager.addAnimation(Displacement.LEFT.orientation.toString(),"/Animation/pacmanLeft/pacmanLeft.txt",duration);
-        animationManager.addAnimation(Displacement.RIGHT.orientation.toString(),"/Animation/pacmanRight/pacmanRight.txt",duration);
+        animationManager.addAnimation(Displacement.UP.orientation.toString()+EntityType.TREE.name, "/Animation/pacnoel/pacnoelUp/init.txt",duration);
+        animationManager.addAnimation(Displacement.DOWN.orientation.toString()+EntityType.TREE.name, "/Animation/pacnoel/pacnoelDown/init.txt",duration);
+        animationManager.addAnimation(Displacement.LEFT.orientation.toString()+EntityType.TREE.name, "/Animation/pacnoel/pacnoelLeft/init.txt",duration);
+        animationManager.addAnimation(Displacement.RIGHT.orientation.toString()+EntityType.TREE.name, "/Animation/pacnoel/pacnoelRight/init.txt",duration);
+
+        animationManager.addAnimation(Displacement.UP.orientation.toString(), "/Animation/pacman/pacmanUp/init.txt",duration);
+        animationManager.addAnimation(Displacement.DOWN.orientation.toString(), "/Animation/pacman/pacmanDown/init.txt",duration);
+        animationManager.addAnimation(Displacement.LEFT.orientation.toString(), "/Animation/pacman/pacmanLeft/init.txt",duration);
+        animationManager.addAnimation(Displacement.RIGHT.orientation.toString(), "/Animation/pacman/pacmanRight/init.txt",duration);
 
         graphicsComponent.setAnimation(animationManager);
         entity.setGraphicsComponent(graphicsComponent);

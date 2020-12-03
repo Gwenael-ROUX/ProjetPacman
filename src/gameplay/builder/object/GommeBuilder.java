@@ -2,7 +2,7 @@ package gameplay.builder.object;
 
 import gameplay.EntityType;
 import gameplay.physics.Displacement;
-import gameplay.physics.GommePhysics;
+import gameplay.physics.ObjectPhysics;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
@@ -30,13 +30,13 @@ public class GommeBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new GommePhysics(new BoxCollider(position1, position2)));
+        entity.setPhysicsComponent(new ObjectPhysics(new BoxCollider(position1, position2)));
     }
     
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent(0);
-        graphicsComponent.setImage("/Image/object/gomme.png");
+        graphicsComponent.setImage("/Image/object/orge.png");
         graphicsComponent.setHeight(dimLarg);
         graphicsComponent.setWidth(dimLong);
         entity.setGraphicsComponent(graphicsComponent);

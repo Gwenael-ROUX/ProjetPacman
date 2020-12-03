@@ -23,8 +23,19 @@ public class EventManager {
     }
 
     public void manage(){
-        while(! events.isEmpty()){
-            events.remove(0).handle();
+        List<Event> toRemove = new ArrayList<>();
+
+        for(Event event : events){
+            event.handle();
+            
+            if(event.getTime() > 0)
+                event.update();
+            else
+                toRemove.add(event);
+        }
+
+        for(Event event : toRemove){
+            events.remove(event);
         }
     }
 }
