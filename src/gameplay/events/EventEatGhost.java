@@ -7,12 +7,12 @@ import moteur.core_kernel.Map;
 import moteur.physics.Position;
 import moteur.sound.SoundManager;
 
-public class EventEatXMassTree extends Event {
+public class EventEatGhost extends Event {
     private PacmanModel pacmanModel;
     private Map map;
 
-    public EventEatXMassTree(PacmanModel pacmanModel, Entity entity, Map map, int time) {
-        super(entity, time);
+    public EventEatGhost(PacmanModel pacmanModel, Entity entity, Map map) {
+        super(entity);
         this.pacmanModel = pacmanModel;
         this.map = map;
     }
@@ -23,7 +23,7 @@ public class EventEatXMassTree extends Event {
         if(position == null) return;
 
         map.deleteEntity(position, entity);
-        entity.getGraphicsComponent().getCurrentImage().setImage(null);
+        //entity.getGraphicsComponent().getCurrentImage().setImage(null);
         //SoundManager.getInstance().addSound("pacman_chomp.wav", "chomp", false, 0.2f, 500L);
     }
 }
