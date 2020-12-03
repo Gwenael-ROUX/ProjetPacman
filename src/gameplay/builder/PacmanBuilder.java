@@ -50,7 +50,7 @@ public class PacmanBuilder extends EntityBuilder {
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent(1);
-        graphicsComponent.setImage("/Image/pacman/pacmanRidght.png");
+        graphicsComponent.setImage("/Image/pacman/pacmanRight.png");
         graphicsComponent.setHeight(dimLarg);
         graphicsComponent.setWidth(dimLong);
 
