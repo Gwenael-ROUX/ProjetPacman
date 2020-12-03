@@ -83,6 +83,9 @@ public class BasicPathFinder {
 
         // Compute Path
         int x = (int)position_target.getX(), y = (int)position_target.getY();
+        listPositions = new ArrayList<>();
+        listPositions.add(position_target);
+        
         if(map.getDistance(x, y) == -1)
             return new ArrayList<>();
 
