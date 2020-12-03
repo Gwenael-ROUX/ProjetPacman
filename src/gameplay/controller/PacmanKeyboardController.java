@@ -56,10 +56,6 @@ public class PacmanKeyboardController extends KeyboardController {
             //System.out.println(entity.getPosition().getX()%map.getDimCellWdt());
             //System.out.println(entity.getPosition().getY()%map.getDimCellHgt());
 
-            if((entity.getPosition().getX()%map.getDimCellWdt() == 0 && entity.getPosition().getY()%map.getDimCellHgt() == 0)){
-                System.out.println(entity.getPosition());
-                System.out.println((entity.getPosition().getX()%map.getDimCellWdt() == 0 && entity.getPosition().getY()%map.getDimCellHgt() == 0));
-            }
             if(entity.getPosition().getX()%map.getDimCellWdt() == 0 && entity.getPosition().getY()%map.getDimCellHgt() == 0){
                 switch (nextMove) {
                     case UP :
@@ -80,6 +76,11 @@ public class PacmanKeyboardController extends KeyboardController {
                     move = nextMove;
                     nextMove = Displacement.NOTHING;
                 }
+                for(Entity e : entities)
+                    System.out.println(e.getName());
+                System.out.println(move);
+                System.out.println(nextMove);
+                System.out.println("===================");
             }
         }
 
@@ -93,7 +94,7 @@ public class PacmanKeyboardController extends KeyboardController {
 
     private boolean canCross(List<Entity> entities){
         for(Entity entity : entities){
-            if(entity.getName().equals(EntityType.WALL.name))
+            if(EntityType.WALL.name.equals(entity.getName()))
                 return false;
         }
         return true;
