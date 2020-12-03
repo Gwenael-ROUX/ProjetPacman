@@ -53,6 +53,10 @@ public class PacmanKeyboardController extends KeyboardController {
             //System.out.println(entity.getPosition().getX()%map.getDimCellWdt());
             //System.out.println(entity.getPosition().getY()%map.getDimCellHgt());
 
+            if((entity.getPosition().getX()%map.getDimCellWdt() == 0 && entity.getPosition().getY()%map.getDimCellHgt() == 0)){
+                System.out.println(entity.getPosition());
+                System.out.println((entity.getPosition().getX()%map.getDimCellWdt() == 0 && entity.getPosition().getY()%map.getDimCellHgt() == 0));
+            }
             if(entity.getPosition().getX()%map.getDimCellWdt() == 0 && entity.getPosition().getY()%map.getDimCellHgt() == 0){
                 switch (nextMove) {
                     case UP :
@@ -69,7 +73,7 @@ public class PacmanKeyboardController extends KeyboardController {
                         break;
                 }
 
-                if(nextMove != Displacement.NOTHING && canCross(entities)) {
+                if(canCross(entities)) {
                     move = nextMove;
                     nextMove = Displacement.NOTHING;
                 }
