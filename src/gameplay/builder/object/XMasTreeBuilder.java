@@ -1,14 +1,15 @@
 package gameplay.builder.object;
 
 import gameplay.EntityType;
-import gameplay.physics.CerisePhysics;
 import gameplay.physics.Displacement;
+import gameplay.physics.GommePhysics;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
-public class CeriseBuilder extends EntityBuilder {
+public class XMasTreeBuilder extends EntityBuilder {
+
     @Override
     public void buildPosition(Position position) {
         entity.setPosition(position);
@@ -16,7 +17,7 @@ public class CeriseBuilder extends EntityBuilder {
 
     @Override
     public void buildName() {
-        entity.setName(EntityType.CERISE.name);
+        entity.setName(EntityType.TREE.name);
     }
 
     @Override
@@ -29,13 +30,13 @@ public class CeriseBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new CerisePhysics(new BoxCollider(position1, position2)));
+        entity.setPhysicsComponent(new GommePhysics(new BoxCollider(position1, position2)));
     }
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent(0);
-        graphicsComponent.setImage("/Image/object/cadeau.png");
+        graphicsComponent.setImage("/Image/object/orge.png");
         graphicsComponent.setHeight(dimLarg);
         graphicsComponent.setWidth(dimLong);
         entity.setGraphicsComponent(graphicsComponent);

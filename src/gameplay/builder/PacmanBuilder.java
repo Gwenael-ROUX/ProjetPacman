@@ -50,16 +50,21 @@ public class PacmanBuilder extends EntityBuilder {
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
         GraphicsComponent graphicsComponent = new GraphicsComponent(1);
-        graphicsComponent.setImage("/Image/pacnoel/right.png");
+        graphicsComponent.setImage("/Image/pacman/pacmanRidght.png");
         graphicsComponent.setHeight(dimLarg);
         graphicsComponent.setWidth(dimLong);
 
         AnimationManager animationManager = new AnimationManager();
         double duration = 0.10;
-        animationManager.addAnimation(Displacement.UP.orientation.toString(), "/Animation/pacnoel/pacnoelUp/init.txt",duration);
-        animationManager.addAnimation(Displacement.DOWN.orientation.toString(), "/Animation/pacnoel/pacnoelDown/init.txt",duration);
-        animationManager.addAnimation(Displacement.LEFT.orientation.toString(), "/Animation/pacnoel/pacnoelLeft/init.txt",duration);
-        animationManager.addAnimation(Displacement.RIGHT.orientation.toString(), "/Animation/pacnoel/pacnoelRight/init.txt",duration);
+        animationManager.addAnimation(Displacement.UP.orientation.toString()+"noel", "/Animation/pacnoel/pacnoelUp/init.txt",duration);
+        animationManager.addAnimation(Displacement.DOWN.orientation.toString()+"noel", "/Animation/pacnoel/pacnoelDown/init.txt",duration);
+        animationManager.addAnimation(Displacement.LEFT.orientation.toString()+"noel", "/Animation/pacnoel/pacnoelLeft/init.txt",duration);
+        animationManager.addAnimation(Displacement.RIGHT.orientation.toString()+"noel", "/Animation/pacnoel/pacnoelRight/init.txt",duration);
+
+        animationManager.addAnimation(Displacement.UP.orientation.toString(), "/Animation/pacman/pacmanUp/init.txt",duration);
+        animationManager.addAnimation(Displacement.DOWN.orientation.toString(), "/Animation/pacman/pacmanDown/init.txt",duration);
+        animationManager.addAnimation(Displacement.LEFT.orientation.toString(), "/Animation/pacman/pacmanLeft/init.txt",duration);
+        animationManager.addAnimation(Displacement.RIGHT.orientation.toString(), "/Animation/pacman/pacmanRight/init.txt",duration);
 
         graphicsComponent.setAnimation(animationManager);
         entity.setGraphicsComponent(graphicsComponent);

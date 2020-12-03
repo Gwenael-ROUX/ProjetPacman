@@ -4,6 +4,7 @@ public enum EntityType {
     WALL("wall"),
     GOMME("gomme"),
     CERISE("cerise"),
+    TREE("tree"),
     PACMAN("pacman"),
     GHOST("ghost");
 

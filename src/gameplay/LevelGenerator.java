@@ -4,7 +4,6 @@ import gameplay.ai.ShortestPathAI;
 import gameplay.builder.*;
 import gameplay.builder.object.*;
 import gameplay.builder.ghost.*;
-import javafx.geometry.Pos;
 import moteur.ai.BasicPathFinder;
 import moteur.core_kernel.builder.*;
 import moteur.ai.MapRepresentation;
