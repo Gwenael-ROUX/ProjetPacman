@@ -19,7 +19,7 @@ public class GhostPhysics extends PhysicsComponent {
 
         if(entity.getName().equals(EntityType.WALL.name)){
             updatePositionEntityPosition(entity_owned, entity);
-        } else if(entity.getName().equals(EntityType.GHOST.name) || entity.getName().equals(EntityType.PACMAN.name)){
+        } else if(entity.getName().equals(EntityType.PACMAN.name)){
             moveBack(entity_owned);
             if(entity_owned.getPhysicsComponent().getCollider().hit(entity.getPhysicsComponent().getCollider()))
                 moveFoward(entity_owned);
