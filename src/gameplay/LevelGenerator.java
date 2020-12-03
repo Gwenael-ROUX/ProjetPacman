@@ -134,6 +134,11 @@ public class LevelGenerator {
                     director.constructEntity(builder, new Position(posX ,posY));
                     setMatrix(i,j, builder.getEntity());
                     break;
+                case "s" :
+                    builder = new XMasTreeBuilder();
+                    director.constructEntity(builder, new Position(posX ,posY));
+                    setMatrix(i,j, builder.getEntity());
+                    break;
                 case " " :
                     break;
             }

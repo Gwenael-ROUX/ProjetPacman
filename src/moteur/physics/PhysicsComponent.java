@@ -45,6 +45,10 @@ public abstract class PhysicsComponent implements ColliderListener, ExitListener
         return collider;
     }
 
+    public double getSpeed(){
+        return speed;
+    }
+
     @Override
     public void onCollision(Entity entity_owned, Entity entity){}
 

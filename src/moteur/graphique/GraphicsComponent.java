@@ -42,7 +42,7 @@ public class GraphicsComponent implements Component {
         return currentImage;
     }
 
-    public AnimationManager getAnimation() {
+    public AnimationManager getAnimationManager() {
         return animation;
     }
 
