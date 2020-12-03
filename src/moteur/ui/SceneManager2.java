@@ -1,7 +1,5 @@
 package moteur.ui;
 
-import gameplay.scene.Scene_Game;
-import gameplay.scene.Scene_Menu;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
