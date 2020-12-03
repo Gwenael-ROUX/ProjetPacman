@@ -1,1 +1,0 @@
-package moteur.core_kernel;import gameplay.PacmanGame;public class FakeMain {    public static void main(String[] args) {        PacmanGame.main(args);    }}

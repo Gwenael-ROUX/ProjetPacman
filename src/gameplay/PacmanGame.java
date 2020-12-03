@@ -20,7 +20,7 @@ public class PacmanGame {
 
     private PacmanGame(int nbLevel, float timeMultiplicator, String title){
         PacmanGame.nbLevel = nbLevel;
-        currentLevel = 1;
+        currentLevel = 4;
         GameLoop.setTimeAnimation(timeMultiplicator);
         GameLoop.setTitle(title);
     }
