@@ -3,6 +3,7 @@ package gameplay.events;
 import gameplay.PacmanGame;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.*;
+import moteur.graphique.AnimationManager;
 import moteur.sound.SoundManager;
 
 public class EventPacmanDie extends Event {
@@ -22,7 +23,6 @@ public class EventPacmanDie extends Event {
         entity_owned.getGraphicsComponent().getAnimationManager().setCurrentAnimation("mort");
         SoundManager.getInstance().stopAllSound();
         SoundManager.getInstance().addSound("mort.wav", "mort", false, 0.8f, 400L);
-        System.out.println("Game over !");
-        EventManager.getEventManager().addEvent(new EventAnimMort(entity, 500));
+        EventManager.getEventManager().addEvent(new EventPacnoelDie(entity_owned, entity, 200));
     }
 }

@@ -40,7 +40,7 @@ public class GraphicsComponent implements Component {
         if (chemin == null)
             currentImage = null;
         else
-            this.currentImage = new ImageView(new Image(AnimationManager.class.getResourceAsStream(chemin)));
+            this.currentImage = new ImageView(new Image(GraphicsComponent.class.getResourceAsStream(chemin)));
     }
 
     public ImageView getCurrentImage() {
