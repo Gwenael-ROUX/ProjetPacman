@@ -1,38 +1,36 @@
 package moteur.ui;
 
-import gameplay.scene.Scene_Aide;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import moteur.core_kernel.GameLoop;
 import moteur.core_kernel.Map;
 import moteur.physics.Position;
 
 import java.io.InputStream;
 
-public class MenuView extends SceneView {
+public class MenuView extends StackPane {
     InputStream is =getClass().getResourceAsStream("/Font/ARCADE_N.TTF");
 
-    Button gameButton1P = new Button();
-    Button gameButton2P = new Button();
-    Button controls = new Button();
-    Button helpButton = new Button();
-    Button quitButton = new Button();
+    private Button gameButton1P = new Button();
+    private Button gameButton2P = new Button();
+    private Button controls = new Button();
+    private Button helpButton = new Button();
+    private Button quitButton = new Button();
 
     ImageUI imageUI= new ImageUI(600,600,new Position(0,0)) ;
     Image image = new Image("/Image/Menu/pacman_Menu.jpg");
 
+    public MenuView(Map map) {
+        init(map);
+    }
 
-    @Override
-    public void init(Map map, SceneManager sceneManager) {
+    public void init(Map map) {
         Font font = Font.loadFont(is,13);
 
         imageUI.drawImage(image);
@@ -44,36 +42,6 @@ public class MenuView extends SceneView {
         setButton(helpButton,"Aide",155,315,Color.WHITE,font);
         setButton(quitButton,"Quitter",140,340,Color.WHITE,font);
 
-        gameButton1P.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                sceneManager.setSceneView(new GameView());
-            }
-        });
-        gameButton2P.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-            }
-        });
-        controls.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-            }
-        });
-        helpButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-            }
-        });
-        quitButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Platform.exit();
-            }
-        });
 
         Pane root = new Pane();
         root.getChildren().addAll(gameButton1P,gameButton2P,controls,helpButton,quitButton);
@@ -90,8 +58,23 @@ public class MenuView extends SceneView {
         return button;
     }
 
-    @Override
-    public void update(Map map) {
+    public Button getGameButton1P() {
+        return gameButton1P;
+    }
 
+    public Button getGameButton2P() {
+        return gameButton2P;
+    }
+
+    public Button getControls() {
+        return controls;
+    }
+
+    public Button getHelpButton() {
+        return helpButton;
+    }
+
+    public Button getQuitButton() {
+        return quitButton;
     }
 }

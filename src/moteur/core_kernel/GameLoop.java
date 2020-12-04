@@ -2,6 +2,7 @@ package moteur.core_kernel;
 
 
 import moteur.controller.GeneralKeyboardController;
+import moteur.ui.MenuController;
 import moteur.ui.SceneManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -23,11 +24,15 @@ public class GameLoop extends Application {
     public void start(Stage stage) throws Exception {
         if(gameManager == null) return;
         //stage.setResizable(false);
-        SceneManager sceneManager2 = new SceneManager(stage, title);
-        sceneManager2.setRoot(gameManager.getBuildSceneGame().getSceneGame());
+        SceneManager sceneManager = new SceneManager(stage, title);
+        MenuController menuController = new MenuController(gameManager, sceneManager);
+        menuController.init(gameManager.getMap());
+        sceneManager.setSceneView(menuController);
 
         if(keyboardController != null)
-            sceneManager2.getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
+            sceneManager.getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
+
+        //gameManager.setSceneManager(sceneManager);
 
         final long startNanoTime = System.nanoTime();
 
@@ -43,7 +48,7 @@ public class GameLoop extends Application {
         };
         animationTimer.start();
 
-         sceneManager2.show(gameManager.getBuildSceneGame().getSceneGame());
+         sceneManager.show();
     }
 
     public static void startGame(){

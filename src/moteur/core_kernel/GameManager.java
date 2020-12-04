@@ -13,7 +13,6 @@ public class GameManager {
     private EventManager eventManager;
     private List<Entity> entities;
     private List<Position> entitiesPosition;
-    private BuildSceneGame buildSceneGame;
     private boolean breakUpdate;
     private SceneManager sceneManager;
 
@@ -39,7 +38,7 @@ public class GameManager {
         if(! breakUpdate)
             updateEntities();
 
-        sceneManager.update(map);
+        //sceneManager.update(map);
     }
 
     private void updateListEntities(){
@@ -107,11 +106,11 @@ public class GameManager {
         return map;
     }
 
-    public BuildSceneGame getBuildSceneGame() {
-        return buildSceneGame;
-    }
-
     public void breakCurrentUpdate(){
         breakUpdate = true;
+    }
+
+    public void setSceneManager(SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 }

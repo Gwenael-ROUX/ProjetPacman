@@ -5,9 +5,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import moteur.core_kernel.Map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SceneManager {
     private Stage stage;
-    private SceneView sceneView;
+    private SceneController sceneController;
 
     public SceneManager(Stage stage, String title) {
         this.stage = stage;
@@ -30,16 +33,15 @@ public class SceneManager {
     }
 
     public void update(Map map) {
-        sceneView.update(map);
+        sceneController.update(map);
     }
 
-    public void setSceneView(SceneView sceneView) {
-        this.sceneView = sceneView;
-        setRoot(sceneView);
+    public void setSceneView(SceneController sceneController) {
+        this.sceneController = sceneController;
+        setRoot(sceneController.getView());
     }
 
     public Stage getStage() {
         return stage;
     }
-
 }

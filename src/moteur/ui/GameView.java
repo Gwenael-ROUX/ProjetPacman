@@ -13,40 +13,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class GameView extends SceneView {
+public class GameView extends Pane {
 
-    @Override
-    public void init(Map map, SceneManager sceneManager) {
+    public GameView() {
         setStyle("-fx-background-color: #000000;");
-
-        Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
-        setPrefWidth(map.getWidth() * map.getDimCellWdt());
-        setPrefHeight(map.getHeight() * map.getDimCellHgt());
-        ArrayList<Entity> sortedList = new ArrayList<>();
-
-        for (List<Entity>[] ent : map.getMatrix()) {
-            for (List<Entity> le : ent) {
-                for(Entity e : le){
-                    if (e != null){
-                        sortedList.add(e);
-                    }
-                }
-            }
-        }
-
-        sortedList.sort(comparator);
-        for (Entity e: sortedList){
-            getChildren().add(e.getGraphicsComponent().getCurrentImage());
-        }
-    }
-
-    @Override
-    public void update(Map map) {
-        for (int i = 0; i < getChildren().size(); i++) {
-            if (((ImageView) getChildren().get(i)).getImage() == null)
-                getChildren().remove(getChildren().get(i));
-            else{
-            }
-        }
     }
 }
