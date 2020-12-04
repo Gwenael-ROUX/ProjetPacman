@@ -32,7 +32,7 @@ public class GameLoop extends Application {
         if(keyboardController != null)
             sceneManager.getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
 
-        //gameManager.setSceneManager(sceneManager);
+        gameManager.setSceneManager(sceneManager);
 
         final long startNanoTime = System.nanoTime();
 

@@ -2,7 +2,6 @@ package moteur.core_kernel;
 
 
 import moteur.physics.Position;
-import moteur.ui.BuildSceneGame;
 import moteur.ui.SceneManager;
 
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class GameManager {
         if(! breakUpdate)
             updateEntities();
 
-        //sceneManager.update(map);
+        sceneManager.update(map);
     }
 
     private void updateListEntities(){
