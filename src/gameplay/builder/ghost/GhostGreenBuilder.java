@@ -11,6 +11,9 @@ import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant au fantome vert
+ */
 public class GhostGreenBuilder extends EntityBuilder {
     private Map map;
 
@@ -20,6 +23,7 @@ public class GhostGreenBuilder extends EntityBuilder {
 
     @Override
     public void buildPosition(Position position) {
+        // Paramètrage de l'IA
         entity.setPosition(position);
     }
 

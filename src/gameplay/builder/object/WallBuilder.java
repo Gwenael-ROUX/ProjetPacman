@@ -8,6 +8,9 @@ import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant aux mur
+ */
 public class WallBuilder extends EntityBuilder {
     @Override
     public void buildPosition(Position position) {
@@ -34,6 +37,7 @@ public class WallBuilder extends EntityBuilder {
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
+        // Initialisation du composant graphique
         GraphicsComponent graphicsComponent = new GraphicsComponent(3);
         graphicsComponent.setImage("/Image/object/mur.png");
         graphicsComponent.setHeight(dimLarg);

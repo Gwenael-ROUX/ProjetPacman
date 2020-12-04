@@ -9,6 +9,9 @@ import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant au fantome bleu
+ */
 public class GhostBlueBuilder extends EntityBuilder {
     @Override
     public void buildPosition(Position position) {
@@ -40,6 +43,7 @@ public class GhostBlueBuilder extends EntityBuilder {
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
+        // Initialisation du composant graphique
         GraphicsComponent graphicsComponent = new GraphicsComponent(2);
         graphicsComponent.setImage("/Image/ghost/GhostBlue.png");
         graphicsComponent.setHeight(dimLarg);

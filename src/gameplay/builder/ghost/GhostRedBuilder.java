@@ -10,6 +10,9 @@ import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant au fantome rouge
+ */
 public class GhostRedBuilder extends EntityBuilder {
     private AI ai;
 
@@ -34,6 +37,7 @@ public class GhostRedBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
+        // Paramètrage de l'IA
         entity.setControllerComponent(ai);
     }
 
@@ -47,6 +51,7 @@ public class GhostRedBuilder extends EntityBuilder {
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
+        // Initialisation du composant graphique
         GraphicsComponent graphicsComponent = new GraphicsComponent(2);
         graphicsComponent.setImage("/Image/ghost/GhostRed.png");
         graphicsComponent.setHeight(dimLarg);

@@ -8,6 +8,9 @@ import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant aux gomme (sucre d'orge)
+ */
 public class GommeBuilder extends EntityBuilder {
 
     @Override
@@ -35,6 +38,7 @@ public class GommeBuilder extends EntityBuilder {
     
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
+        // Initialisation du composant graphique
         GraphicsComponent graphicsComponent = new GraphicsComponent(0);
         graphicsComponent.setImage("/Image/object/orge.png");
         graphicsComponent.setHeight(dimLarg);
