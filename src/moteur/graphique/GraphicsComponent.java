@@ -3,13 +3,17 @@ package moteur.graphique;
 import javafx.scene.image.ImageView;
 import moteur.Component;
 import moteur.core_kernel.Entity;
-import moteur.core_kernel.GameLoop;
 import moteur.core_kernel.Timer;
 import javafx.scene.image.Image;
 
+/**
+ * Classe correspondant au composant graphique d'une entity
+ */
 public class GraphicsComponent implements Component {
     private ImageView currentImage;
+    // Définis dans les builders si c'est un objet animé
     private AnimationManager animation;
+    // Correspondant au numéro de la couche
     private Integer layer;
     private double height;
     private double width;
