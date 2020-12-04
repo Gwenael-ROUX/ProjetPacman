@@ -19,7 +19,7 @@ public class SceneManager {
         this.stage.centerOnScreen();
     }
 
-    public void show() {
+    public void show(GameView sceneGame) {
         stage.show();
     }
 

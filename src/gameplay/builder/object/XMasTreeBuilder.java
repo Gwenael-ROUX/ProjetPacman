@@ -8,6 +8,9 @@ import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant aux super-gommes (sapins)
+ */
 public class XMasTreeBuilder extends EntityBuilder {
 
     @Override
@@ -35,6 +38,7 @@ public class XMasTreeBuilder extends EntityBuilder {
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
+        // Initialisation du composant graphique
         GraphicsComponent graphicsComponent = new GraphicsComponent(0);
         graphicsComponent.setImage("/Image/object/sapin.png");
         graphicsComponent.setHeight(dimLarg);

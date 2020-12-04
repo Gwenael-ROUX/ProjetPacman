@@ -106,7 +106,7 @@ public class LevelGenerator {
                     shortestPathAI.setOrigin(e);
                     break;
                 case "g" :
-                    builder = new GhostGreenBuilder();
+                    builder = new GhostGreenBuilder(map);
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     ghost = builder.getEntity();

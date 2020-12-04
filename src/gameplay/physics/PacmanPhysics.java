@@ -63,12 +63,15 @@ public class PacmanPhysics extends PhysicsComponent {
     private void updateGhostCollision(Entity entity_owned, Entity entity){
         moveBack(entity_owned);
         if (pacmanModel.isNoel()){
-            EventManager.getEventManager().addEvent(new EventEatGhost(entity));
+            EventManager.getEventManager().addEvent(new EventEatGhost(pacmanModel, entity));
             PacmanGame.getGame().resetEntity(entity);
         } else {
             pacmanModel.decrementPV();
             if (pacmanModel.checkPVnull()){
-                EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, map));
+                if (!pacmanModel.isDead()){
+                    EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, entity_owned, map));
+                }
+                pacmanModel.setDead(true);
             } else{
                 PacmanGame.getGame().resetGame();
             }

@@ -18,7 +18,7 @@ public class PacmanGame {
     private static GameManager gameManager;
     private static LevelGenerator levelGenerator;
 
-    private PacmanGame(int nbLevel, float timeMultiplicator, String title){
+    public PacmanGame(int nbLevel, float timeMultiplicator, String title){
         PacmanGame.nbLevel = nbLevel;
         currentLevel = 5;
         GameLoop.setTimeAnimation(timeMultiplicator);

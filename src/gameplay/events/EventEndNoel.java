@@ -16,7 +16,5 @@ public class EventEndNoel extends Event {
     @Override
     public void handle() {
         pacmanModel.setNoel(false);
-        //SoundManager.getInstance().stopASound("isNoel");
-        //entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(entity.getOrientation().toString());
     }
 }
