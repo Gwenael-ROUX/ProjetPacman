@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 
 public abstract class ViewFX extends Pane {
+    public abstract void init();
 
     public void addToScene(Node element) {
         getChildren().add(element);
@@ -27,6 +28,14 @@ public abstract class ViewFX extends Pane {
 
     public void setWidthScene(double width) {
         setPrefWidth(width);
+    }
+
+    public double getHeightScene() {
+        return getPrefHeight();
+    }
+
+    public double getWidthScene() {
+        return getPrefWidth();
     }
 
     public void setKeyPressed(EventHandler<? super KeyEvent> eventHandler) {
