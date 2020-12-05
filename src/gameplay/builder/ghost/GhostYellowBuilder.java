@@ -2,8 +2,10 @@ package gameplay.builder.ghost;
 
 import gameplay.EntityType;
 import gameplay.ai.RandomAI;
+import gameplay.ai.SmartShortestPathAI;
 import gameplay.physics.Displacement;
 import gameplay.physics.GhostPhysics;
+import moteur.ai.AI;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
@@ -13,6 +15,12 @@ import moteur.physics.Position;
  * Builder coresspondant au fantome jaune
  */
 public class GhostYellowBuilder extends EntityBuilder {
+    private AI ai;
+
+    public GhostYellowBuilder(SmartShortestPathAI smartShortestPathAI){
+        ai = smartShortestPathAI;
+    }
+
     @Override
     public void buildPosition(Position position) {
         entity.setPosition(position);
@@ -31,7 +39,7 @@ public class GhostYellowBuilder extends EntityBuilder {
     @Override
     public void buildContComp() {
         // Paramètrage de l'IA
-        entity.setControllerComponent(new RandomAI());
+        entity.setControllerComponent(ai);
     }
 
     @Override

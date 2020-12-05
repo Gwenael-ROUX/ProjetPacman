@@ -2,6 +2,7 @@ package gameplay;
 
 import gameplay.ai.RandomShortestPathAI;
 import gameplay.ai.ShortestPathAI;
+import gameplay.ai.SmartShortestPathAI;
 import gameplay.builder.*;
 import gameplay.builder.object.*;
 import gameplay.builder.ghost.*;
@@ -30,6 +31,7 @@ public class LevelGenerator {
     private Map map;
     private ShortestPathAI shortestPathAI;
     private RandomShortestPathAI randomShortestPathAI;
+    private SmartShortestPathAI smartShortestPathAI;
     private HashMap<Entity, Position> initPositionEntities;
     private boolean twoPlayer;
 
@@ -41,8 +43,10 @@ public class LevelGenerator {
         BasicPathFinder basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CERISE.name));
         shortestPathAI = new ShortestPathAI();
         randomShortestPathAI = new RandomShortestPathAI();
+        smartShortestPathAI = new SmartShortestPathAI();
         shortestPathAI.setPathFinder(basicPathFinder);
         randomShortestPathAI.setPathFinder(basicPathFinder);
+        smartShortestPathAI.setPathFinder(basicPathFinder);
         map = new Map(new Position(0,0), new Position(v1, v2));
 
         readFile(chemin);
@@ -101,6 +105,7 @@ public class LevelGenerator {
 
                     shortestPathAI.setTarget(pacman);
                     randomShortestPathAI.setTarget(pacman);
+                    smartShortestPathAI.setTarget(pacman);
                     break;
                 case "r" :
                     builder = new GhostRedBuilder(shortestPathAI);
@@ -119,10 +124,12 @@ public class LevelGenerator {
                     initPositionEntities.put(ghost, new Position(j,i));
                     break;
                 case "y" :
-                    builder = new GhostYellowBuilder();
+                    builder = new GhostYellowBuilder(smartShortestPathAI);
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     initPositionEntities.put(builder.getEntity(), new Position(j,i));
+
+                    smartShortestPathAI.setOrigin(builder.getEntity());
                     break;
                 case "b" :
                     builder = new GhostBlueBuilder(randomShortestPathAI);
