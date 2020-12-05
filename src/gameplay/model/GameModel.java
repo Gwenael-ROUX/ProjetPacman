@@ -59,4 +59,6 @@ public class GameModel {
         this.levelGenerator = levelGenerator;
         pacmanModel.setNoel(false);
     }
+
+
 }

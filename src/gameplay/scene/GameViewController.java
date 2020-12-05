@@ -30,15 +30,10 @@ public class GameViewController implements SceneController {
     private boolean endlevel;
 
     private static Score score = new Score();;
-    private static PacmanModel pacmanModel = new PacmanModel();
-
-
-
-
     private static int sessionBestScore;
 
-    LabelUI scoreUI = new LabelUI("Score: " + pacmanModel.getScore(),350,-10);
-    LabelUI vieUI = new LabelUI("vie Restante: " + pacmanModel.getScore(),50,-10);
+    LabelUI scoreUI = new LabelUI("Score: " + GameModel.getInstance().getPacmanModel().getScore(),350,-10);
+    LabelUI vieUI = new LabelUI("vie Restante: " +  GameModel.getInstance().getPacmanModel().getPV(),50,-10);
     LabelUI bestScore ;
 
 
@@ -53,24 +48,6 @@ public class GameViewController implements SceneController {
         gameView = new GameView();
         GameLoop.setGameManager(gameManager);
         setBestScore();
-    }
-
-    public void resetGame(){
-        for(Entity e : levelGenerator.getInitPositionEntities().keySet()){
-            resetEntity(e);
-            if(e.getName().equals("pacman"))
-                e.setOrientation(Displacement.NOTHING.orientation);
-        }
-    }
-
-    public void resetEntity(Entity entity) {
-        Position actualPosition = levelGenerator.getMap().getPositionEntity(entity);
-        Position initPosition = levelGenerator.getInitPositionEntities().get(entity);
-        gameManager.getMap().swap((int)actualPosition.getX(), (int)actualPosition.getY(), (int)initPosition.getX(), (int)initPosition.getY(), entity);
-        double new_x = initPosition.getX()*levelGenerator.getMap().getDimCellWdt();
-        double new_y = initPosition.getY()*levelGenerator.getMap().getDimCellHgt();
-        entity.setPosition(new Position(new_x, new_y));
-        entity.getPhysicsComponent().update(entity);
     }
 
     @Override
@@ -107,9 +84,6 @@ public class GameViewController implements SceneController {
             gameView.addToScene(e.getGraphicsComponent().getCurrentImage());
         }
         initUI();
-    }
-    public static void resetPacMan(){
-        pacmanModel = new PacmanModel();
     }
 
     @Override
@@ -161,8 +135,8 @@ public class GameViewController implements SceneController {
         gameView.addToScene(bestScore.getLabel());
     }
     public void updateUI(){
-        scoreUI.update("Score: " + pacmanModel.getScore());
-        vieUI.update("Vie: " + pacmanModel.getPV());
+        scoreUI.update("Score: " + GameModel.getInstance().getPacmanModel().getScore());
+        vieUI.update("Vie: " + GameModel.getInstance().getPacmanModel().getPV());
         //bestScore.update("bestScore: " + score.getScorefile());
     }
 
@@ -192,9 +166,6 @@ public class GameViewController implements SceneController {
         this.endlevel = endlevel;
     }
 
-    public static PacmanModel getPacmanModel() {
-        return pacmanModel;
-    }
     public static Score getScore() {
         return score;
     }
