@@ -1,5 +1,6 @@
 package gameplay;
 
+import gameplay.ai.RandomShortestPathAI;
 import gameplay.ai.ShortestPathAI;
 import gameplay.builder.*;
 import gameplay.builder.object.*;
@@ -27,8 +28,8 @@ public class LevelGenerator {
     private double dimCaseLong;
     private double dimCaseLarg;
     private Map map;
-    private BasicPathFinder basicPathFinder;
     private ShortestPathAI shortestPathAI;
+    private RandomShortestPathAI randomShortestPathAI;
     private HashMap<Entity, Position> initPositionEntities;
     private boolean twoPlayer;
 
@@ -37,9 +38,11 @@ public class LevelGenerator {
         this.v2 = v2;
         this.twoPlayer = twoPlayer;
         initPositionEntities = new HashMap<>();
-        basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CERISE.name));
+        BasicPathFinder basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CERISE.name));
         shortestPathAI = new ShortestPathAI();
+        randomShortestPathAI = new RandomShortestPathAI();
         shortestPathAI.setPathFinder(basicPathFinder);
+        randomShortestPathAI.setPathFinder(basicPathFinder);
         map = new Map(new Position(0,0), new Position(v1, v2));
 
         readFile(chemin);
@@ -97,6 +100,7 @@ public class LevelGenerator {
                     initPositionEntities.put(pacman, new Position(j,i));
 
                     shortestPathAI.setTarget(pacman);
+                    randomShortestPathAI.setTarget(pacman);
                     break;
                 case "r" :
                     builder = new GhostRedBuilder(shortestPathAI);
@@ -121,10 +125,12 @@ public class LevelGenerator {
                     initPositionEntities.put(builder.getEntity(), new Position(j,i));
                     break;
                 case "b" :
-                    builder = new GhostBlueBuilder();
+                    builder = new GhostBlueBuilder(randomShortestPathAI);
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     initPositionEntities.put(builder.getEntity(), new Position(j,i));
+
+                    randomShortestPathAI.setOrigin(builder.getEntity());
                     break;
                 case "c" :
                     builder = new CeriseBuilder();
