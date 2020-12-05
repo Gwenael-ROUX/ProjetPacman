@@ -1,9 +1,8 @@
 package gameplay.events;
 
-import gameplay.LevelGenerator;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
-import moteur.ui.GameViewController;
+import gameplay.scene.GameViewController;
 
 public class EventChangeLevel extends Event {
     private GameViewController controller;

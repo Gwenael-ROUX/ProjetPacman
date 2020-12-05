@@ -23,8 +23,8 @@ public class EventEatGum extends Event {
         if(position == null) return;
 
         pacmanModel.addScore(10);
-        map.deleteEntity(position, entity);
         entity.getGraphicsComponent().getCurrentImage().setImage(null);
+        map.deleteEntity(position, entity);
         SoundManager.getInstance().addSound("pacman_chomp.wav", "chomp", false, 0.2f, 500L);
     }
 }
