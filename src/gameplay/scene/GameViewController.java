@@ -7,11 +7,13 @@ import gameplay.physics.Displacement;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import moteur.controller.GeneralKeyboardController;
 import moteur.controller.KeyboardController;
 import moteur.core_kernel.*;
 import moteur.core_kernel.Map;
 import moteur.physics.Position;
+import moteur.ui.LabelUI;
 import moteur.ui.SceneController;
 import moteur.ui.SceneManager;
 import moteur.ui.ViewFX;
@@ -91,12 +93,16 @@ public class GameViewController implements SceneController {
     @Override
     public void update(Map map) {
         for (int i = 0; i < gameView.getChildren().size(); i++) {
-            if (((ImageView) gameView.getChildren().get(i)).getImage() == null)
+            if (gameView.getChildren().get(i) instanceof ImageView && ((ImageView) gameView.getChildren().get(i)).getImage() == null)
                 gameView.getChildren().remove(gameView.getChildren().get(i));
         }
 
         if (!isGumsExist() && !endlevel) {
             endlevel = true;
+            LabelUI labelChangeLvl = new LabelUI("Changement de niveau", gameView.getHeightScene() * 0.1, gameView.getHeightScene() * 0.5);
+            labelChangeLvl.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),20);
+            labelChangeLvl.setColor(Color.YELLOW);
+            gameView.addToScene(labelChangeLvl.getLabel());
             ++currentLvl;
             EventManager.getEventManager().addEvent(new EventChangeLevel(null, this, 20));
         }
