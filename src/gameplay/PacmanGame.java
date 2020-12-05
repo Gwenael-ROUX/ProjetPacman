@@ -50,7 +50,6 @@ public class PacmanGame {
         for(Entity e : levelGenerator.getInitPositionEntities().keySet()){
             resetEntity(e);
         }
-        gameManager.breakCurrentUpdate();
     }
 
     public void resetEntity(Entity entity){

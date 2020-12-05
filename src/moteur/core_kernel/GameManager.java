@@ -12,31 +12,24 @@ public class GameManager {
     private EventManager eventManager;
     private List<Entity> entities;
     private List<Position> entitiesPosition;
-    private boolean breakUpdate;
 
     public GameManager(Map map){
         this.map = map;
         eventManager = EventManager.getEventManager();
         this.entities = new ArrayList<>();
         this.entitiesPosition = new ArrayList<>();
-        breakUpdate = false;
     }
 
     public void update(){
-        breakUpdate = false;
+        updateEvents();
 
         updateListEntities();
+        updateMovesAndListener();
 
-        if(! breakUpdate)
-            updateEvents();
+        updateListEntities();
+        updateEntities();
 
-        if(! breakUpdate)
-            updateMovesAndListener();
-
-        if(! breakUpdate)
-            updateEntities();
-        if(! breakUpdate)
-            SceneManager.getInstance().update(map);
+        SceneManager.getInstance().update(map);
     }
 
     private void updateListEntities(){
@@ -102,10 +95,6 @@ public class GameManager {
 
     public Map getMap(){
         return map;
-    }
-
-    public void breakCurrentUpdate(){
-        breakUpdate = true;
     }
 
     public void setMap(Map map) {

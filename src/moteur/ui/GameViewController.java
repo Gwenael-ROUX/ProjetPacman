@@ -3,6 +3,7 @@ package moteur.ui;
 import gameplay.EntityType;
 import gameplay.LevelGenerator;
 import gameplay.events.EventChangeLevel;
+import gameplay.physics.Displacement;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
@@ -35,8 +36,9 @@ public class GameViewController implements SceneController{
     public void resetGame(){
         for(Entity e : levelGenerator.getInitPositionEntities().keySet()){
             resetEntity(e);
+            if(e.getName().equals("pacman"))
+                e.setOrientation(Displacement.NOTHING.orientation);
         }
-        gameManager.breakCurrentUpdate();
     }
 
     public void resetEntity(Entity entity) {
@@ -46,6 +48,7 @@ public class GameViewController implements SceneController{
         double new_x = initPosition.getX()*levelGenerator.getMap().getDimCellWdt();
         double new_y = initPosition.getY()*levelGenerator.getMap().getDimCellHgt();
         entity.setPosition(new Position(new_x, new_y));
+        entity.getPhysicsComponent().update(entity);
     }
 
     @Override
