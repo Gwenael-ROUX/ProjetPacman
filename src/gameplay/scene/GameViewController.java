@@ -7,7 +7,6 @@ import gameplay.Score;
 import gameplay.events.EventChangeLevel;
 import gameplay.model.PacmanModel;
 import gameplay.physics.Displacement;
-import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -19,7 +18,6 @@ import moteur.physics.Position;
 import moteur.sound.SoundManager;
 import moteur.ui.*;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
