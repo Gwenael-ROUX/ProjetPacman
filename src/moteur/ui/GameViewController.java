@@ -18,9 +18,11 @@ public class GameViewController implements SceneController{
     private LevelGenerator levelGenerator;
     private GameView gameView;
     private int currentLvl;
+    private boolean twoPlayer;
 
-    public GameViewController(int level) {
-        levelGenerator = new LevelGenerator(512,512,"/Level/level" + level + ".txt");
+    public GameViewController(int level, boolean twoPlayer) {
+        this.twoPlayer = twoPlayer;
+        levelGenerator = new LevelGenerator(512,512,"/Level/level" + level + ".txt", twoPlayer);
         currentLvl = level;
         gameManager = new GameManager(levelGenerator.getMap());
         gameView = new GameView();
@@ -47,8 +49,12 @@ public class GameViewController implements SceneController{
     public void init() {
         Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
         KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();
-        KeyboardController keyboard2 = (KeyboardController) levelGenerator.getGhost().getControllerComponent();
-        GeneralKeyboardController keyboardController = new GeneralKeyboardController(new ArrayList<>(Arrays.asList(keyboard1, keyboard2)));
+        GeneralKeyboardController keyboardController;
+        if (twoPlayer) {
+            KeyboardController keyboard2 = (KeyboardController) levelGenerator.getGhost().getControllerComponent();
+            keyboardController = new GeneralKeyboardController(new ArrayList<>(Arrays.asList(keyboard1, keyboard2)));
+        } else
+            keyboardController = new GeneralKeyboardController(new ArrayList<>(Arrays.asList(keyboard1)));
         SceneManager.getInstance().getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
         Map map = levelGenerator.getMap();
         gameView.setOnKeyPressed(keyboardController.getEventHandler());
@@ -88,7 +94,7 @@ public class GameViewController implements SceneController{
             gameView.getChildren().clear();
             gameManager.breakCurrentUpdate();
             ++currentLvl;
-            levelGenerator = new LevelGenerator(512,512,"/Level/level" + currentLvl + ".txt");
+            levelGenerator = new LevelGenerator(512,512,"/Level/level" + currentLvl + ".txt",twoPlayer);
             gameManager.setMap(levelGenerator.getMap());
             init();
         }

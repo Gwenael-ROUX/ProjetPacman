@@ -42,11 +42,7 @@ public class MenuView extends StackPane {
         BackgroundImage backgroundImage = new BackgroundImage(image2, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
         setBackground(background);
-//        setStyle("-fx-background-image: url('" + "/Image/Menu/pacman_Menu.jpg" + "'); " +
-//                "-fx-background-position: center center; " +
-//                "-fx-background-repeat: stretch;");
-        //imageUI.drawImage(image);
-        //getChildren().add(imageUI.getCanvas());
+
         System.out.println(getHeight());
         setButton(gameButton1P,"Start Game -1P",getPrefWidth() * 0.27,getPrefHeight()/2+20, Color.WHITE,font);
         setButton(gameButton2P,"Start Game -2P",getPrefWidth() * 0.27,getPrefHeight()/2+45,Color.WHITE,font);

@@ -22,7 +22,7 @@ public class EventPacmanDie extends Event {
     public void handle() {
         entity_owned.getGraphicsComponent().getAnimationManager().setCurrentAnimation("mort");
         SoundManager.getInstance().stopAllSound();
-        SoundManager.getInstance().addSound("mort.wav", "mort", false, 0.8f, 400L);
+        SoundManager.getInstance().addSound("mort.wav", "mort", false, 0.2f, 400L);
         EventManager.getEventManager().addEvent(new EventPacnoelDie(entity_owned, entity, 200));
     }
 }

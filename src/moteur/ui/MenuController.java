@@ -20,15 +20,15 @@ public class MenuController implements SceneController{
         view.getGameButton1P().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                GameViewController gameViewController = new GameViewController(1);
-                //gameViewController.init(PacmanGame.getGame().getLevelGenerator().getMap());
+                GameViewController gameViewController = new GameViewController(1, false);
                 SceneManager.getInstance().setSceneView(gameViewController);
             }
         });
         view.getGameButton2P().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                GameViewController gameViewController = new GameViewController(1, true);
+                SceneManager.getInstance().setSceneView(gameViewController);
             }
         });
         view.getControls().setOnAction(new EventHandler<ActionEvent>() {

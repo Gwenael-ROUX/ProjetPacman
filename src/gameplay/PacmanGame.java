@@ -94,8 +94,8 @@ public class PacmanGame {
     }
 
     public void createMap(int lvl) {
-        levelGenerator = new LevelGenerator(512,512,"/Level/level" + lvl + ".txt");
-        gameManager = new GameManager(levelGenerator.getMap());
+        //levelGenerator = new LevelGenerator(512,512,"/Level/level" + lvl + ".txt");
+        //gameManager = new GameManager(levelGenerator.getMap());
     }
 
     public static void main(String[] args) {

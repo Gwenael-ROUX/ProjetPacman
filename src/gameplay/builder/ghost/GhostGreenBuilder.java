@@ -16,9 +16,11 @@ import moteur.physics.Position;
  */
 public class GhostGreenBuilder extends EntityBuilder {
     private Map map;
+    private boolean isPlayer2;
 
-    public GhostGreenBuilder(Map map){
+    public GhostGreenBuilder(Map map, boolean isPlayer2){
         this.map = map;
+        this.isPlayer2 = isPlayer2;
     }
 
     @Override
@@ -39,8 +41,10 @@ public class GhostGreenBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
-        //entity.setControllerComponent(new RandomAI());
-        entity.setControllerComponent(new GhostKeyboardController(map));
+        if (isPlayer2)
+            entity.setControllerComponent(new GhostKeyboardController(map));
+        else
+            entity.setControllerComponent(new RandomAI());
     }
 
     @Override

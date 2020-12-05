@@ -5,6 +5,9 @@ import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.core_kernel.GameLoop;
 import moteur.graphique.AnimationManager;
+import moteur.sound.SoundManager;
+import moteur.ui.MenuController;
+import moteur.ui.SceneManager;
 
 public class EventAnimMort extends Event {
     private Entity entity_owned;
@@ -16,6 +19,8 @@ public class EventAnimMort extends Event {
     @Override
     public void handle() {
         System.out.println("Game Over!");
-        GameLoop.stopGame();
+        SceneManager.getInstance().setSceneView(new MenuController());
+        SoundManager.getInstance().stopAllSound();
+        GameLoop.setGameManager(null);
     }
 }

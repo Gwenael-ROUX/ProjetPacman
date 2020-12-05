@@ -4,6 +4,8 @@ import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.core_kernel.EventManager;
 import moteur.graphique.AnimationManager;
+import moteur.ui.MenuController;
+import moteur.ui.SceneManager;
 
 public class EventPacnoelDie extends Event {
     private Entity entity_owned;
@@ -16,6 +18,6 @@ public class EventPacnoelDie extends Event {
     @Override
     public void handle() {
         entity_owned.getGraphicsComponent().getAnimationManager().setCurrentAnimation("mortpacnoel");
-        EventManager.getEventManager().addEvent(new EventAnimMort(entity_owned, entity, 200));
+        EventManager.getEventManager().addEvent(new EventAnimMort(entity_owned, entity, 100));
     }
 }
