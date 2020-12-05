@@ -3,6 +3,7 @@ package gameplay.scene;
 import gameplay.EntityType;
 import gameplay.LevelGenerator;
 import gameplay.events.EventChangeLevel;
+import gameplay.model.PacmanModel;
 import gameplay.physics.Displacement;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
@@ -28,6 +29,12 @@ public class GameViewController implements SceneController {
     private int currentLvl;
     private boolean twoPlayer;
     private boolean endlevel;
+
+    public static PacmanModel getPacmanModel() {
+        return pacmanModel;
+    }
+
+    private static PacmanModel pacmanModel = new PacmanModel();
 
     public GameViewController(int level, boolean twoPlayer) {
         this.twoPlayer = twoPlayer;
@@ -90,11 +97,14 @@ public class GameViewController implements SceneController {
             gameView.addToScene(e.getGraphicsComponent().getCurrentImage());
         }
     }
+    public static void resetPacMan(){
+        pacmanModel = new PacmanModel();
+    }
 
     @Override
     public void update(Map map) {
         for (int i = 0; i < gameView.getChildren().size(); i++) {
-            if (gameView.getChildren().get(i) instanceof ImageView && ((ImageView) gameView.getChildren().get(i)).getImage() == null)
+            if (((ImageView) gameView.getChildren().get(i)).getImage() == null)
                 gameView.getChildren().remove(gameView.getChildren().get(i));
         }
 

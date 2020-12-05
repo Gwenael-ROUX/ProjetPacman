@@ -1,5 +1,7 @@
 package moteur.core_kernel;
 
+import java.io.IOException;
+
 
 import moteur.ui.SceneController;
 import moteur.ui.SceneManager;
@@ -39,8 +41,13 @@ public class GameLoop extends Application {
             {
                 time = (currentNanoTime - startNanoTime) * 10e-10 * timeMultiplicator;
                 Timer.getInstance().setTime(time);
-                if (gameManager != null)
-                    gameManager.update();
+                if (gameManager != null) {
+                    try {
+                        gameManager.update();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         };
         animationTimer.start();

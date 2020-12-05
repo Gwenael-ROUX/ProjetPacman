@@ -10,6 +10,7 @@ import moteur.core_kernel.Timer;
 import moteur.physics.Position;
 import moteur.ui.SceneManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -72,7 +73,11 @@ public class PacmanGame {
             public void handle(long currentNanoTime) {
                 double time = (currentNanoTime - startNanoTime) * 10e-10 * timeMultiplicator;
                 Timer.getInstance().setTime(time);
-                gameManager.update();
+                try {
+                    gameManager.update();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         };
         GameLoop.stopGame();
