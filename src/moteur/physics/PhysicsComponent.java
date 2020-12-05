@@ -1,6 +1,6 @@
 package moteur.physics;
 
-import moteur.Component;
+import moteur.core_kernel.Component;
 import moteur.core_kernel.Entity;
 
 /**
