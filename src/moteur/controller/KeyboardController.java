@@ -4,12 +4,18 @@ import moteur.core_kernel.Entity;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * Controlleur du clavier pour prise en compte par le moteur
+ */
 public abstract class KeyboardController implements ControllerComponent {
 
     private EventHandler<? super KeyEvent> eventHandler;
 
     public KeyboardController(){}
 
+    /**
+     * creation de detecteur d'input clavier
+     */
     protected void createHandler(EventController eventController){
         eventHandler = (EventHandler<KeyEvent>) keyEvent -> {
             try{

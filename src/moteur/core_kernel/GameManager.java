@@ -7,6 +7,10 @@ import moteur.ui.SceneManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe de controle global du jeu
+ * Controle la scene, le manager d'events, les entity, les positions des entity
+ */
 public class GameManager {
     private Map map;
     private EventManager eventManager;
@@ -20,6 +24,9 @@ public class GameManager {
         this.entitiesPosition = new ArrayList<>();
     }
 
+    /**
+     * fonction d'appel a chaque frame
+     */
     public void update(){
         updateEvents();
 
@@ -32,6 +39,9 @@ public class GameManager {
         SceneManager.getInstance().update(map);
     }
 
+    /**
+     * met a jour la liste avec toute les entity presente en jeu
+     */
     private void updateListEntities(){
         entities.clear();
         entitiesPosition.clear();
@@ -49,10 +59,16 @@ public class GameManager {
         }
     }
 
+    /**
+     * appel du manager d'event par frame
+     */
     private void updateEvents(){
         eventManager.manage();
     }
 
+    /**
+     * update des components de chaque entity
+     */
     private void updateMovesAndListener(){
         for(int i = 0; i < entities.size()-1; i++){
             Entity entity1 = entities.get(i);
@@ -74,6 +90,9 @@ public class GameManager {
         }
     }
 
+    /**
+     * Manage l'appel des fonction update de chaque entity dans la scene
+     */
     private void updateEntities(){
         for(int i = 0; i < entities.size(); i++){
             if(entities.get(i) != null){

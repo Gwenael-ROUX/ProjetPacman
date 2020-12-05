@@ -1,4 +1,4 @@
-package moteur.ui;
+package gameplay.scene;
 
 import gameplay.EntityType;
 import gameplay.LevelGenerator;
@@ -12,13 +12,16 @@ import moteur.controller.KeyboardController;
 import moteur.core_kernel.*;
 import moteur.core_kernel.Map;
 import moteur.physics.Position;
+import moteur.ui.SceneController;
+import moteur.ui.SceneManager;
+import moteur.ui.ViewFX;
 
 import java.util.*;
 
-public class GameViewController implements SceneController{
+public class GameViewController implements SceneController {
     private GameManager gameManager;
     private LevelGenerator levelGenerator;
-    private GameView gameView;
+    private ViewFX gameView;
     private int currentLvl;
     private boolean twoPlayer;
     private boolean endlevel;
@@ -63,11 +66,9 @@ public class GameViewController implements SceneController{
             keyboardController = new GeneralKeyboardController(new ArrayList<>(Arrays.asList(keyboard1)));
         SceneManager.getInstance().getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
         Map map = levelGenerator.getMap();
-        gameView.setOnKeyPressed(keyboardController.getEventHandler());
-        gameView.setPrefWidth(map.getWidth() * map.getDimCellWdt());
-        gameView.setPrefHeight(map.getHeight() * map.getDimCellHgt());
-
-        SceneManager.getInstance().getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
+        gameView.setKeyPressed(keyboardController.getEventHandler());
+        gameView.setWidthScene(map.getWidth() * map.getDimCellWdt());
+        gameView.setHeightScene(map.getHeight() * map.getDimCellHgt());
 
         ArrayList<Entity> sortedList = new ArrayList<>();
 
@@ -83,7 +84,7 @@ public class GameViewController implements SceneController{
 
         sortedList.sort(comparator);
         for (Entity e: sortedList){
-            gameView.getChildren().add(e.getGraphicsComponent().getCurrentImage());
+            gameView.addToScene(e.getGraphicsComponent().getCurrentImage());
         }
     }
 
@@ -92,13 +93,10 @@ public class GameViewController implements SceneController{
         for (int i = 0; i < gameView.getChildren().size(); i++) {
             if (((ImageView) gameView.getChildren().get(i)).getImage() == null)
                 gameView.getChildren().remove(gameView.getChildren().get(i));
-            else{
-            }
         }
 
         if (!isGumsExist() && !endlevel) {
             endlevel = true;
-            System.out.println(currentLvl);
             ++currentLvl;
             EventManager.getEventManager().addEvent(new EventChangeLevel(null, this, 20));
         }
@@ -127,7 +125,7 @@ public class GameViewController implements SceneController{
         return gameManager;
     }
 
-    public GameView getGameView() {
+    public ViewFX getGameView() {
         return gameView;
     }
 

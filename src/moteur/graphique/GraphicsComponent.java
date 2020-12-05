@@ -1,7 +1,7 @@
 package moteur.graphique;
 
 import javafx.scene.image.ImageView;
-import moteur.Component;
+import moteur.core_kernel.Component;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Timer;
 import javafx.scene.image.Image;

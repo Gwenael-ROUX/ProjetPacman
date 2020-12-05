@@ -6,6 +6,9 @@ import moteur.core_kernel.Map;
 
 import java.util.Arrays;
 
+/**
+ * Matrice contenant le niveau et toutes les informations associées
+ */
 public class MapRepresentation {
 
     private Map map;
@@ -16,6 +19,11 @@ public class MapRepresentation {
         matrixDistance = new int[map.getHeight()][map.getWidth()];
     }
 
+    /**
+     *  retourn la position d'une entity dans la map
+     * @param entity
+     * @return
+     */
     public Position getPositionEntity(Entity entity){
         return map.getPositionEntity(entity);
     }

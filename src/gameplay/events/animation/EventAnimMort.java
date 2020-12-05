@@ -1,12 +1,10 @@
 package gameplay.events.animation;
 
-import gameplay.PacmanGame;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.core_kernel.GameLoop;
-import moteur.graphique.AnimationManager;
 import moteur.sound.SoundManager;
-import moteur.ui.MenuController;
+import gameplay.scene.MenuController;
 import moteur.ui.SceneManager;
 
 public class EventAnimMort extends Event {
