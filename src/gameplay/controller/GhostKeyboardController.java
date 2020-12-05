@@ -1,6 +1,7 @@
 package gameplay.controller;
 
 import gameplay.EntityType;
+import gameplay.model.GameModel;
 import gameplay.physics.Displacement;
 import moteur.controller.KeyboardController;
 import moteur.core_kernel.Entity;
@@ -14,9 +15,11 @@ public class GhostKeyboardController extends KeyboardController {
     private Displacement nextMove;
     private Displacement move;
     private Map map;
+    private int last_pv;
 
     public GhostKeyboardController(Map map){
         this.map = map;
+        last_pv = GameModel.getInstance().getPacmanModel().getPV();
         nextMove = Displacement.NOTHING;
         move = Displacement.NOTHING;
         createHandler();
@@ -52,6 +55,14 @@ public class GhostKeyboardController extends KeyboardController {
     }
 
     private void updateMove(Entity entity){
+        if(last_pv != GameModel.getInstance().getPacmanModel().getPV() || GameModel.getInstance().getPacmanModel().isDead()){
+            move = Displacement.NOTHING;
+            nextMove = Displacement.NOTHING;
+            //entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString());
+
+            last_pv = GameModel.getInstance().getPacmanModel().getPV();
+        }
+
         if(nextMove != Displacement.NOTHING){
             Position position = map.getPositionEntity(entity);
             int x = (int)position.getX(), y = (int)position.getY();

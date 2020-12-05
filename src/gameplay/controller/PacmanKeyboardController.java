@@ -1,6 +1,7 @@
 package gameplay.controller;
 
 import gameplay.EntityType;
+import gameplay.model.GameModel;
 import gameplay.model.PacmanModel;
 import moteur.controller.KeyboardController;
 import moteur.core_kernel.Entity;
@@ -14,14 +15,12 @@ import java.util.List;
 public class PacmanKeyboardController extends KeyboardController {
     private Displacement nextMove;
     private Displacement move;
-    private PacmanModel pacmanModel;
     private Map map;
     private int last_pv;
 
-    public PacmanKeyboardController(Map map, PacmanModel pacmanModel){
+    public PacmanKeyboardController(Map map){
         this.map = map;
-        this.pacmanModel = pacmanModel;
-        last_pv = pacmanModel.getPV();
+        last_pv = GameModel.getInstance().getPacmanModel().getPV();
         nextMove = Displacement.NOTHING;
         move = Displacement.NOTHING;
         createHandler();
@@ -51,7 +50,7 @@ public class PacmanKeyboardController extends KeyboardController {
 
     @Override
     public void update(Entity entity){
-        if(!pacmanModel.isDead()){
+        if(!GameModel.getInstance().getPacmanModel().isDead()){
             updateMove(entity);
             updateGraphics(entity);
 
@@ -61,20 +60,21 @@ public class PacmanKeyboardController extends KeyboardController {
 
     private void updateGraphics(Entity entity){
         if(move != Displacement.NOTHING)
-            if (pacmanModel.isNoel())
+            if (GameModel.getInstance().getPacmanModel().isNoel())
                 entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString()+EntityType.TREE.name);
             else
                 entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString());
     }
 
     private void updateMove(Entity entity){
-        if(last_pv != pacmanModel.getPV() || pacmanModel.isDead()){
+        if(last_pv != GameModel.getInstance().getPacmanModel().getPV() || GameModel.getInstance().getPacmanModel().isDead()){
             move = Displacement.NOTHING;
             nextMove = Displacement.NOTHING;
             //entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString());
 
-            last_pv = pacmanModel.getPV();
+            last_pv = GameModel.getInstance().getPacmanModel().getPV();
         }
+
         if(nextMove != Displacement.NOTHING){
             Position position = map.getPositionEntity(entity);
             int x = (int)position.getX(), y = (int)position.getY();
@@ -107,13 +107,6 @@ public class PacmanKeyboardController extends KeyboardController {
                     move = nextMove;
                     nextMove = Displacement.NOTHING;
                 }
-
-                /*for(Entity e : entities)
-                    System.out.println(e.getName());
-                showMap(map);
-                System.out.println(move);
-                System.out.println(nextMove);
-                System.out.println("===================");*/
             }
         }
     }
@@ -124,28 +117,6 @@ public class PacmanKeyboardController extends KeyboardController {
                 return false;
         }
         return true;
-    }
-
-    private boolean isPacman(List<Entity> entities){
-        for(Entity entity : entities){
-            if(EntityType.PACMAN.name.equals(entity.getName()))
-                return true;
-        }
-        return false;
-    }
-
-    private void showMap(Map map){
-        for(int y = 0; y < map.getHeight(); y++){
-            for(int x = 0; x < map.getWidth(); x++){
-                if(isPacman(map.getEntity(x, y)))
-                    System.out.print(" X ");
-                else if(canCross(map.getEntity(x, y)))
-                    System.out.print("   ");
-                else
-                    System.out.print(" O ");
-            }
-            System.out.println();
-        }
     }
 }
 
