@@ -16,9 +16,7 @@ public class MenuController implements SceneController{
     public void init() {
         view = new MenuView();
 
-//        KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();
-//        KeyboardController keyboard2 = (KeyboardController) levelGenerator.getGhost().getControllerComponent();
-//        GeneralKeyboardController keyboardController = new GeneralKeyboardController(new ArrayList<>(Arrays.asList(keyboard1, keyboard2)));
+
         view.getGameButton1P().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

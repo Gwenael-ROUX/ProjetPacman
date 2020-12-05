@@ -2,8 +2,7 @@ package moteur.ui;
 
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import moteur.core_kernel.Map;
@@ -24,6 +23,8 @@ public class MenuView extends StackPane {
     Image image;
 
     public MenuView() {
+        setPrefHeight(500);
+        setPrefWidth(500);
         gameButton1P = new Button();
         gameButton2P = new Button();
         controls = new Button();
@@ -36,15 +37,22 @@ public class MenuView extends StackPane {
 
     public void init() {
         Font font = Font.loadFont(is,13);
-
-        imageUI.drawImage(image);
-        getChildren().add(imageUI.getCanvas());
-
-        setButton(gameButton1P,"Start Game -1P",100,240, Color.WHITE,font);
-        setButton(gameButton2P,"Start Game -2P",100,265,Color.WHITE,font);
-        setButton(controls,"Controle",135,290,Color.WHITE,font);
-        setButton(helpButton,"Aide",155,315,Color.WHITE,font);
-        setButton(quitButton,"Quitter",140,340,Color.WHITE,font);
+        Image image2 = new Image(MenuView.class.getResourceAsStream("/Image/Menu/pacman_Menu.jpg"));
+        BackgroundSize backgroundSize = new BackgroundSize(getPrefHeight(),getPrefWidth(),true,true,true,false);
+        BackgroundImage backgroundImage = new BackgroundImage(image2, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        Background background = new Background(backgroundImage);
+        setBackground(background);
+//        setStyle("-fx-background-image: url('" + "/Image/Menu/pacman_Menu.jpg" + "'); " +
+//                "-fx-background-position: center center; " +
+//                "-fx-background-repeat: stretch;");
+        //imageUI.drawImage(image);
+        //getChildren().add(imageUI.getCanvas());
+        System.out.println(getHeight());
+        setButton(gameButton1P,"Start Game -1P",getPrefWidth() * 0.27,getPrefHeight()/2+20, Color.WHITE,font);
+        setButton(gameButton2P,"Start Game -2P",getPrefWidth() * 0.27,getPrefHeight()/2+45,Color.WHITE,font);
+        setButton(controls,"Controle",getPrefWidth() * 0.27,getPrefHeight()/2+70,Color.WHITE,font);
+        setButton(helpButton,"Aide",getPrefWidth() * 0.27,getPrefHeight()/2+95,Color.WHITE,font);
+        setButton(quitButton,"Quitter",getPrefWidth() * 0.27,getPrefHeight()/2+120,Color.WHITE,font);
 
 
         Pane root = new Pane();
