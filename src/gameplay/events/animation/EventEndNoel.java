@@ -1,4 +1,4 @@
-package gameplay.events;
+package gameplay.events.animation;
 
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;

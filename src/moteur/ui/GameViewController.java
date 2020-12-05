@@ -2,6 +2,7 @@ package moteur.ui;
 
 import gameplay.EntityType;
 import gameplay.LevelGenerator;
+import gameplay.events.EventChangeLevel;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
@@ -19,9 +20,11 @@ public class GameViewController implements SceneController{
     private GameView gameView;
     private int currentLvl;
     private boolean twoPlayer;
+    private boolean endlevel;
 
     public GameViewController(int level, boolean twoPlayer) {
         this.twoPlayer = twoPlayer;
+        this.endlevel = false;
         levelGenerator = new LevelGenerator(512,512,"/Level/level" + level + ".txt", twoPlayer);
         currentLvl = level;
         gameManager = new GameManager(levelGenerator.getMap());
@@ -90,13 +93,11 @@ public class GameViewController implements SceneController{
             }
         }
 
-        if (!isGumsExist()) {
-            gameView.getChildren().clear();
-            gameManager.breakCurrentUpdate();
+        if (!isGumsExist() && !endlevel) {
+            endlevel = true;
+            System.out.println(currentLvl);
             ++currentLvl;
-            levelGenerator = new LevelGenerator(512,512,"/Level/level" + currentLvl + ".txt",twoPlayer);
-            gameManager.setMap(levelGenerator.getMap());
-            init();
+            EventManager.getEventManager().addEvent(new EventChangeLevel(null, this, 20));
         }
     }
 
@@ -117,5 +118,25 @@ public class GameViewController implements SceneController{
     @Override
     public Parent getView() {
         return gameView;
+    }
+
+    public GameManager getGameManager() {
+        return gameManager;
+    }
+
+    public GameView getGameView() {
+        return gameView;
+    }
+
+    public void setNewLevel() {
+        this.levelGenerator = new LevelGenerator(512,512,"/Level/level" + currentLvl + ".txt",twoPlayer);
+    }
+
+    public LevelGenerator getLevelGenerator() {
+        return levelGenerator;
+    }
+
+    public void setEndlevel(boolean endlevel) {
+        this.endlevel = endlevel;
     }
 }

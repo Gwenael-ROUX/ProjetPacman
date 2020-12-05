@@ -1,11 +1,8 @@
-package gameplay.events;
+package gameplay.events.animation;
 
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.core_kernel.EventManager;
-import moteur.graphique.AnimationManager;
-import moteur.ui.MenuController;
-import moteur.ui.SceneManager;
 
 public class EventPacnoelDie extends Event {
     private Entity entity_owned;

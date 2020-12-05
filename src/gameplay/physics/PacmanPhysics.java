@@ -3,6 +3,7 @@ package gameplay.physics;
 import gameplay.EntityType;
 import gameplay.PacmanGame;
 import gameplay.events.*;
+import gameplay.events.animation.EventPacmanDie;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.EventManager;

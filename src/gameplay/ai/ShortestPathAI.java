@@ -56,8 +56,8 @@ public class ShortestPathAI implements AI {
         Position nextPosition = (listPositions.size() == 1) ?
                 listPositions.get(0) : listPositions.get(listPositions.size()-2);
         Displacement result;
-        System.out.println(nextPosition);
-        System.out.println(pathFinder.getMap().getPositionEntity(target));
+//        System.out.println(nextPosition);
+//        System.out.println(pathFinder.getMap().getPositionEntity(target));
         if(nextPosition.getX() != position_origin.getX()){
             if(nextPosition.getX() > position_origin.getX())
                 result = Displacement.RIGHT;

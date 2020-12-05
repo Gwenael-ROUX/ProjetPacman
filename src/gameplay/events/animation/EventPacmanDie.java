@@ -1,9 +1,7 @@
-package gameplay.events;
+package gameplay.events.animation;
 
-import gameplay.PacmanGame;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.*;
-import moteur.graphique.AnimationManager;
 import moteur.sound.SoundManager;
 
 public class EventPacmanDie extends Event {
