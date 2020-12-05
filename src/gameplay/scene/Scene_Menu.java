@@ -63,7 +63,7 @@ public class Scene_Menu extends StackPane {
             public void handle(ActionEvent actionEvent) {
                 try {
                     PacmanGame pacmanGame = new PacmanGame(3, 1f, "Pacman");
-                    pacmanGame.launch();
+                    pacmanGame.launch(1f);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

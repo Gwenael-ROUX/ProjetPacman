@@ -3,6 +3,7 @@ package gameplay.events;
 import gameplay.PacmanGame;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
+import moteur.core_kernel.GameLoop;
 import moteur.graphique.AnimationManager;
 
 public class EventAnimMort extends Event {
@@ -15,6 +16,6 @@ public class EventAnimMort extends Event {
     @Override
     public void handle() {
         System.out.println("Game Over!");
-        PacmanGame.getGame().stopGame();
+        GameLoop.stopGame();
     }
 }

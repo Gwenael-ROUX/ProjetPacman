@@ -4,29 +4,27 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
-import moteur.core_kernel.GameManager;
 import moteur.core_kernel.Map;
 
 public class MenuController implements SceneController{
     private MenuView view;
-    private GameManager gameManager;
-    private SceneManager sceneManager;
 
-    public MenuController(GameManager gameManager, SceneManager sceneManager) {
-        this.gameManager = gameManager;
-        this.sceneManager = sceneManager;
+    public MenuController(){
     }
 
     @Override
-    public void init(Map map) {
-        view = new MenuView(map);
+    public void init() {
+        view = new MenuView();
 
+//        KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();
+//        KeyboardController keyboard2 = (KeyboardController) levelGenerator.getGhost().getControllerComponent();
+//        GeneralKeyboardController keyboardController = new GeneralKeyboardController(new ArrayList<>(Arrays.asList(keyboard1, keyboard2)));
         view.getGameButton1P().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                GameViewController gameViewController = new GameViewController();
-                gameViewController.init(gameManager.getMap());
-                sceneManager.setSceneView(gameViewController);
+                GameViewController gameViewController = new GameViewController(1);
+                //gameViewController.init(PacmanGame.getGame().getLevelGenerator().getMap());
+                SceneManager.getInstance().setSceneView(gameViewController);
             }
         });
         view.getGameButton2P().setOnAction(new EventHandler<ActionEvent>() {
@@ -60,8 +58,12 @@ public class MenuController implements SceneController{
 
     }
 
-    @Override
     public Parent getView() {
         return view;
+    }
+
+    @Override
+    public void resetGame() {
+
     }
 }

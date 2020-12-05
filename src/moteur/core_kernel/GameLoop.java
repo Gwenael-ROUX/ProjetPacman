@@ -1,8 +1,10 @@
 package moteur.core_kernel;
 
 
+import javafx.scene.Parent;
 import moteur.controller.GeneralKeyboardController;
 import moteur.ui.MenuController;
+import moteur.ui.SceneController;
 import moteur.ui.SceneManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -16,23 +18,15 @@ public class GameLoop extends Application {
     private static String title = "";
     private static long startTimeModifMult;
     private static AnimationTimer animationTimer;
-    private static GeneralKeyboardController keyboardController;
     private static GameManager gameManager;
+    private static SceneController sceneController;
 
 
     @Override
     public void start(Stage stage) throws Exception {
-        if(gameManager == null) return;
-        //stage.setResizable(false);
-        SceneManager sceneManager = new SceneManager(stage, title);
-        MenuController menuController = new MenuController(gameManager, sceneManager);
-        menuController.init(gameManager.getMap());
-        sceneManager.setSceneView(menuController);
-
-        if(keyboardController != null)
-            sceneManager.getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
-
-        gameManager.setSceneManager(sceneManager);
+        SceneManager.getInstance(stage);
+        SceneManager.getInstance().setSceneView(sceneController);
+        SceneManager.getInstance().setTitle(title);
 
         final long startNanoTime = System.nanoTime();
 
@@ -42,17 +36,21 @@ public class GameLoop extends Application {
             {
                 time = (currentNanoTime - startNanoTime) * 10e-10 * timeMultiplicator;
                 Timer.getInstance().setTime(time);
-
-                gameManager.update();
+                if (gameManager != null)
+                    gameManager.update();
             }
         };
         animationTimer.start();
 
-         sceneManager.show();
+         SceneManager.getInstance().show();
     }
 
     public static void startGame(){
         launch();
+    }
+
+    public static void setAnimationTimer(AnimationTimer animationTimer) {
+        GameLoop.animationTimer = animationTimer;
     }
 
     public static void setTimeAnimation(float timeModification){
@@ -67,11 +65,15 @@ public class GameLoop extends Application {
         animationTimer.stop();
     }
 
+    public static void startAnimationTiemer() {
+        animationTimer.start();
+    }
+
     public static void setGameManager(GameManager gameManager){
         GameLoop.gameManager = gameManager;
     }
 
-    public static void setKeyboardController(GeneralKeyboardController keyboardController){
-        GameLoop.keyboardController = keyboardController;
+    public static void setSceneController(SceneController sceneController) {
+        GameLoop.sceneController = sceneController;
     }
 }

@@ -12,22 +12,29 @@ import moteur.physics.Position;
 import java.io.InputStream;
 
 public class MenuView extends StackPane {
-    InputStream is =getClass().getResourceAsStream("/Font/ARCADE_N.TTF");
+    InputStream is = getClass().getResourceAsStream("/Font/ARCADE_N.TTF");
 
-    private Button gameButton1P = new Button();
-    private Button gameButton2P = new Button();
-    private Button controls = new Button();
-    private Button helpButton = new Button();
-    private Button quitButton = new Button();
+    private Button gameButton1P;
+    private Button gameButton2P;
+    private Button controls;
+    private Button helpButton;
+    private Button quitButton;
 
-    ImageUI imageUI= new ImageUI(600,600,new Position(0,0)) ;
-    Image image = new Image("/Image/Menu/pacman_Menu.jpg");
+    ImageUI imageUI;
+    Image image;
 
-    public MenuView(Map map) {
-        init(map);
+    public MenuView() {
+        gameButton1P = new Button();
+        gameButton2P = new Button();
+        controls = new Button();
+        helpButton = new Button();
+        quitButton = new Button();
+        imageUI= new ImageUI(600,600,new Position(0,0)) ;
+        image = new Image("/Image/Menu/pacman_Menu.jpg");
+        init();
     }
 
-    public void init(Map map) {
+    public void init() {
         Font font = Font.loadFont(is,13);
 
         imageUI.drawImage(image);

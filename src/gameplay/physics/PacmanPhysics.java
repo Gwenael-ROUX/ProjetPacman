@@ -10,6 +10,7 @@ import moteur.core_kernel.Map;
 import moteur.physics.Collider;
 import moteur.physics.PhysicsComponent;
 import moteur.physics.Position;
+import moteur.ui.SceneManager;
 
 public class PacmanPhysics extends PhysicsComponent {
     private PacmanModel pacmanModel;
@@ -73,7 +74,7 @@ public class PacmanPhysics extends PhysicsComponent {
                 }
                 pacmanModel.setDead(true);
             } else{
-                PacmanGame.getGame().resetGame();
+                SceneManager.getInstance().reset();
             }
         }
     }
