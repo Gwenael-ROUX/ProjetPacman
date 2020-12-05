@@ -16,6 +16,6 @@ public class EventEatGhost extends Event {
     @Override
     public void handle() {
         pacmanModel.addScore(150);
-        SoundManager.getInstance().addSound("pacman_chomp.wav", "chomp", false, 0.2f, 500L);
+        SoundManager.getInstance().addSound("pacman_eatghost.wav", "ghost", false, 0.2f, 0L);
     }
 }
