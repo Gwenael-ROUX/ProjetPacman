@@ -28,7 +28,15 @@ public class LabelUI {
         label.setFont(font);
     }
 
+    public void changeSize(int size){
+
+    }
+
     public void setColor(Color color) {
         label.setTextFill(color);
+    }
+
+    public void update(String text){
+        label.setText(text);
     }
 }

@@ -3,7 +3,11 @@ package gameplay.scene;
 import gameplay.EntityType;
 import gameplay.LevelGenerator;
 import gameplay.model.GameModel;
+import gameplay.Score;
 import gameplay.events.EventChangeLevel;
+import gameplay.model.PacmanModel;
+import gameplay.physics.Displacement;
+import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -11,13 +15,13 @@ import moteur.controller.GeneralKeyboardController;
 import moteur.controller.KeyboardController;
 import moteur.core_kernel.*;
 import moteur.core_kernel.Map;
+import moteur.physics.Position;
 import moteur.sound.SoundManager;
-import moteur.ui.LabelUI;
-import moteur.ui.SceneController;
-import moteur.ui.SceneManager;
-import moteur.ui.ViewFX;
+import moteur.ui.*;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class GameViewController implements SceneController {
     private GameManager gameManager;
@@ -26,6 +30,20 @@ public class GameViewController implements SceneController {
     private int currentLvl;
     private boolean twoPlayer;
     private boolean endlevel;
+
+    private static Score score = new Score();;
+    private static PacmanModel pacmanModel = new PacmanModel();
+
+
+
+
+    private static int sessionBestScore;
+
+    LabelUI scoreUI = new LabelUI("Score: " + pacmanModel.getScore(),350,-10);
+    LabelUI vieUI = new LabelUI("vie Restante: " + pacmanModel.getScore(),50,-10);
+    LabelUI bestScore ;
+
+
 
     public GameViewController(int level, boolean twoPlayer) {
         this.twoPlayer = twoPlayer;
@@ -36,10 +54,30 @@ public class GameViewController implements SceneController {
         GameModel.getInstance().setLevelGenerator(levelGenerator);
         gameView = new GameView();
         GameLoop.setGameManager(gameManager);
+        setBestScore();
+    }
+
+    public void resetGame(){
+        for(Entity e : levelGenerator.getInitPositionEntities().keySet()){
+            resetEntity(e);
+            if(e.getName().equals("pacman"))
+                e.setOrientation(Displacement.NOTHING.orientation);
+        }
+    }
+
+    public void resetEntity(Entity entity) {
+        Position actualPosition = levelGenerator.getMap().getPositionEntity(entity);
+        Position initPosition = levelGenerator.getInitPositionEntities().get(entity);
+        gameManager.getMap().swap((int)actualPosition.getX(), (int)actualPosition.getY(), (int)initPosition.getX(), (int)initPosition.getY(), entity);
+        double new_x = initPosition.getX()*levelGenerator.getMap().getDimCellWdt();
+        double new_y = initPosition.getY()*levelGenerator.getMap().getDimCellHgt();
+        entity.setPosition(new Position(new_x, new_y));
+        entity.getPhysicsComponent().update(entity);
     }
 
     @Override
     public void init() {
+
         Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
         KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();
         GeneralKeyboardController keyboardController;
@@ -70,6 +108,10 @@ public class GameViewController implements SceneController {
         for (Entity e: sortedList){
             gameView.addToScene(e.getGraphicsComponent().getCurrentImage());
         }
+        initUI();
+    }
+    public static void resetPacMan(){
+        pacmanModel = new PacmanModel();
     }
 
     @Override
@@ -78,6 +120,7 @@ public class GameViewController implements SceneController {
             if (gameView.getChildren().get(i) instanceof ImageView && ((ImageView) gameView.getChildren().get(i)).getImage() == null)
                 gameView.getChildren().remove(gameView.getChildren().get(i));
         }
+        updateUI();
 
         if (!isGumsExist() && !endlevel) {
             endlevel = true;
@@ -105,6 +148,26 @@ public class GameViewController implements SceneController {
         return false;
     }
 
+    public void initUI(){
+        scoreUI.setColor(Color.WHITE);
+        scoreUI.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),25);
+
+        vieUI.setColor(Color.RED);
+        vieUI.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),25);
+
+        bestScore.setColor(Color.WHITE);
+        bestScore.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),25);
+
+        gameView.addToScene(scoreUI.getLabel());
+        gameView.addToScene(vieUI.getLabel());
+        gameView.addToScene(bestScore.getLabel());
+    }
+    public void updateUI(){
+        scoreUI.update("Score: " + pacmanModel.getScore());
+        vieUI.update("Vie: " + pacmanModel.getPV());
+        //bestScore.update("bestScore: " + score.getScorefile());
+    }
+
     @Override
     public Parent getView() {
         return gameView;
@@ -129,5 +192,23 @@ public class GameViewController implements SceneController {
 
     public void setEndlevel(boolean endlevel) {
         this.endlevel = endlevel;
+    }
+
+    public static PacmanModel getPacmanModel() {
+        return pacmanModel;
+    }
+    public static Score getScore() {
+        return score;
+    }
+
+    public static void setSessionBestScore(int sessionBestScore) {
+        GameViewController.sessionBestScore = sessionBestScore;
+    }
+
+    public void setBestScore(){
+        bestScore =new LabelUI("bestScore: " + score.getScorefile(),200,465);
+        if (sessionBestScore > Integer.parseInt(score.getScorefile())){
+            bestScore.update("bestScore: " + sessionBestScore);
+        }
     }
 }

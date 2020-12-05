@@ -13,6 +13,7 @@ public class Score {
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Score.class.getResourceAsStream(SCOREFILE)));
             score = bufferedReader.readLine();
+            bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
