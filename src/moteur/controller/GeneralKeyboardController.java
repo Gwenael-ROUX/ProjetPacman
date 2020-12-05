@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import java.util.List;
 
-// Manage multiple Keyboard handler
+/**
+ * Manage multiple Keyboard handler
+ */
 public class GeneralKeyboardController {
     private List<KeyboardController> controllers;
     private EventHandler<KeyEvent> eventHandler;
@@ -16,6 +18,9 @@ public class GeneralKeyboardController {
         createHandler();
     }
 
+    /**
+     * Create un keyboard handler, et ajout au manager d'event associer
+     */
     private void createHandler(){
         eventHandler = event -> {
             for(KeyboardController controller : controllers){

@@ -3,6 +3,9 @@ package moteur.core_kernel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Manager des evenement programmable
+ */
 public class EventManager {
     private static EventManager eventManager;
     private List<Event> events;
@@ -18,10 +21,18 @@ public class EventManager {
         return eventManager;
     }
 
+    /**
+     * ajout d'un evenement programable dans la list du manager
+     * @param e evenement ajouter
+     */
     public void addEvent(Event e){
         events.add(e);
     }
 
+    /**
+     * appel des evenement
+     * destruction des events périmés
+     */
     public void manage(){
         List<Event> toRemove = new ArrayList<>();
 

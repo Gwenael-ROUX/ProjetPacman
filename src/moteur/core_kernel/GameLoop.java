@@ -1,16 +1,15 @@
 package moteur.core_kernel;
 
 
-import javafx.scene.Parent;
-import moteur.controller.GeneralKeyboardController;
-import moteur.ui.MenuController;
 import moteur.ui.SceneController;
 import moteur.ui.SceneManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-
+/**
+ * Classe pour la boucle principal du jeu
+ */
 public class GameLoop extends Application {
 
     private static double time;
@@ -21,7 +20,11 @@ public class GameLoop extends Application {
     private static GameManager gameManager;
     private static SceneController sceneController;
 
-
+    /**
+     * Fonction d'initialisation au lancement
+     * @param stage scene actuellement chargée
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         SceneManager.getInstance(stage);
@@ -45,6 +48,9 @@ public class GameLoop extends Application {
          SceneManager.getInstance().show();
     }
 
+    /**
+     * Apres initialisation, lancement du jeu
+     */
     public static void startGame(){
         launch();
     }

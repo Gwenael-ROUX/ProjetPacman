@@ -1,9 +1,16 @@
 package moteur.core_kernel;
 
+/**
+ * Horloge du jeu
+ * Singleton pour le temps de jeu
+ */
 public class Timer {
     private static Timer instance;
     private double t = 0;
 
+    /**
+     * Singleton
+     */
     public static Timer getInstance() {
         if (instance == null) {
             instance = new Timer();
