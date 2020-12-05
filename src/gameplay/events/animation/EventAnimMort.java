@@ -1,6 +1,6 @@
 package gameplay.events.animation;
 
-import gameplay.scene.GameViewController;
+import gameplay.model.GameModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.core_kernel.GameLoop;
@@ -17,7 +17,7 @@ public class EventAnimMort extends Event {
 
     @Override
     public void handle() {
-        GameViewController.resetPacMan();
+        GameModel.getInstance().resetPacMan();
         System.out.println("Game Over!");
         SceneManager.getInstance().setSceneView(new MenuController());
         SoundManager.getInstance().stopAllSound();

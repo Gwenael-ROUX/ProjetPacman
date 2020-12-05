@@ -1,11 +1,11 @@
 package gameplay.builder;
 
 import gameplay.EntityType;
+import gameplay.model.GameModel;
 import gameplay.controller.PacmanKeyboardController;
 import gameplay.model.PacmanModel;
 import gameplay.physics.Displacement;
 import gameplay.physics.PacmanPhysics;
-import gameplay.scene.GameViewController;
 import moteur.core_kernel.Map;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.AnimationManager;
@@ -24,7 +24,7 @@ public class PacmanBuilder extends EntityBuilder {
 
     public PacmanBuilder(Map map){
         this.map = map;
-        this.pacmanModel = GameViewController.getPacmanModel();
+        this.pacmanModel = GameModel.getInstance().getPacmanModel();
     }
 
     @Override

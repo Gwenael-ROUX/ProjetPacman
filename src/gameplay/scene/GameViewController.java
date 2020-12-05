@@ -2,10 +2,8 @@ package gameplay.scene;
 
 import gameplay.EntityType;
 import gameplay.LevelGenerator;
+import gameplay.model.GameModel;
 import gameplay.events.EventChangeLevel;
-import gameplay.model.PacmanModel;
-import gameplay.physics.Displacement;
-import javafx.animation.AnimationTimer;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -13,7 +11,6 @@ import moteur.controller.GeneralKeyboardController;
 import moteur.controller.KeyboardController;
 import moteur.core_kernel.*;
 import moteur.core_kernel.Map;
-import moteur.physics.Position;
 import moteur.sound.SoundManager;
 import moteur.ui.LabelUI;
 import moteur.ui.SceneController;
@@ -30,38 +27,15 @@ public class GameViewController implements SceneController {
     private boolean twoPlayer;
     private boolean endlevel;
 
-    public static PacmanModel getPacmanModel() {
-        return pacmanModel;
-    }
-
-    private static PacmanModel pacmanModel = new PacmanModel();
-
     public GameViewController(int level, boolean twoPlayer) {
         this.twoPlayer = twoPlayer;
         this.endlevel = false;
         levelGenerator = new LevelGenerator(512,512,"/Level/level" + level + ".txt", twoPlayer);
         currentLvl = level;
         gameManager = new GameManager(levelGenerator.getMap());
+        GameModel.getInstance().setLevelGenerator(levelGenerator);
         gameView = new GameView();
         GameLoop.setGameManager(gameManager);
-    }
-
-    public void resetGame(){
-        for(Entity e : levelGenerator.getInitPositionEntities().keySet()){
-            resetEntity(e);
-            if(e.getName().equals("pacman"))
-                e.setOrientation(Displacement.NOTHING.orientation);
-        }
-    }
-
-    public void resetEntity(Entity entity) {
-        Position actualPosition = levelGenerator.getMap().getPositionEntity(entity);
-        Position initPosition = levelGenerator.getInitPositionEntities().get(entity);
-        gameManager.getMap().swap((int)actualPosition.getX(), (int)actualPosition.getY(), (int)initPosition.getX(), (int)initPosition.getY(), entity);
-        double new_x = initPosition.getX()*levelGenerator.getMap().getDimCellWdt();
-        double new_y = initPosition.getY()*levelGenerator.getMap().getDimCellHgt();
-        entity.setPosition(new Position(new_x, new_y));
-        entity.getPhysicsComponent().update(entity);
     }
 
     @Override
@@ -96,9 +70,6 @@ public class GameViewController implements SceneController {
         for (Entity e: sortedList){
             gameView.addToScene(e.getGraphicsComponent().getCurrentImage());
         }
-    }
-    public static void resetPacMan(){
-        pacmanModel = new PacmanModel();
     }
 
     @Override
@@ -149,6 +120,7 @@ public class GameViewController implements SceneController {
 
     public void setNewLevel() {
         this.levelGenerator = new LevelGenerator(512,512,"/Level/level" + currentLvl + ".txt",twoPlayer);
+        GameModel.getInstance().setLevelGenerator(levelGenerator);
     }
 
     public LevelGenerator getLevelGenerator() {

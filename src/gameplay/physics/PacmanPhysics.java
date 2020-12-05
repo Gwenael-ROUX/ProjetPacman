@@ -1,18 +1,16 @@
 package gameplay.physics;
 
 import gameplay.EntityType;
-import gameplay.PacmanGame;
+import gameplay.model.GameModel;
 import gameplay.events.*;
 import gameplay.events.animation.EventPacmanDie;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.EventManager;
-import moteur.core_kernel.GameManager;
 import moteur.core_kernel.Map;
 import moteur.physics.Collider;
 import moteur.physics.PhysicsComponent;
 import moteur.physics.Position;
-import moteur.ui.SceneManager;
 
 public class PacmanPhysics extends PhysicsComponent {
     private PacmanModel pacmanModel;
@@ -66,7 +64,7 @@ public class PacmanPhysics extends PhysicsComponent {
     private void updateGhostCollision(Entity entity_owned, Entity entity){
         if (pacmanModel.isNoel()){
             EventManager.getEventManager().addEvent(new EventEatGhost(pacmanModel, entity));
-            PacmanGame.getGame().resetEntity(entity);
+            GameModel.getInstance().resetEntity(entity);
         } else {
             pacmanModel.decrementPV();
             if (pacmanModel.checkPVnull()){
@@ -76,7 +74,7 @@ public class PacmanPhysics extends PhysicsComponent {
                 pacmanModel.setDead(true);
                 entity_owned.setOrientation(Displacement.NOTHING.orientation);
             } else {
-                SceneManager.getInstance().reset();
+                GameModel.getInstance().resetGame();
             }
         }
     }

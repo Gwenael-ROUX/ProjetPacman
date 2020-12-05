@@ -48,10 +48,6 @@ public class SceneManager {
         scene.setRoot(root);
     }
 
-    public void reset() {
-        sceneController.resetGame();
-    }
-
     public void update(Map map) {
         sceneController.update(map);
     }

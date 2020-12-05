@@ -25,9 +25,4 @@ public class MenuController implements SceneController {
     public Parent getView() {
         return view;
     }
-
-    @Override
-    public void resetGame() {
-
-    }
 }

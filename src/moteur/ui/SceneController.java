@@ -12,5 +12,4 @@ public interface SceneController {
     void init();
     void update(Map map);
     Parent getView();
-    void resetGame();
 }
