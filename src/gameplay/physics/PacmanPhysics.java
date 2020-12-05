@@ -74,8 +74,10 @@ public class PacmanPhysics extends PhysicsComponent {
                     EventManager.getEventManager().addEvent(new EventPacmanDie(pacmanModel, entity, entity_owned, map));
                 }
                 pacmanModel.setDead(true);
+                entity_owned.setOrientation(Displacement.NOTHING.orientation);
+            } else {
+                SceneManager.getInstance().reset();
             }
-            SceneManager.getInstance().reset();
         }
     }
 
@@ -84,10 +86,5 @@ public class PacmanPhysics extends PhysicsComponent {
         entity_owned.setOrientation((entity_owned.getOrientation()+180.0)%360);
         entity_owned.getPhysicsComponent().update(entity_owned);
         entity_owned.setOrientation((entity_owned.getOrientation()-180.0)%360);
-    }
-
-    private void moveFoward(Entity entity_owned){
-        if(entity_owned.getOrientation() == null) return;
-        entity_owned.getPhysicsComponent().update(entity_owned);
     }
 }

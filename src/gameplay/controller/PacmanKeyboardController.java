@@ -68,7 +68,7 @@ public class PacmanKeyboardController extends KeyboardController {
     }
 
     private void updateMove(Entity entity){
-        if(last_pv != pacmanModel.getPV()){
+        if(last_pv != pacmanModel.getPV() || pacmanModel.isDead()){
             move = Displacement.NOTHING;
             nextMove = Displacement.NOTHING;
             //entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString());
