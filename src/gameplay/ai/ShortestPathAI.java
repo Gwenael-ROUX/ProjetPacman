@@ -41,12 +41,9 @@ public class ShortestPathAI implements AI {
     public void update(Entity entity){
 
         if(pathFinder == null) return;
+        if(! canChangeDirection()) return;
 
         Position position_origin = pathFinder.getMap().getPositionEntity(origin);
-        if(! canChangeDirection()){
-            return;
-        }
-
         List<Position> listPositions = pathFinder.pathFinding(origin, target);
         if(listPositions.size() == 0){
             entity.setOrientation(lastDisplacement.orientation);

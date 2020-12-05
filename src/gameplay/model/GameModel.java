@@ -3,6 +3,7 @@ package gameplay.model;
 import gameplay.LevelGenerator;
 import gameplay.physics.Displacement;
 import moteur.core_kernel.Entity;
+import moteur.core_kernel.Map;
 import moteur.physics.Position;
 
 public class GameModel {
@@ -46,6 +47,12 @@ public class GameModel {
 
     public PacmanModel getPacmanModel() {
         return pacmanModel;
+    }
+
+    public Map getMap(){
+        if(levelGenerator != null)
+            return levelGenerator.getMap();
+        return null;
     }
 
     public void setLevelGenerator(LevelGenerator levelGenerator){
