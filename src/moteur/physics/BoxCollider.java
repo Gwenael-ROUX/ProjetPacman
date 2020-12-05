@@ -43,14 +43,9 @@ public class BoxCollider implements Collider {
         }
     }
 
-    // TODO : suppress cast in the future
     @Override
     public boolean hit(Collider collider) {
-        BoxCollider boxCollider = (BoxCollider) collider;
-        return (this.position1.getX() < boxCollider.getPosition2().getX() &&
-                this.position2.getX() > boxCollider.getPosition1().getX() &&
-                this.position1.getY() < boxCollider.getPosition2().getY() &&
-                this.position2.getY() > boxCollider.getPosition1().getY());
+        return DetectHit.hit(this, collider);
     }
 
     @Override
