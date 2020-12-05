@@ -17,11 +17,6 @@ public class MenuController implements SceneController {
         view = new MenuView(500,500);
     }
 
-    public void setView(ViewFX view) {
-        this.view = view;
-        SceneManager.getInstance().setRoot(view);
-    }
-
     @Override
     public void update(Map map) {
 
