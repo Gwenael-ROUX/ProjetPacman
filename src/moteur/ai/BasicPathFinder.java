@@ -6,6 +6,9 @@ import moteur.core_kernel.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe pour recherche du plus court chemin
+ */
 public class BasicPathFinder {
     private MapRepresentation map;
     private List<String> crossableEntitiesNames;
@@ -23,6 +26,12 @@ public class BasicPathFinder {
         this.map = map;
     }
 
+    /**
+     * Algorithme de plus court chemin a travers les colliders
+     * @param origin position initial du NPC
+     * @param target position de l'objectif du NPC
+     * @return List position du critical path
+     */
     public List<Position> pathFinding(Entity origin, Entity target){
         Position position_origin = map.getPositionEntity(origin);
         Position position_target = map.getPositionEntity(target);
@@ -41,7 +50,7 @@ public class BasicPathFinder {
 
         listPositions.add(position_origin);
         map.setDistance((int) position_origin.getX(), (int) position_origin.getY(), step);
-
+        //recherche tant que position finale non determinee
         while(! isFinished){
             List<Position> newListPositions = new ArrayList<>();
             step++;
@@ -110,6 +119,11 @@ public class BasicPathFinder {
         return listPositions;
     }
 
+    /**
+     * check si une entity peut etre traverser
+     * @param entity entity a checker
+     * @return si l'entity est traversable
+     */
     private boolean isCrossable(Entity entity){
         String entity_name = entity.getName();
         for(String name : crossableEntitiesNames){
