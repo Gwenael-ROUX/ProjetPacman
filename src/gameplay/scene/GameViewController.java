@@ -104,7 +104,7 @@ public class GameViewController implements SceneController {
     @Override
     public void update(Map map) {
         for (int i = 0; i < gameView.getChildren().size(); i++) {
-            if (((ImageView) gameView.getChildren().get(i)).getImage() == null)
+            if (gameView.getChildren().get(i) instanceof ImageView && ((ImageView) gameView.getChildren().get(i)).getImage() == null)
                 gameView.getChildren().remove(gameView.getChildren().get(i));
         }
 
