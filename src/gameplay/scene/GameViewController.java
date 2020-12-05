@@ -13,6 +13,7 @@ import moteur.controller.KeyboardController;
 import moteur.core_kernel.*;
 import moteur.core_kernel.Map;
 import moteur.physics.Position;
+import moteur.sound.SoundManager;
 import moteur.ui.LabelUI;
 import moteur.ui.SceneController;
 import moteur.ui.SceneManager;
@@ -99,6 +100,7 @@ public class GameViewController implements SceneController {
 
         if (!isGumsExist() && !endlevel) {
             endlevel = true;
+            SoundManager.getInstance().addSound("pacman_beginning.wav", "intro", false, 0.2f, 0L);
             LabelUI labelChangeLvl = new LabelUI("Changement de niveau", gameView.getHeightScene() * 0.1, gameView.getHeightScene() * 0.5);
             labelChangeLvl.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),20);
             labelChangeLvl.setColor(Color.YELLOW);
