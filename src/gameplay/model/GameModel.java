@@ -50,5 +50,6 @@ public class GameModel {
 
     public void setLevelGenerator(LevelGenerator levelGenerator){
         this.levelGenerator = levelGenerator;
+        pacmanModel.setNoel(false);
     }
 }
