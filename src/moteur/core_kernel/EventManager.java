@@ -1,5 +1,6 @@
 package moteur.core_kernel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class EventManager {
      * appel des evenement
      * destruction des events périmés
      */
-    public void manage(){
+    public void manage() {
         List<Event> toRemove = new ArrayList<>();
 
         for(Event event : events){

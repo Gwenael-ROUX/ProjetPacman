@@ -4,6 +4,7 @@ package moteur.core_kernel;
 import moteur.physics.Position;
 import moteur.ui.SceneManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class GameManager {
     /**
      * fonction d'appel a chaque frame
      */
-    public void update(){
+    public void update() throws IOException {
         updateEvents();
 
         updateListEntities();
@@ -62,7 +63,7 @@ public class GameManager {
     /**
      * appel du manager d'event par frame
      */
-    private void updateEvents(){
+    private void updateEvents() throws IOException {
         eventManager.manage();
     }
 

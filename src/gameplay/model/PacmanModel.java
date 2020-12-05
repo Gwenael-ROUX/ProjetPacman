@@ -1,19 +1,24 @@
 package gameplay.model;
 
 public class PacmanModel {
+
+    private final int PALIER = 10000;
     private int score, pv;
     private boolean isNoel;
     private boolean isDead;
+    private int palier;
 
     public PacmanModel(){
         score = 0;
         pv = 3;
         isNoel = false;
         isDead = false;
+        palier = PALIER;
     }
 
     public void incrementPV(){
         pv++;
+        System.out.println("point de vie restant : " + pv);
     }
 
     public void decrementPV(){
@@ -25,6 +30,9 @@ public class PacmanModel {
     public int getPV(){
         return pv;
     }
+    public int getScore(){
+        return score;
+    }
 
     public boolean checkPVnull(){
         return pv <= 0 ;
@@ -32,6 +40,10 @@ public class PacmanModel {
 
     public void addScore(int value){
         score += value;
+        if (this.score >= this.palier){
+            incrementPV();
+            this.palier += PALIER;
+        }
         System.out.println("Score : " + score);
     }
 

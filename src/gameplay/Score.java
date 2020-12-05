@@ -4,15 +4,14 @@ import java.io.*;
 
 public class Score {
 
-    private static final String SCOREFILE = "Ressources/Score/score.txt";
+    private static final String SCOREFILE = "/Score/score.txt";
+    private static final String SCOREFILE2 = "Ressources/Score/score.txt";
 
 
-    public static String getScorefile(){
+    public String getScorefile(){
         String score = "";
         try {
-            InputStream inputStream = new FileInputStream(SCOREFILE);
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Score.class.getResourceAsStream(SCOREFILE)));
             score = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -20,12 +19,16 @@ public class Score {
         return  score;
     }
 
-    public static void setScorefile(String score) throws IOException {
+    public void setScorefile(String score)  {
+        try {
+            File file = new File(SCOREFILE2);
+            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fileWriter);
+            bw.write(score);
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        File file = new File(SCOREFILE);
-        FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
-        BufferedWriter bw = new BufferedWriter(fileWriter);
-        bw.write(score);
-        bw.close();
     }
 }

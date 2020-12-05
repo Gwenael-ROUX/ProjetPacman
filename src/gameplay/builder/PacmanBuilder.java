@@ -5,12 +5,14 @@ import gameplay.controller.PacmanKeyboardController;
 import gameplay.model.PacmanModel;
 import gameplay.physics.Displacement;
 import gameplay.physics.PacmanPhysics;
+import gameplay.scene.GameViewController;
 import moteur.core_kernel.Map;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.AnimationManager;
 import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
+
 
 /**
  * Builder coresspondant à Pacman
@@ -22,7 +24,7 @@ public class PacmanBuilder extends EntityBuilder {
 
     public PacmanBuilder(Map map){
         this.map = map;
-        this.pacmanModel = new PacmanModel();
+        this.pacmanModel = GameViewController.getPacmanModel();
     }
 
     @Override
