@@ -3,6 +3,7 @@ package gameplay.scene;
 import javafx.scene.Parent;
 import moteur.core_kernel.Map;
 import moteur.ui.SceneController;
+import moteur.ui.SceneManager;
 import moteur.ui.ViewFX;
 
 public class MenuController implements SceneController {
@@ -14,6 +15,11 @@ public class MenuController implements SceneController {
     @Override
     public void init() {
         view = new MenuView(500,500);
+    }
+
+    public void setView(ViewFX view) {
+        this.view = view;
+        SceneManager.getInstance().setRoot(view);
     }
 
     @Override

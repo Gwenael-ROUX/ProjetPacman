@@ -27,7 +27,6 @@ public class BoutonUI {
         button.setOnAction(eventEventHandler);
     }
 
-
     public void changeFont(InputStream is, int size) {
         Font font = Font.loadFont(is,size);
         button.setFont(font);

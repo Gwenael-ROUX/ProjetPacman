@@ -16,11 +16,12 @@ public class MenuView extends ViewFX {
     private BoutonUI quitButton;
 
     public MenuView(double height, double width) {
-        setPrefHeight(height);
-        setPrefWidth(width);
+        setHeightScene(height);
+        setWidthScene(width);
         init();
     }
 
+    @Override
     public void init() {
         setBackgroundScene("/Image/Menu/pacman_Menu.jpg");
 
@@ -61,13 +62,13 @@ public class MenuView extends ViewFX {
         controls.setAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                SceneManager.getInstance().setRoot(new ControlesView(getHeightScene(), getWidthScene()));
             }
         });
         helpButton.setAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                SceneManager.getInstance().setRoot(new OptionsView(getHeightScene(), getWidthScene()));
             }
         });
         quitButton.setAction(new EventHandler<ActionEvent>() {
@@ -82,25 +83,5 @@ public class MenuView extends ViewFX {
         addToScene(controls.getButton());
         addToScene(helpButton.getButton());
         addToScene(quitButton.getButton());
-    }
-
-    public BoutonUI getGameButton1P() {
-        return gameButton1P;
-    }
-
-    public BoutonUI getGameButton2P() {
-        return gameButton2P;
-    }
-
-    public BoutonUI getControls() {
-        return controls;
-    }
-
-    public BoutonUI getHelpButton() {
-        return helpButton;
-    }
-
-    public BoutonUI getQuitButton() {
-        return quitButton;
     }
 }
