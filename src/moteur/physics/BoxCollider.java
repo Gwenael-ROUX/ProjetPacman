@@ -1,5 +1,9 @@
 package moteur.physics;
 
+/**
+ * Classe correspondant à une boite permettant de détecter des collisions
+ * associé à une entity
+ */
 public class BoxCollider implements Collider {
     private Position position1;
     private Position position2;
