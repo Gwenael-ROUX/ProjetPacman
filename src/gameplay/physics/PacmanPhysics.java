@@ -7,10 +7,12 @@ import gameplay.events.animation.EventPacmanDie;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.EventManager;
+import moteur.core_kernel.GameManager;
 import moteur.core_kernel.Map;
 import moteur.physics.Collider;
 import moteur.physics.PhysicsComponent;
 import moteur.physics.Position;
+import moteur.ui.SceneManager;
 
 public class PacmanPhysics extends PhysicsComponent {
     private PacmanModel pacmanModel;
@@ -84,5 +86,10 @@ public class PacmanPhysics extends PhysicsComponent {
         entity_owned.setOrientation((entity_owned.getOrientation()+180.0)%360);
         entity_owned.getPhysicsComponent().update(entity_owned);
         entity_owned.setOrientation((entity_owned.getOrientation()-180.0)%360);
+    }
+
+    private void moveFoward(Entity entity_owned){
+        if(entity_owned.getOrientation() == null) return;
+        entity_owned.getPhysicsComponent().update(entity_owned);
     }
 }
