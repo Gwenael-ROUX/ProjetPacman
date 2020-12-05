@@ -1,5 +1,8 @@
 package moteur.core_kernel;
 
+/**
+ * Classe pour la création d'evenement programmable
+ */
 public abstract class Event {
     protected Entity entity;
     protected int time;
@@ -13,6 +16,9 @@ public abstract class Event {
         this.time = time;
     }
 
+    /**
+     * fonction d'appel lors du déclenchement de l'evenement creer
+     */
     public abstract void handle();
 
     public void update(){
