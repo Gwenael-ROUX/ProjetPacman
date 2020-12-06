@@ -6,6 +6,9 @@ import moteur.core_kernel.Entity;
 import moteur.core_kernel.Map;
 import moteur.physics.Position;
 
+/**
+ * Classe stockant les informations des stats du jeu
+ */
 public class GameModel {
     private static GameModel gameModel;
     private LevelGenerator levelGenerator;
@@ -23,6 +26,9 @@ public class GameModel {
         return gameModel;
     }
 
+    /**
+     * pour reset le jeu, reset des positions de chaque entity
+     */
     public void resetGame(){
         for(Entity e : levelGenerator.getInitPositionEntities().keySet()){
             resetEntity(e);
@@ -31,6 +37,10 @@ public class GameModel {
         }
     }
 
+    /**
+     * re-placement de la position initiale dans la scene d'une entity
+     * @param entity
+     */
     public void resetEntity(Entity entity) {
         Position actualPosition = levelGenerator.getMap().getPositionEntity(entity);
         Position initPosition = levelGenerator.getInitPositionEntities().get(entity);

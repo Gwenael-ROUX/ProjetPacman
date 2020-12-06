@@ -1,5 +1,8 @@
 package gameplay.model;
 
+/**
+ * Classe contenant les informations des stats du pacman
+ */
 public class PacmanModel {
 
     private final int PALIER = 10000;
@@ -34,10 +37,19 @@ public class PacmanModel {
         return score;
     }
 
+    /**
+     * fonction pour permettant de detecter la mort du pacman, declenchant l'event de décès
+     * @return
+     */
     public boolean checkPVnull(){
         return pv <= 0 ;
     }
 
+    /**
+     * Ajout de score
+     * verifie si le score est suffisament haut pour l'obtention d'une vies
+     * @param value
+     */
     public void addScore(int value){
         score += value;
         if (this.score >= this.palier){
@@ -47,6 +59,10 @@ public class PacmanModel {
         System.out.println("Score : " + score);
     }
 
+    /**
+     * activation du mode super de pacman, le rendant invincible
+     * @param noel
+     */
     public void setNoel(boolean noel) {
         isNoel = noel;
     }
