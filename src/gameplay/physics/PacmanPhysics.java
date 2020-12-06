@@ -15,6 +15,7 @@ import moteur.physics.Collider;
 import moteur.physics.PhysicsComponent;
 import moteur.physics.Position;
 import moteur.sound.SoundManager;
+import java.util.HashMap;
 
 /**
  * Classe du composant physique de pacman
@@ -22,12 +23,16 @@ import moteur.sound.SoundManager;
 public class PacmanPhysics extends PhysicsComponent {
     private PacmanModel pacmanModel;
     private Map map;
+    private HashMap<Entity, Boolean> ghostsEat;
+    private boolean changeGhostEat;
 
     public PacmanPhysics(double speed, Collider collider, PacmanModel pacmanModel, Map map) {
         super(speed);
         this.collider = collider;
         this.pacmanModel = pacmanModel;
         this.map = map;
+        ghostsEat = new HashMap<>();
+        changeGhostEat = false;
     }
 
     /**
@@ -84,10 +89,11 @@ public class PacmanPhysics extends PhysicsComponent {
      * @param entity
      */
     private void updateGhostCollision(Entity entity_owned, Entity entity){
-        if (pacmanModel.isNoel()){
+        if (pacmanModel.isNoel() && canEat(entity)){
             EventManager.getEventManager().addEvent(new EventEatGhost(pacmanModel, entity));
             GameModel.getInstance().resetEntity(entity);
         } else {
+            resetGhostEat();
             pacmanModel.decrementPV();
             if (pacmanModel.checkPVnull()){
                 if (!pacmanModel.isDead()){
@@ -99,6 +105,26 @@ public class PacmanPhysics extends PhysicsComponent {
                 GameModel.getInstance().resetGame();
                 SoundManager.getInstance().addSound("touch.wav", "touch", false, 0.2f, 0L);
             }
+        }
+    }
+
+    private void resetGhostEat(){
+        if(pacmanModel.isNoel()) return;
+        if(! changeGhostEat) return;
+
+        ghostsEat.replaceAll((e, v) -> true);
+        changeGhostEat = false;
+    }
+
+    private boolean canEat(Entity entity) {
+        changeGhostEat = true;
+        if(ghostsEat.containsKey(entity)){
+            boolean res = ghostsEat.get(entity);
+            ghostsEat.put(entity, false);
+            return res;
+        } else {
+            ghostsEat.put(entity, false);
+            return true;
         }
     }
 
