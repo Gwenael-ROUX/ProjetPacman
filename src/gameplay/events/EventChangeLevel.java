@@ -4,6 +4,9 @@ import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import gameplay.scene.GameViewController;
 
+/**
+ * Event permettant de changer de level à la fin d'un niveau
+ */
 public class EventChangeLevel extends Event {
     private GameViewController controller;
 

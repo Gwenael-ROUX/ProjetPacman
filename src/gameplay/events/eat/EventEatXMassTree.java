@@ -1,6 +1,5 @@
-package gameplay.events;
+package gameplay.events.eat;
 
-import gameplay.events.animation.EventEndNoel;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
