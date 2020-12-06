@@ -8,8 +8,8 @@ public class Score {
 
 
     public String getScorefile(){
-        String score = preferences.get("Score","0");
-        return  score;
+        String score = preferences.get("Score", "0");
+        return score;
     }
 
     public void setScorefile(String score)  {
