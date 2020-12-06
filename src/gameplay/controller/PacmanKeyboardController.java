@@ -12,6 +12,9 @@ import moteur.physics.Position;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe definissant les inputs pour le deuxième joueur
+ */
 public class PacmanKeyboardController extends KeyboardController {
     private Displacement nextMove;
     private Displacement move;
@@ -26,6 +29,9 @@ public class PacmanKeyboardController extends KeyboardController {
         createHandler();
     }
 
+    /**
+     * fonction recuperant l'input du joueurs pour définir le prochain déplacement
+     */
     private void createHandler(){
         createHandler(KeyEvent -> {
             switch (KeyEvent) {
@@ -48,6 +54,10 @@ public class PacmanKeyboardController extends KeyboardController {
         });
     }
 
+    /**
+     * Fonction mettant à jour l'orientation
+     * @param entity
+     */
     @Override
     public void update(Entity entity){
         if(!GameModel.getInstance().getPacmanModel().isDead()){
@@ -58,6 +68,10 @@ public class PacmanKeyboardController extends KeyboardController {
         }
     }
 
+    /**
+     * Fonction choisissant la bonne animation
+     * @param entity
+     */
     private void updateGraphics(Entity entity){
         if(move != Displacement.NOTHING)
             if (GameModel.getInstance().getPacmanModel().isNoel())
@@ -66,6 +80,10 @@ public class PacmanKeyboardController extends KeyboardController {
                 entity.getGraphicsComponent().getAnimationManager().setCurrentAnimation(move.orientation.toString());
     }
 
+    /**
+     * Fonction verifiant si la direction entré est valable pour le déplacement de l'entity
+     * @param entity
+     */
     private void updateMove(Entity entity){
         if(last_pv != GameModel.getInstance().getPacmanModel().getPV() || GameModel.getInstance().getPacmanModel().isDead()){
             move = Displacement.NOTHING;
@@ -111,6 +129,12 @@ public class PacmanKeyboardController extends KeyboardController {
         }
     }
 
+    /**
+     * fonction permettant de savoir si dans la liste d'entity passé en paramètre
+     * toutes les entity sont traversable
+     * @param entities
+     * @return
+     */
     private boolean canCross(List<Entity> entities){
         for(Entity entity : entities){
             if(EntityType.WALL.name.equals(entity.getName()))
