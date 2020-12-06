@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Manager des evenement programmable
+ * Manager des evenements programmables
  */
 public class EventManager {
     private static EventManager eventManager;
@@ -24,14 +24,14 @@ public class EventManager {
 
     /**
      * ajout d'un evenement programable dans la list du manager
-     * @param e evenement ajouter
+     * @param e evenement ajoute
      */
     public void addEvent(Event e){
         events.add(e);
     }
 
     /**
-     * appel des evenement
+     * appel des evenements
      * destruction des events périmés
      */
     public void manage() {

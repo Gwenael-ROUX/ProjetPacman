@@ -10,7 +10,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * Classe pour la boucle principal du jeu
+ * Classe pour la boucle principale du jeu
  */
 public class GameLoop extends Application {
 

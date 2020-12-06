@@ -19,8 +19,8 @@ public class Animation {
 
     /**
      * methode renvoyant l'image suivante en fonction de la durée de l'animation et du temps courant
-     * @param time
-     * @return
+     * @param time Temps courant
+     * @return L'image suivante
      */
     public Image getCurrentImage(double time){
         return images.get((int)((time % (images.size() * duration)) / duration));

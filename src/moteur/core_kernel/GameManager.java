@@ -41,7 +41,7 @@ public class GameManager {
     }
 
     /**
-     * met a jour la liste avec toute les entity presente en jeu
+     * met a jour la liste avec toutes les entity presentent en jeu
      */
     private void updateListEntities(){
         entities.clear();

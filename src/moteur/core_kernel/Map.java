@@ -6,11 +6,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Map {// implements Iterable<Entity> {
+public class Map {
     private List<Entity>[][] matrix;
     private double dimCellHgt, dimCellWdt;
     private Position limitTopLeft, limitBottomRight;
 
+    /**
+     * Classe permettant de gerer la map du jeu
+     * @param limitTopLeft Limite du jeu a la position en haut a gauche
+     * @param limitBottomRight Limite du jeu a la position en bas a droite
+     */
     public Map(Position limitTopLeft, Position limitBottomRight){
         this.limitTopLeft = limitTopLeft;
         this.limitBottomRight = limitBottomRight;

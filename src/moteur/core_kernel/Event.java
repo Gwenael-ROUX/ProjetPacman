@@ -17,7 +17,7 @@ public abstract class Event {
     }
 
     /**
-     * fonction d'appel lors du déclenchement de l'evenement creer
+     * fonction d'appel lors du déclenchement de l'evenement cree
      */
     public abstract void handle();
 

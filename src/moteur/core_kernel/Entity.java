@@ -20,7 +20,7 @@ public class Entity {
     }
 
     /**
-     * movement d'entity par Input Controlleur
+     * mouvement d'entity par Input Controlleur
      */
     public void move(){
         if(controllerComponent != null)
@@ -30,8 +30,8 @@ public class Entity {
     }
 
     /**
-     * Function appele chaque frame
-     * update de l'affichage du l'entity
+     * Fonction appelee a chaque frame
+     * update de l'affichage de l'entity
      */
     public void update(){
         if (graphicsComponent != null)

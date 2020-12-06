@@ -4,7 +4,7 @@ import moteur.core_kernel.Component;
 import moteur.core_kernel.Entity;
 
 /**
- * Classe regroupant toute les propriétés physique d'une entity
+ * Classe regroupant toutes les propriétés physique d'une entity
  */
 public abstract class PhysicsComponent implements ColliderListener, ExitListener, Component {
     public double speed;
