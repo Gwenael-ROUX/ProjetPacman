@@ -96,6 +96,7 @@ public class GameViewController implements SceneController {
 
         if (!isGumsExist() && !endlevel) {
             endlevel = true;
+            SoundManager.getInstance().stopAllSound();
             SoundManager.getInstance().addSound("pacman_beginning.wav", "intro", false, 0.2f, 0L);
             LabelUI labelChangeLvl = new LabelUI("Changement de niveau", gameView.getHeightScene() * 0.1, gameView.getHeightScene() * 0.5);
             labelChangeLvl.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),20);
