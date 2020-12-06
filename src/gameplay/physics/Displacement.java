@@ -1,5 +1,8 @@
 package gameplay.physics;
 
+/**
+ * Enumeration des direction possibles en 2D
+ */
 public enum Displacement {
     //TODO changer up et down
     UP(270.0),

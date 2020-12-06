@@ -15,6 +15,9 @@ import moteur.physics.Position;
 import moteur.sound.SoundManager;
 import moteur.ui.SceneManager;
 
+/**
+ * Classe du composant physique de pacman
+ */
 public class PacmanPhysics extends PhysicsComponent {
     private PacmanModel pacmanModel;
     private Map map;
@@ -26,6 +29,11 @@ public class PacmanPhysics extends PhysicsComponent {
         this.map = map;
     }
 
+    /**
+     * entrer en collision avec le box Collider du pacman
+     * @param entity_owned
+     * @param entity
+     */
     @Override
     public void onCollision(Entity entity_owned, Entity entity){
         if(entity.getName().equals(EntityType.GHOST.name)){
@@ -46,6 +54,11 @@ public class PacmanPhysics extends PhysicsComponent {
         moveBack(entity_owned);
     }
 
+    /**
+     * met a jour les positions du pacman en fonction du controleur
+     * @param entity_owned
+     * @param entity
+     */
     private void updatePositionEntityPosition(Entity entity_owned, Entity entity){
         if(entity_owned.getOrientation() != null){
             double x = entity_owned.getPosition().getX(), y = entity_owned.getPosition().getY();
@@ -64,6 +77,11 @@ public class PacmanPhysics extends PhysicsComponent {
         }
     }
 
+    /**
+     * Check en cas de collision avec un fantome quelconque
+     * @param entity_owned
+     * @param entity
+     */
     private void updateGhostCollision(Entity entity_owned, Entity entity){
         if (pacmanModel.isNoel()){
             EventManager.getEventManager().addEvent(new EventEatGhost(pacmanModel, entity));
@@ -83,6 +101,10 @@ public class PacmanPhysics extends PhysicsComponent {
         }
     }
 
+    /**
+     * mouvement de demi tour du pacman
+     * @param entity_owned
+     */
     private void moveBack(Entity entity_owned){
         if(entity_owned.getOrientation() == null) return;
         entity_owned.setOrientation((entity_owned.getOrientation()+180.0)%360);
@@ -90,6 +112,10 @@ public class PacmanPhysics extends PhysicsComponent {
         entity_owned.setOrientation((entity_owned.getOrientation()-180.0)%360);
     }
 
+    /**
+     * mouvement tout droit du pacman
+     * @param entity_owned
+     */
     private void moveFoward(Entity entity_owned){
         if(entity_owned.getOrientation() == null) return;
         entity_owned.getPhysicsComponent().update(entity_owned);
