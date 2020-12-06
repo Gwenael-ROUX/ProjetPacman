@@ -1,9 +1,6 @@
 package moteur.ui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.io.InputStream;
@@ -33,7 +30,7 @@ public class LabelUI {
     }
 
     public void setColor(Color color) {
-        label.setTextFill(color);
+        label.setTextFill(color.fxcolor);
     }
 
     public void update(String text){

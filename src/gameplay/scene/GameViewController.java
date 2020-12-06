@@ -5,16 +5,12 @@ import gameplay.LevelGenerator;
 import gameplay.model.GameModel;
 import gameplay.Score;
 import gameplay.events.EventChangeLevel;
-import gameplay.model.PacmanModel;
-import gameplay.physics.Displacement;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import moteur.controller.GeneralKeyboardController;
 import moteur.controller.KeyboardController;
 import moteur.core_kernel.*;
 import moteur.core_kernel.Map;
-import moteur.physics.Position;
 import moteur.sound.SoundManager;
 import moteur.ui.*;
 

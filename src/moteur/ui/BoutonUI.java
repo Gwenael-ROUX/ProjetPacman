@@ -1,11 +1,7 @@
 package moteur.ui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
 import java.io.InputStream;
 
 public class BoutonUI {
@@ -23,8 +19,8 @@ public class BoutonUI {
         return button;
     }
 
-    public void setAction(EventHandler<ActionEvent> eventEventHandler) {
-        button.setOnAction(eventEventHandler);
+    public void setAction(SceneHandler eventEventHandler) {
+        button.setOnAction(actionEvent -> eventEventHandler.handle());
     }
 
     public void changeFont(InputStream is, int size) {
@@ -33,6 +29,6 @@ public class BoutonUI {
     }
 
     public void setColor(Color color) {
-        button.setTextFill(color);
+        button.setTextFill(color.fxcolor);
     }
 }

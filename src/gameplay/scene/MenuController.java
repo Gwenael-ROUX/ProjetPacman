@@ -3,7 +3,6 @@ package gameplay.scene;
 import javafx.scene.Parent;
 import moteur.core_kernel.Map;
 import moteur.ui.SceneController;
-import moteur.ui.SceneManager;
 import moteur.ui.ViewFX;
 
 public class MenuController implements SceneController {

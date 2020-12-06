@@ -1,12 +1,6 @@
 package gameplay.scene;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.paint.Color;
-import moteur.ui.BoutonUI;
-import moteur.ui.LabelUI;
-import moteur.ui.SceneManager;
-import moteur.ui.ViewFX;
+import moteur.ui.*;
 
 public class OptionsView extends ViewFX {
 
@@ -23,12 +17,20 @@ public class OptionsView extends ViewFX {
         retour.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),11);
         retour.setColor(Color.WHITE);
 
-        retour.setAction(new EventHandler<ActionEvent>() {
+        retour.setAction(new SceneHandler() {
+            @Override
+            public void handle() {
+                SceneManager.getInstance().setRoot(new MenuView(getHeightScene(), getWidthScene()));
+            }
+        });
+
+        /*retour.setAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 SceneManager.getInstance().setRoot(new MenuView(getHeightScene(), getWidthScene()));
             }
-        });
+        });*/
+
         LabelUI labelTitre = new LabelUI("Aide", getWidthScene() * 0.4, 9);
         labelTitre.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),15);
         labelTitre.setColor(Color.WHITE);

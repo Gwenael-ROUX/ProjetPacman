@@ -1,12 +1,7 @@
 package gameplay.scene;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.paint.Color;
-import moteur.ui.BoutonUI;
-import moteur.ui.SceneManager;
-import moteur.ui.ViewFX;
+import moteur.ui.*;
 
 public class MenuView extends ViewFX {
     private BoutonUI gameButton1P;
@@ -45,38 +40,79 @@ public class MenuView extends ViewFX {
         quitButton.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),30);
         quitButton.setColor(Color.WHITE);
 
-        gameButton1P.setAction(new EventHandler<ActionEvent>() {
+        gameButton1P.setAction(new SceneHandler() {
+            @Override
+            public void handle() {
+                GameViewController gameViewController = new GameViewController(1, false);
+                SceneManager.getInstance().setSceneView(gameViewController);
+            }
+        });
+
+        /*gameButton1P.setAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 GameViewController gameViewController = new GameViewController(1, false);
                 SceneManager.getInstance().setSceneView(gameViewController);
             }
+        });*/
+
+        gameButton2P.setAction(new SceneHandler() {
+            @Override
+            public void handle() {
+                GameViewController gameViewController = new GameViewController(1, true);
+                SceneManager.getInstance().setSceneView(gameViewController);
+            }
         });
-        gameButton2P.setAction(new EventHandler<ActionEvent>() {
+
+        /*gameButton2P.setAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 GameViewController gameViewController = new GameViewController(1, true);
                 SceneManager.getInstance().setSceneView(gameViewController);
             }
+        });*/
+
+        controls.setAction(new SceneHandler() {
+            @Override
+            public void handle() {
+                SceneManager.getInstance().setRoot(new ControlesView(getHeightScene(), getWidthScene()));
+            }
         });
-        controls.setAction(new EventHandler<ActionEvent>() {
+
+        /*controls.setAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 SceneManager.getInstance().setRoot(new ControlesView(getHeightScene(), getWidthScene()));
             }
+        });*/
+
+        helpButton.setAction(new SceneHandler() {
+            @Override
+            public void handle() {
+                SceneManager.getInstance().setRoot(new OptionsView(getHeightScene(), getWidthScene()));
+            }
         });
-        helpButton.setAction(new EventHandler<ActionEvent>() {
+
+        /*helpButton.setAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 SceneManager.getInstance().setRoot(new OptionsView(getHeightScene(), getWidthScene()));
             }
+        });*/
+
+        quitButton.setAction(new SceneHandler() {
+            @Override
+            public void handle() {
+                Platform.exit();
+            }
         });
-        quitButton.setAction(new EventHandler<ActionEvent>() {
+
+        /*quitButton.setAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Platform.exit();
             }
-        });
+        });*/
 
         addToScene(gameButton1P.getButton());
         addToScene(gameButton2P.getButton());
