@@ -2,6 +2,9 @@ package gameplay.scene;
 
 import moteur.ui.*;
 
+/**
+ * Vue correspondant a l'aide
+ */
 public class OptionsView extends ViewFX {
 
     public OptionsView(double height, double width) {

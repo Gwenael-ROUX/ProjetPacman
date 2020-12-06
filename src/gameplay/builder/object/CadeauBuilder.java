@@ -8,6 +8,9 @@ import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant aux cadeaux
+ */
 public class CadeauBuilder extends EntityBuilder {
     @Override
     public void buildPosition(Position position) {

@@ -9,7 +9,7 @@ import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
 /**
- * Builder coresspondant aux gomme (sucre d'orge)
+ * Builder coresspondant aux gommes (sucre d'orge)
  */
 public class GommeBuilder extends EntityBuilder {
 

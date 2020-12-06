@@ -9,7 +9,7 @@ import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
 /**
- * Builder coresspondant aux mur
+ * Builder coresspondant aux murs
  */
 public class WallBuilder extends EntityBuilder {
     @Override

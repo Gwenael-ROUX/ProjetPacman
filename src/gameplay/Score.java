@@ -2,6 +2,9 @@ package gameplay;
 
 import java.util.prefs.Preferences;
 
+/**
+ * Classe permettant de gerer le meilleur score
+ */
 public class Score {
 
     private final Preferences preferences = Preferences.userRoot().node(Score.class.getName());

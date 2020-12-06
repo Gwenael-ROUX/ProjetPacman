@@ -3,11 +3,13 @@ package gameplay;
 import moteur.core_kernel.GameLoop;
 import gameplay.scene.MenuController;
 
-
-public class PacmanLaunch {
+/**
+ * Classe permettant de lancer le jeu pacnoel
+ */
+public class PacnoelLaunch {
 
     public static void main(String[] args) {
-        GameLoop.setTitle("Pacman");
+        GameLoop.setTitle("PacNoel");
         MenuController menuController = new MenuController();
         GameLoop.setSceneController(menuController);
         GameLoop.startGame();

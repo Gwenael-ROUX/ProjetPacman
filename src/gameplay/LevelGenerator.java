@@ -35,6 +35,13 @@ public class LevelGenerator {
     private HashMap<Entity, Position> initPositionEntities;
     private boolean twoPlayer;
 
+    /**
+     * Classe permettant de generer un niveau
+     * @param v1 Longueur du niveau
+     * @param v2 Largeur du niveau
+     * @param chemin Chemin d'acces du fichier du niveau
+     * @param twoPlayer Savoir si le jeu est en un ou deux joueurs
+     */
     public LevelGenerator(double v1, double v2, String chemin, boolean twoPlayer) {
         this.v1 = v1;
         this.v2 = v2;
@@ -57,6 +64,10 @@ public class LevelGenerator {
         basicPathFinder.setMap(mapRepresentation);
     }
 
+    /**
+     * Lit le fichier du niveau et initialise la map du jeu
+     * @param chemin Chemin du fichier du niveau
+     */
     public void readFile(String chemin){
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(LevelGenerator.class.getResourceAsStream(chemin)));
@@ -81,6 +92,11 @@ public class LevelGenerator {
         }
     }
 
+    /**
+     * Parcours le tableau du niveau du jeu et cree l'entite correspondante en initialisant la map du jeu
+     * @param tab Ligne du tableau
+     * @param i Numero de la ligne du tableau
+     */
     private void putEntity(String[] tab, int i) {
         int j = 0;
         double posY = (dimCaseLarg * i);

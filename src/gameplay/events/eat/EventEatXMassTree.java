@@ -8,6 +8,9 @@ import moteur.core_kernel.Map;
 import moteur.physics.Position;
 import moteur.sound.SoundManager;
 
+/**
+ * Event gerant l'action manger un sapin de noel
+ */
 public class EventEatXMassTree extends Event {
     private PacmanModel pacmanModel;
     private Entity entityowned;

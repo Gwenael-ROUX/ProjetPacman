@@ -4,6 +4,9 @@ import moteur.core_kernel.Map;
 import moteur.ui.SceneController;
 import moteur.ui.ViewFX;
 
+/**
+ * Classe permettant de gerer les vues du menu
+ */
 public class MenuController implements SceneController {
     private ViewFX view;
 

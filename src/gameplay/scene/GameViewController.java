@@ -31,8 +31,12 @@ public class GameViewController implements SceneController {
     LabelUI vieUI = new LabelUI("vie Restante: " +  GameModel.getInstance().getPacmanModel().getPV(),50,-10);
     LabelUI bestScore ;
 
-
-
+    /**
+     * Classe permettant de gerer la vue du jeu
+     * @param nbLevel Nombre de niveau total
+     * @param currentlevel Niveau courant
+     * @param twoPlayer Savoir si le jeu est en un ou deux joueurs
+     */
     public GameViewController(int nbLevel, int currentlevel, boolean twoPlayer) {
         this.nbLevel = nbLevel;
         this.twoPlayer = twoPlayer;
@@ -173,7 +177,7 @@ public class GameViewController implements SceneController {
     }
 
     /**
-     *
+     * Fonction appelée quand tous les niveaux ont ete reussi. Reinitialise les paramètres du pacman et met la scene courante au menu principal
      */
     public void getBackMenuWin() {
         GameModel.getInstance().resetPacMan();
@@ -182,6 +186,9 @@ public class GameViewController implements SceneController {
         GameLoop.setGameManager(null);
     }
 
+    /**
+     * Met en place le nouveau niveau
+     */
     public void setNewLevel() {
         this.levelGenerator = new LevelGenerator(512,512,"/Level/level" + currentLvl + ".txt",twoPlayer);
         GameModel.getInstance().setLevelGenerator(levelGenerator);

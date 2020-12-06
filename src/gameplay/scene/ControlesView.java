@@ -2,6 +2,9 @@ package gameplay.scene;
 
 import moteur.ui.*;
 
+/**
+ * Vue correspondant aux controles
+ */
 public class ControlesView extends ViewFX {
 
     public ControlesView(double height, double width) {

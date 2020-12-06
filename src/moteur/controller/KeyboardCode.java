@@ -3,7 +3,7 @@ package moteur.controller;
 import javafx.scene.input.KeyCode;
 
 /**
- * Toutes les inputs reconnu par le moteur
+ * Toutes les inputs reconnus par le moteur
  */
 public enum KeyboardCode {
     A(KeyCode.A), B(KeyCode.B), C(KeyCode.C), D(KeyCode.D), E(KeyCode.E), F(KeyCode.F), G(KeyCode.G), H(KeyCode.H), I(KeyCode.I), J(KeyCode.J), K(KeyCode.K),

@@ -1,6 +1,9 @@
 package gameplay.scene;
 import moteur.ui.ViewFX;
 
+/**
+ * Vue correspondant au jeu
+ */
 public class GameView extends ViewFX {
 
     public GameView() {

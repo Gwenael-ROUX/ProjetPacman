@@ -2,6 +2,9 @@ package gameplay.scene;
 
 import moteur.ui.*;
 
+/**
+ * Vue correspondant au menu principal
+ */
 public class MenuView extends ViewFX {
     private BoutonUI gameButton1P;
     private BoutonUI gameButton2P;
