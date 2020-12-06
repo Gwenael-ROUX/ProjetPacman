@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  */
 public class GameLoop extends Application {
 
+    private static String pathIcon;
     private static double time;
     private static float timeMultiplicator = 1f;
     private static String title = "";
@@ -28,6 +29,7 @@ public class GameLoop extends Application {
     @Override
     public void start(Stage stage) {
         SceneManager.getInstance(stage);
+        SceneManager.getInstance().setIcon(pathIcon);
         SceneManager.getInstance().setSceneView(sceneController);
         SceneManager.getInstance().setTitle(title);
 
@@ -86,5 +88,9 @@ public class GameLoop extends Application {
 
     public static void setSceneController(SceneController sceneController) {
         GameLoop.sceneController = sceneController;
+    }
+
+    public static void setPathIcon(String pathIcon) {
+        GameLoop.pathIcon = pathIcon;
     }
 }

@@ -12,6 +12,7 @@ public class PacnoelLaunch {
         GameLoop.setTitle("PacNoel");
         MenuController menuController = new MenuController();
         GameLoop.setSceneController(menuController);
+        GameLoop.setPathIcon("/Image/pacnoel/right.png");
         GameLoop.startGame();
     }
 }
