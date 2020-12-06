@@ -17,7 +17,6 @@ public class GameLoop extends Application {
     private static double time;
     private static float timeMultiplicator = 1f;
     private static String title = "";
-    private static long startTimeModifMult;
     private static AnimationTimer animationTimer;
     private static GameManager gameManager;
     private static SceneController sceneController;
@@ -25,10 +24,9 @@ public class GameLoop extends Application {
     /**
      * Fonction d'initialisation au lancement
      * @param stage scene actuellement chargée
-     * @throws Exception
      */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         SceneManager.getInstance(stage);
         SceneManager.getInstance().setSceneView(sceneController);
         SceneManager.getInstance().setTitle(title);
@@ -78,7 +76,7 @@ public class GameLoop extends Application {
         animationTimer.stop();
     }
 
-    public static void startAnimationTiemer() {
+    public static void startAnimationTimer() {
         animationTimer.start();
     }
 

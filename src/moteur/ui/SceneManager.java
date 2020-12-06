@@ -1,10 +1,13 @@
 package moteur.ui;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import moteur.core_kernel.Map;
+import moteur.sound.SoundManager;
 
 public class SceneManager {
     private Stage stage;
@@ -16,6 +19,12 @@ public class SceneManager {
         this.stage.sizeToScene();
         this.stage.centerOnScreen();
         this.stage.setResizable(false);
+        this.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                SoundManager.getInstance().stopAllSound();
+            }
+        });
     }
 
     public static SceneManager getInstance(Stage stage) {
