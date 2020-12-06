@@ -2,6 +2,7 @@ package gameplay.scene;
 
 import gameplay.EntityType;
 import gameplay.LevelGenerator;
+import gameplay.events.EventWinAllLevel;
 import gameplay.model.GameModel;
 import gameplay.Score;
 import gameplay.events.EventChangeLevel;
@@ -21,6 +22,7 @@ public class GameViewController implements SceneController {
     private int currentLvl;
     private boolean twoPlayer;
     private boolean endlevel;
+    private int nbLevel;
 
     private static Score score = new Score();;
     private static int sessionBestScore;
@@ -31,11 +33,12 @@ public class GameViewController implements SceneController {
 
 
 
-    public GameViewController(int level, boolean twoPlayer) {
+    public GameViewController(int nbLevel, int currentlevel, boolean twoPlayer) {
+        this.nbLevel = nbLevel;
         this.twoPlayer = twoPlayer;
         this.endlevel = false;
-        levelGenerator = new LevelGenerator(512,512,"/Level/level" + level + ".txt", twoPlayer);
-        currentLvl = level;
+        this.currentLvl = currentlevel;
+        levelGenerator = new LevelGenerator(512,512,"/Level/level" + currentlevel + ".txt", twoPlayer);
         gameManager = new GameManager(levelGenerator.getMap());
         GameModel.getInstance().setLevelGenerator(levelGenerator);
         gameView = new GameView();
@@ -45,7 +48,6 @@ public class GameViewController implements SceneController {
 
     @Override
     public void init() {
-
         Comparator<Entity> comparator = Comparator.comparingInt(o -> o.getGraphicsComponent().getLayer());
         KeyboardController keyboard1 = (KeyboardController) levelGenerator.getPacman().getControllerComponent();
         GeneralKeyboardController keyboardController;
@@ -91,13 +93,14 @@ public class GameViewController implements SceneController {
         if (!isGumsExist() && !endlevel) {
             endlevel = true;
             SoundManager.getInstance().stopAllSound();
-            SoundManager.getInstance().addSound("pacman_beginning.wav", "intro", false, 0.2f, 0L);
-            LabelUI labelChangeLvl = new LabelUI("Changement de niveau", gameView.getHeightScene() * 0.1, gameView.getHeightScene() * 0.5);
-            labelChangeLvl.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),20);
-            labelChangeLvl.setColor(Color.YELLOW);
-            gameView.addToScene(labelChangeLvl.getLabel());
             ++currentLvl;
-            EventManager.getEventManager().addEvent(new EventChangeLevel(null, this, 20));
+            if (currentLvl > nbLevel) {
+                displayMainTitle("Niveaux termines");
+                EventManager.getEventManager().addEvent(new EventWinAllLevel(null, this, 20));
+            } else {
+                displayMainTitle("Changement de niveau");
+                EventManager.getEventManager().addEvent(new EventChangeLevel(null, this, 20));
+            }
         }
     }
 
@@ -132,7 +135,6 @@ public class GameViewController implements SceneController {
     public void updateUI(){
         scoreUI.update("Score: " + GameModel.getInstance().getPacmanModel().getScore());
         vieUI.update("Vie: " + GameModel.getInstance().getPacmanModel().getPV());
-        //bestScore.update("bestScore: " + score.getScorefile());
     }
 
     @Override
@@ -146,6 +148,21 @@ public class GameViewController implements SceneController {
 
     public ViewFX getGameView() {
         return gameView;
+    }
+
+    public void displayMainTitle(String name) {
+        LabelUI labelChangeLvl = new LabelUI(name, gameView.getHeightScene() * 0.1, gameView.getHeightScene() * 0.5);
+        labelChangeLvl.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),20);
+        labelChangeLvl.setColor(Color.YELLOW);
+        gameView.addToScene(labelChangeLvl.getLabel());
+    }
+
+    public void getBackMenuWin() {
+        displayMainTitle("Niveaux termines");
+        GameModel.getInstance().resetPacMan();
+        SceneManager.getInstance().setSceneView(new MenuController());
+        SoundManager.getInstance().stopAllSound();
+        GameLoop.setGameManager(null);
     }
 
     public void setNewLevel() {
