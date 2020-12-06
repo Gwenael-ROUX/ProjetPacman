@@ -170,7 +170,7 @@ public class GameViewController implements SceneController {
      * @param name contenu du texte
      */
     public void displayMainTitle(String name) {
-        LabelUI labelChangeLvl = new LabelUI(name, gameView.getHeightScene() * 0.25, gameView.getHeightScene() * 0.5);
+        LabelUI labelChangeLvl = new LabelUI(name, gameView.getWidthScene() * 0.1, gameView.getHeightScene() * 0.5);
         labelChangeLvl.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),20);
         labelChangeLvl.setColor(Color.YELLOW);
         gameView.addToScene(labelChangeLvl.getLabel());
