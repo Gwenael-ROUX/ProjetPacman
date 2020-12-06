@@ -1,6 +1,5 @@
 package gameplay.scene;
 
-import javafx.application.Platform;
 import moteur.ui.*;
 
 public class MenuView extends ViewFX {
@@ -48,14 +47,6 @@ public class MenuView extends ViewFX {
             }
         });
 
-        /*gameButton1P.setAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                GameViewController gameViewController = new GameViewController(1, false);
-                SceneManager.getInstance().setSceneView(gameViewController);
-            }
-        });*/
-
         gameButton2P.setAction(new SceneHandler() {
             @Override
             public void handle() {
@@ -64,27 +55,12 @@ public class MenuView extends ViewFX {
             }
         });
 
-        /*gameButton2P.setAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                GameViewController gameViewController = new GameViewController(1, true);
-                SceneManager.getInstance().setSceneView(gameViewController);
-            }
-        });*/
-
         controls.setAction(new SceneHandler() {
             @Override
             public void handle() {
                 SceneManager.getInstance().setRoot(new ControlesView(getHeightScene(), getWidthScene()));
             }
         });
-
-        /*controls.setAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneManager.getInstance().setRoot(new ControlesView(getHeightScene(), getWidthScene()));
-            }
-        });*/
 
         helpButton.setAction(new SceneHandler() {
             @Override
@@ -93,26 +69,12 @@ public class MenuView extends ViewFX {
             }
         });
 
-        /*helpButton.setAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneManager.getInstance().setRoot(new OptionsView(getHeightScene(), getWidthScene()));
-            }
-        });*/
-
         quitButton.setAction(new SceneHandler() {
             @Override
             public void handle() {
-                Platform.exit();
+                SceneManager.getInstance().exit();
             }
         });
-
-        /*quitButton.setAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Platform.exit();
-            }
-        });*/
 
         addToScene(gameButton1P.getButton());
         addToScene(gameButton2P.getButton());

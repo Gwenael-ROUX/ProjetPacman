@@ -5,15 +5,12 @@ import gameplay.LevelGenerator;
 import gameplay.model.GameModel;
 import gameplay.Score;
 import gameplay.events.EventChangeLevel;
-import javafx.scene.Parent;
-import javafx.scene.image.ImageView;
 import moteur.controller.GeneralKeyboardController;
 import moteur.controller.KeyboardController;
 import moteur.core_kernel.*;
 import moteur.core_kernel.Map;
 import moteur.sound.SoundManager;
 import moteur.ui.*;
-
 import java.util.*;
 import java.util.List;
 
@@ -85,7 +82,8 @@ public class GameViewController implements SceneController {
     @Override
     public void update(Map map) {
         for (int i = 0; i < gameView.getChildren().size(); i++) {
-            if (gameView.getChildren().get(i) instanceof ImageView && ((ImageView) gameView.getChildren().get(i)).getImage() == null)
+            //if (gameView.getChildren().get(i) instanceof ImageView && ((ImageView) gameView.getChildren().get(i)).getImage() == null)
+            if (gameView.getChildren().get(i) == null)
                 gameView.getChildren().remove(gameView.getChildren().get(i));
         }
         updateUI();
@@ -137,7 +135,7 @@ public class GameViewController implements SceneController {
     }
 
     @Override
-    public Parent getView() {
+    public ViewFX getView() {
         return gameView;
     }
 

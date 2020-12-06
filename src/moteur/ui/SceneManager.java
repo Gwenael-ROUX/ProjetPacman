@@ -1,12 +1,10 @@
 package moteur.ui;
 
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import moteur.core_kernel.Map;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SceneManager {
     private Stage stage;
@@ -60,5 +58,9 @@ public class SceneManager {
 
     public Stage getStage() {
         return stage;
+    }
+
+    public void exit(){
+        Platform.exit();
     }
 }

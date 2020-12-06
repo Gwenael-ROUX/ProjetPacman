@@ -24,12 +24,6 @@ public class ControlesView extends ViewFX {
             }
         });
 
-        /*retour.setAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneManager.getInstance().setRoot(new MenuView(getHeightScene(), getWidthScene()));
-            }
-        });*/
         LabelUI labelTitre = new LabelUI("Controle", getWidthScene() * 0.4, 9);
         labelTitre.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),15);
         labelTitre.setColor(Color.WHITE);
