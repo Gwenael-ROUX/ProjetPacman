@@ -1,31 +1,27 @@
 package gameplay;
 
-import java.io.*;
+import java.util.prefs.Preferences;
 
+/**
+ * Classe permettant de gerer le meilleur score
+ */
 public class Score {
 
-    private static final String SCOREFILE = "Ressources/Score/score.txt";
+    private final Preferences preferences = Preferences.userRoot().node(Score.class.getName());
 
-
-    public static String getScorefile(){
-        String score = "";
-        try {
-            InputStream inputStream = new FileInputStream(SCOREFILE);
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            score = bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return  score;
+    /**
+     * récupère le meilleur score
+     * @return score
+     */
+    public String getScorefile(){
+        return preferences.get("Score", "0");
     }
 
-    public static void setScorefile(String score) throws IOException {
-
-        File file = new File(SCOREFILE);
-        FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
-        BufferedWriter bw = new BufferedWriter(fileWriter);
-        bw.write(score);
-        bw.close();
+    /**
+     * écrit le meilleur score localment.
+     * @param score
+     */
+    public void setScorefile(String score)  {
+        preferences.put("Score",score);
     }
 }

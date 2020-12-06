@@ -2,46 +2,47 @@ package moteur.core_kernel;
 
 
 import moteur.physics.Position;
-import moteur.ui.BuildSceneGame;
+import moteur.ui.SceneManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe de controle global du jeu
+ * Controle la scene, le manager d'events, les entity, les positions des entity
+ */
 public class GameManager {
     private Map map;
     private EventManager eventManager;
     private List<Entity> entities;
     private List<Position> entitiesPosition;
-    private BuildSceneGame buildSceneGame;
-    private boolean breakUpdate;
 
     public GameManager(Map map){
         this.map = map;
         eventManager = EventManager.getEventManager();
         this.entities = new ArrayList<>();
         this.entitiesPosition = new ArrayList<>();
-        buildSceneGame = new BuildSceneGame();
-        buildSceneGame.build(map);
-        breakUpdate = false;
     }
 
-    public void update(){
-        breakUpdate = false;
+    /**
+     * fonction d'appel a chaque frame
+     */
+    public void update() throws IOException {
+        updateEvents();
 
         updateListEntities();
+        updateMovesAndListener();
 
-        if(! breakUpdate)
-            updateEvents();
+        updateListEntities();
+        updateEntities();
 
-        if(! breakUpdate)
-            updateMovesAndListener();
-
-        if(! breakUpdate)
-            updateEntities();
-
-        buildSceneGame.update();
+        SceneManager.getInstance().update(map);
     }
 
+    /**
+     * met a jour la liste avec toutes les entity presentent en jeu
+     */
     private void updateListEntities(){
         entities.clear();
         entitiesPosition.clear();
@@ -59,10 +60,16 @@ public class GameManager {
         }
     }
 
-    private void updateEvents(){
+    /**
+     * appel du manager d'event par frame
+     */
+    private void updateEvents() throws IOException {
         eventManager.manage();
     }
 
+    /**
+     * update des components de chaque entity
+     */
     private void updateMovesAndListener(){
         for(int i = 0; i < entities.size()-1; i++){
             Entity entity1 = entities.get(i);
@@ -84,6 +91,9 @@ public class GameManager {
         }
     }
 
+    /**
+     * Manage l'appel des fonction update de chaque entity dans la scene
+     */
     private void updateEntities(){
         for(int i = 0; i < entities.size(); i++){
             if(entities.get(i) != null){
@@ -107,11 +117,7 @@ public class GameManager {
         return map;
     }
 
-    public BuildSceneGame getBuildSceneGame() {
-        return buildSceneGame;
-    }
-
-    public void breakCurrentUpdate(){
-        breakUpdate = true;
+    public void setMap(Map map) {
+        this.map = map;
     }
 }

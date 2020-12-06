@@ -1,14 +1,19 @@
 package moteur.graphique;
 
 import javafx.scene.image.ImageView;
-import moteur.Component;
+import moteur.core_kernel.Component;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Timer;
 import javafx.scene.image.Image;
 
+/**
+ * Classe correspondant au composant graphique d'une entity
+ */
 public class GraphicsComponent implements Component {
     private ImageView currentImage;
+    // Définis dans les builders si c'est un objet animé
     private AnimationManager animation;
+    // Correspondant au numéro de la couche
     private Integer layer;
     private double height;
     private double width;
@@ -35,14 +40,14 @@ public class GraphicsComponent implements Component {
         if (chemin == null)
             currentImage = null;
         else
-            this.currentImage = new ImageView(new Image(AnimationManager.class.getResourceAsStream(chemin)));
+            this.currentImage = new ImageView(new Image(GraphicsComponent.class.getResourceAsStream(chemin)));
     }
 
     public ImageView getCurrentImage() {
         return currentImage;
     }
 
-    public AnimationManager getAnimation() {
+    public AnimationManager getAnimationManager() {
         return animation;
     }
 
@@ -64,7 +69,7 @@ public class GraphicsComponent implements Component {
         return width;
     }
 
-    public void setAnimation(AnimationManager animation) {
+    public void setAnimationManager(AnimationManager animation) {
         this.animation = animation;
     }
 

@@ -8,6 +8,9 @@ import gameplay.physics.Displacement;
 
 import java.util.List;
 
+/**
+ * Classe définissant l'ia de plus court chemin
+ */
 public class ShortestPathAI implements AI {
     private BasicPathFinder pathFinder;
     private Entity origin;
@@ -17,13 +20,6 @@ public class ShortestPathAI implements AI {
     public ShortestPathAI(){
         lastDisplacement = Displacement.NOTHING;
     }
-
-    /*public ShortestPathAI(Entity origin, Entity target, BasicPathFinder pathFinder){
-        this.origin = origin;
-        this.target = target;
-        this.pathFinder = pathFinder;
-        lastDisplacement = Displacement.NOTHING;
-    }*/
 
     public void setOrigin(Entity origin) {
         this.origin = origin;
@@ -37,16 +33,17 @@ public class ShortestPathAI implements AI {
         this.pathFinder = pathFinder;
     }
 
+    /**
+     * Fonction permettant de definir la prochaine position de l'entity passer en paramètre
+     * @param entity
+     */
     @Override
     public void update(Entity entity){
 
         if(pathFinder == null) return;
+        if(! canChangeDirection()) return;
 
         Position position_origin = pathFinder.getMap().getPositionEntity(origin);
-        if(! canChangeDirection()){
-            return;
-        }
-
         List<Position> listPositions = pathFinder.pathFinding(origin, target);
         if(listPositions.size() == 0){
             entity.setOrientation(lastDisplacement.orientation);
@@ -54,7 +51,7 @@ public class ShortestPathAI implements AI {
         }
 
         Position nextPosition = (listPositions.size() == 1) ?
-                listPositions.get(listPositions.size()-1) : listPositions.get(listPositions.size()-2);
+                listPositions.get(0) : listPositions.get(listPositions.size()-2);
         Displacement result;
         if(nextPosition.getX() != position_origin.getX()){
             if(nextPosition.getX() > position_origin.getX())
@@ -72,16 +69,15 @@ public class ShortestPathAI implements AI {
                 result = Displacement.NOTHING;
         }
 
-        //pathFinder.getMap().showDistance();
-        //System.out.println(listPositions);
-        //System.out.println("Position : " + nextPosition.getX() + ", " + nextPosition.getY());
-
         lastDisplacement = result;
-
         if(result != Displacement.NOTHING)
             entity.setOrientation(result.orientation);
     }
 
+    /**
+     * fonction permettant de detecter si le changement de direction est possible
+     * @return
+     */
     private boolean canChangeDirection(){
         return (origin.getPosition().getX()%pathFinder.getMap().getMap().getDimCellWdt() == 0)
             && (origin.getPosition().getY()%pathFinder.getMap().getMap().getDimCellHgt() == 0);

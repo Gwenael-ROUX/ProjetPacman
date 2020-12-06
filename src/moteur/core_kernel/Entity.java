@@ -5,6 +5,9 @@ import moteur.physics.Position;
 import moteur.controller.ControllerComponent;
 import moteur.graphique.GraphicsComponent;
 
+/**
+ * Classe des objets de jeu
+ */
 public class Entity {
     private Position position;
     private String name;
@@ -16,6 +19,9 @@ public class Entity {
     public Entity() {
     }
 
+    /**
+     * mouvement d'entity par Input Controlleur
+     */
     public void move(){
         if(controllerComponent != null)
             controllerComponent.update(this);
@@ -23,6 +29,10 @@ public class Entity {
             physicsComponent.update(this);
     }
 
+    /**
+     * Fonction appelee a chaque frame
+     * update de l'affichage de l'entity
+     */
     public void update(){
         if (graphicsComponent != null)
             graphicsComponent.update(this);

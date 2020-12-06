@@ -1,9 +1,13 @@
 package gameplay;
 
+/**
+ * Definition des noms des entites
+ */
 public enum EntityType {
     WALL("wall"),
     GOMME("gomme"),
-    CERISE("cerise"),
+    CADEAU("cadeau"),
+    TREE("tree"),
     PACMAN("pacman"),
     GHOST("ghost");
 

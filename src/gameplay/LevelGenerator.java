@@ -1,10 +1,11 @@
 package gameplay;
 
+import gameplay.ai.RandomShortestPathAI;
 import gameplay.ai.ShortestPathAI;
+import gameplay.ai.SmartShortestPathAI;
 import gameplay.builder.*;
 import gameplay.builder.object.*;
 import gameplay.builder.ghost.*;
-import javafx.geometry.Pos;
 import moteur.ai.BasicPathFinder;
 import moteur.core_kernel.builder.*;
 import moteur.ai.MapRepresentation;
@@ -28,17 +29,31 @@ public class LevelGenerator {
     private double dimCaseLong;
     private double dimCaseLarg;
     private Map map;
-    private BasicPathFinder basicPathFinder;
     private ShortestPathAI shortestPathAI;
+    private RandomShortestPathAI randomShortestPathAI;
+    private SmartShortestPathAI smartShortestPathAI;
     private HashMap<Entity, Position> initPositionEntities;
+    private boolean twoPlayer;
 
-    public LevelGenerator(double v1, double v2, String chemin) {
+    /**
+     * Classe permettant de generer un niveau
+     * @param v1 Longueur du niveau
+     * @param v2 Largeur du niveau
+     * @param chemin Chemin d'acces du fichier du niveau
+     * @param twoPlayer Savoir si le jeu est en un ou deux joueurs
+     */
+    public LevelGenerator(double v1, double v2, String chemin, boolean twoPlayer) {
         this.v1 = v1;
         this.v2 = v2;
+        this.twoPlayer = twoPlayer;
         initPositionEntities = new HashMap<>();
-        basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CERISE.name));
+        BasicPathFinder basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CADEAU.name, EntityType.GHOST.name, EntityType.TREE.name));
         shortestPathAI = new ShortestPathAI();
+        randomShortestPathAI = new RandomShortestPathAI();
+        smartShortestPathAI = new SmartShortestPathAI();
         shortestPathAI.setPathFinder(basicPathFinder);
+        randomShortestPathAI.setPathFinder(basicPathFinder);
+        smartShortestPathAI.setPathFinder(basicPathFinder);
         map = new Map(new Position(0,0), new Position(v1, v2));
 
         readFile(chemin);
@@ -49,6 +64,10 @@ public class LevelGenerator {
         basicPathFinder.setMap(mapRepresentation);
     }
 
+    /**
+     * Lit le fichier du niveau et initialise la map du jeu
+     * @param chemin Chemin du fichier du niveau
+     */
     public void readFile(String chemin){
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(LevelGenerator.class.getResourceAsStream(chemin)));
@@ -73,6 +92,11 @@ public class LevelGenerator {
         }
     }
 
+    /**
+     * Parcours le tableau du niveau du jeu et cree l'entite correspondante en initialisant la map du jeu
+     * @param tab Ligne du tableau
+     * @param i Numero de la ligne du tableau
+     */
     private void putEntity(String[] tab, int i) {
         int j = 0;
         double posY = (dimCaseLarg * i);
@@ -96,6 +120,8 @@ public class LevelGenerator {
                     initPositionEntities.put(pacman, new Position(j,i));
 
                     shortestPathAI.setTarget(pacman);
+                    randomShortestPathAI.setTarget(pacman);
+                    smartShortestPathAI.setTarget(pacman);
                     break;
                 case "r" :
                     builder = new GhostRedBuilder(shortestPathAI);
@@ -107,31 +133,40 @@ public class LevelGenerator {
                     shortestPathAI.setOrigin(e);
                     break;
                 case "g" :
-                    builder = new GhostGreenBuilder();
+                    builder = new GhostGreenBuilder(map, twoPlayer);
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     ghost = builder.getEntity();
                     initPositionEntities.put(ghost, new Position(j,i));
                     break;
                 case "y" :
-                    builder = new GhostYellowBuilder();
+                    builder = new GhostYellowBuilder(smartShortestPathAI);
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     initPositionEntities.put(builder.getEntity(), new Position(j,i));
+
+                    smartShortestPathAI.setOrigin(builder.getEntity());
                     break;
                 case "b" :
-                    builder = new GhostBlueBuilder();
+                    builder = new GhostBlueBuilder(randomShortestPathAI);
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     initPositionEntities.put(builder.getEntity(), new Position(j,i));
+
+                    randomShortestPathAI.setOrigin(builder.getEntity());
                     break;
                 case "c" :
-                    builder = new CeriseBuilder();
+                    builder = new CadeauBuilder();
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     break;
                 case "." :
                     builder = new GommeBuilder();
+                    director.constructEntity(builder, new Position(posX ,posY));
+                    setMatrix(i,j, builder.getEntity());
+                    break;
+                case "s" :
+                    builder = new XMasTreeBuilder();
                     director.constructEntity(builder, new Position(posX ,posY));
                     setMatrix(i,j, builder.getEntity());
                     break;

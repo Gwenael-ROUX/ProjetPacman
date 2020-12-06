@@ -5,14 +5,27 @@ import gameplay.ai.RandomAI;
 import gameplay.controller.GhostKeyboardController;
 import gameplay.physics.Displacement;
 import gameplay.physics.GhostPhysics;
+import moteur.core_kernel.Map;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant au fantome vert
+ */
 public class GhostGreenBuilder extends EntityBuilder {
+    private Map map;
+    private boolean isPlayer2;
+
+    public GhostGreenBuilder(Map map, boolean isPlayer2){
+        this.map = map;
+        this.isPlayer2 = isPlayer2;
+    }
+
     @Override
     public void buildPosition(Position position) {
+        // Paramètrage de l'IA
         entity.setPosition(position);
     }
 
@@ -28,8 +41,10 @@ public class GhostGreenBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
-        //entity.setControllerComponent(new RandomAI());
-        entity.setControllerComponent(new GhostKeyboardController());
+        if (isPlayer2)
+            entity.setControllerComponent(new GhostKeyboardController(map));
+        else
+            entity.setControllerComponent(new RandomAI());
     }
 
     @Override

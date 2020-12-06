@@ -5,9 +5,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 
+/**
+ * Classe correspondant à un son joué, c'est un thread
+ */
 public class Sound extends Thread {
     private AudioListener listener = new AudioListener();
+    // Attributs permettant de jouer le son
     private Clip clip;
+    // Définis si on joue le son en boucle ou non
     private boolean isLoop = false;
     private String name;
     private Long start;
@@ -16,6 +21,7 @@ public class Sound extends Thread {
         super();
         this.name = name;
         this.start = start;
+        // initialisation du clip
         try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Sound.class.getResource("/Sound/" + soundName))) {
             this.clip = AudioSystem.getClip();
             this.clip.addLineListener(listener);
@@ -25,6 +31,9 @@ public class Sound extends Thread {
         }
     }
 
+    /**
+     * Fonction permettant de jouer un son
+     */
     private void play() {
         try {
             if (isLoop)
@@ -35,11 +44,16 @@ public class Sound extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            // On ferme le son
             clip.close();
+            // On le retire de la liste
             SoundManager.getInstance().removeSound(this.name);
         }
     }
 
+    /**
+     * Fonction permettant de stopper un son
+     */
     public synchronized void stopSound() {
         clip.setMicrosecondPosition(clip.getMicrosecondLength());
         if (isLoop)
@@ -51,6 +65,10 @@ public class Sound extends Thread {
         return (float) Math.pow(10f, gainControl.getValue() / 20f);
     }
 
+    /**
+     * définis le volume du son
+     * @param volume
+     */
     public void setVolume(float volume) {
         if (volume < 0f || volume > 1f)
             throw new IllegalArgumentException("Volume not valid: " + volume);

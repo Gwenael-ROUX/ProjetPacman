@@ -1,34 +1,35 @@
 package moteur.core_kernel;
 
+import java.io.IOException;
 
-import moteur.controller.GeneralKeyboardController;
-import moteur.controller.KeyboardController;
-import moteur.ui.SceneManager2;
+
+import moteur.ui.SceneController;
+import moteur.ui.SceneManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-
+/**
+ * Classe pour la boucle principale du jeu
+ */
 public class GameLoop extends Application {
 
     private static double time;
     private static float timeMultiplicator = 1f;
     private static String title = "";
-    private static long startTimeModifMult;
     private static AnimationTimer animationTimer;
-    private static GeneralKeyboardController keyboardController;
     private static GameManager gameManager;
+    private static SceneController sceneController;
 
-
+    /**
+     * Fonction d'initialisation au lancement
+     * @param stage scene actuellement chargée
+     */
     @Override
-    public void start(Stage stage) throws Exception {
-        if(gameManager == null) return;
-        //stage.setResizable(false);
-        SceneManager2 sceneManager2 = new SceneManager2(stage, title);
-        sceneManager2.setRoot(gameManager.getBuildSceneGame().getSceneGame());
-
-        if(keyboardController != null)
-            sceneManager2.getStage().getScene().setOnKeyPressed(keyboardController.getEventHandler());
+    public void start(Stage stage) {
+        SceneManager.getInstance(stage);
+        SceneManager.getInstance().setSceneView(sceneController);
+        SceneManager.getInstance().setTitle(title);
 
         final long startNanoTime = System.nanoTime();
 
@@ -38,17 +39,29 @@ public class GameLoop extends Application {
             {
                 time = (currentNanoTime - startNanoTime) * 10e-10 * timeMultiplicator;
                 Timer.getInstance().setTime(time);
-
-                gameManager.update();
+                if (gameManager != null) {
+                    try {
+                        gameManager.update();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         };
         animationTimer.start();
 
-         sceneManager2.show(gameManager.getBuildSceneGame().getSceneGame());
+         SceneManager.getInstance().show();
     }
 
+    /**
+     * Apres initialisation, lancement du jeu
+     */
     public static void startGame(){
         launch();
+    }
+
+    public static void setAnimationTimer(AnimationTimer animationTimer) {
+        GameLoop.animationTimer = animationTimer;
     }
 
     public static void setTimeAnimation(float timeModification){
@@ -63,11 +76,15 @@ public class GameLoop extends Application {
         animationTimer.stop();
     }
 
+    public static void startAnimationTimer() {
+        animationTimer.start();
+    }
+
     public static void setGameManager(GameManager gameManager){
         GameLoop.gameManager = gameManager;
     }
 
-    public static void setKeyboardController(GeneralKeyboardController keyboardController){
-        GameLoop.keyboardController = keyboardController;
+    public static void setSceneController(SceneController sceneController) {
+        GameLoop.sceneController = sceneController;
     }
 }

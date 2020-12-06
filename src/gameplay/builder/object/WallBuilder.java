@@ -2,12 +2,15 @@ package gameplay.builder.object;
 
 import gameplay.EntityType;
 import gameplay.physics.Displacement;
-import gameplay.physics.WallPhysics;
+import gameplay.physics.ObjectPhysics;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant aux murs
+ */
 public class WallBuilder extends EntityBuilder {
     @Override
     public void buildPosition(Position position) {
@@ -29,11 +32,12 @@ public class WallBuilder extends EntityBuilder {
         Position position1 = new Position(entity.getPosition().getX(), entity.getPosition().getY());
         Position position2 = new Position(entity.getPosition().getX() + dimLong, entity.getPosition().getY() + dimLarg);
 
-        entity.setPhysicsComponent(new WallPhysics(new BoxCollider(position1, position2)));
+        entity.setPhysicsComponent(new ObjectPhysics(new BoxCollider(position1, position2)));
     }
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
+        // Initialisation du composant graphique
         GraphicsComponent graphicsComponent = new GraphicsComponent(3);
         graphicsComponent.setImage("/Image/object/mur.png");
         graphicsComponent.setHeight(dimLarg);

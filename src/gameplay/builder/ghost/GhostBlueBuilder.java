@@ -2,14 +2,26 @@ package gameplay.builder.ghost;
 
 import gameplay.EntityType;
 import gameplay.ai.RandomAI;
+import gameplay.ai.RandomShortestPathAI;
+import gameplay.ai.ShortestPathAI;
 import gameplay.physics.Displacement;
 import gameplay.physics.GhostPhysics;
+import moteur.ai.AI;
 import moteur.core_kernel.builder.EntityBuilder;
 import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
+/**
+ * Builder coresspondant au fantome bleu
+ */
 public class GhostBlueBuilder extends EntityBuilder {
+    private AI ai;
+
+    public GhostBlueBuilder(RandomShortestPathAI randomShortestPathAI) {
+        ai = randomShortestPathAI;
+    }
+
     @Override
     public void buildPosition(Position position) {
         entity.setPosition(position);
@@ -27,7 +39,7 @@ public class GhostBlueBuilder extends EntityBuilder {
 
     @Override
     public void buildContComp() {
-        entity.setControllerComponent(new RandomAI());
+        entity.setControllerComponent(ai);
     }
 
     @Override
@@ -40,6 +52,7 @@ public class GhostBlueBuilder extends EntityBuilder {
 
     @Override
     public void buildGraphComp(double dimLong, double dimLarg) {
+        // Initialisation du composant graphique
         GraphicsComponent graphicsComponent = new GraphicsComponent(2);
         graphicsComponent.setImage("/Image/ghost/GhostBlue.png");
         graphicsComponent.setHeight(dimLarg);
