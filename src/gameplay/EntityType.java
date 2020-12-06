@@ -3,7 +3,7 @@ package gameplay;
 public enum EntityType {
     WALL("wall"),
     GOMME("gomme"),
-    CERISE("cerise"),
+    CADEAU("cadeau"),
     TREE("tree"),
     PACMAN("pacman"),
     GHOST("ghost");

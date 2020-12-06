@@ -48,7 +48,7 @@ public class PacmanPhysics extends PhysicsComponent {
             updatePositionEntityPosition(entity_owned, entity);
         } else if(entity.getName().equals(EntityType.GOMME.name)){
             EventManager.getEventManager().addEvent(new EventEatGum(pacmanModel, entity, map));
-        } else if(entity.getName().equals(EntityType.CERISE.name)){
+        } else if(entity.getName().equals(EntityType.CADEAU.name)){
             EventManager.getEventManager().addEvent(new EventEatCherry(pacmanModel, entity, map));
         } else if(entity.getName().equals(EntityType.TREE.name)){
             EventManager.getEventManager().addEvent(new EventEatXMassTree(pacmanModel, entity, entity_owned, map));

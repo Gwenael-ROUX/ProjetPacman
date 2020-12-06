@@ -8,7 +8,7 @@ import moteur.graphique.GraphicsComponent;
 import moteur.physics.BoxCollider;
 import moteur.physics.Position;
 
-public class CeriseBuilder extends EntityBuilder {
+public class CadeauBuilder extends EntityBuilder {
     @Override
     public void buildPosition(Position position) {
         entity.setPosition(position);
@@ -16,7 +16,7 @@ public class CeriseBuilder extends EntityBuilder {
 
     @Override
     public void buildName() {
-        entity.setName(EntityType.CERISE.name);
+        entity.setName(EntityType.CADEAU.name);
     }
 
     @Override

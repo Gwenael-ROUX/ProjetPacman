@@ -104,6 +104,10 @@ public class GameViewController implements SceneController {
         }
     }
 
+    /**
+     * Permet de savoir s'il reste des gommes dans le niveau
+     * @return vrai s'il en reste et faux sinon
+     */
     private boolean isGumsExist() {
         for (List<Entity>[] ent : gameManager.getMap().getMatrix()) {
             for (List<Entity> le : ent) {
@@ -118,6 +122,9 @@ public class GameViewController implements SceneController {
         return false;
     }
 
+    /**
+     * Initialise la partie UI du score et de la vie
+     */
     public void initUI(){
         scoreUI.setColor(Color.WHITE);
         scoreUI.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),25);
@@ -132,6 +139,10 @@ public class GameViewController implements SceneController {
         gameView.addToScene(vieUI.getLabel());
         gameView.addToScene(bestScore.getLabel());
     }
+
+    /**
+     * Met à jour l'affichage du score et de la vie
+     */
     public void updateUI(){
         scoreUI.update("Score: " + GameModel.getInstance().getPacmanModel().getScore());
         vieUI.update("Vie: " + GameModel.getInstance().getPacmanModel().getPV());
@@ -150,15 +161,21 @@ public class GameViewController implements SceneController {
         return gameView;
     }
 
+    /**
+     * Affiche au milieu de la scene un texte
+     * @param name contenu du texte
+     */
     public void displayMainTitle(String name) {
-        LabelUI labelChangeLvl = new LabelUI(name, gameView.getHeightScene() * 0.1, gameView.getHeightScene() * 0.5);
+        LabelUI labelChangeLvl = new LabelUI(name, gameView.getHeightScene() * 0.25, gameView.getHeightScene() * 0.5);
         labelChangeLvl.changeFont(getClass().getResourceAsStream("/Font/ARCADE_N.TTF"),20);
         labelChangeLvl.setColor(Color.YELLOW);
         gameView.addToScene(labelChangeLvl.getLabel());
     }
 
+    /**
+     *
+     */
     public void getBackMenuWin() {
-        displayMainTitle("Niveaux termines");
         GameModel.getInstance().resetPacMan();
         SceneManager.getInstance().setSceneView(new MenuController());
         SoundManager.getInstance().stopAllSound();

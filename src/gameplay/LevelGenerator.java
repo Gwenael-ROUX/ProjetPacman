@@ -40,7 +40,7 @@ public class LevelGenerator {
         this.v2 = v2;
         this.twoPlayer = twoPlayer;
         initPositionEntities = new HashMap<>();
-        BasicPathFinder basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CERISE.name));
+        BasicPathFinder basicPathFinder = new BasicPathFinder(Arrays.asList(EntityType.GOMME.name, EntityType.CADEAU.name, EntityType.GHOST.name, EntityType.TREE.name));
         shortestPathAI = new ShortestPathAI();
         randomShortestPathAI = new RandomShortestPathAI();
         smartShortestPathAI = new SmartShortestPathAI();
@@ -140,7 +140,7 @@ public class LevelGenerator {
                     randomShortestPathAI.setOrigin(builder.getEntity());
                     break;
                 case "c" :
-                    builder = new CeriseBuilder();
+                    builder = new CadeauBuilder();
                     director.constructEntity(builder, new Position(posX,posY));
                     setMatrix(i,j, builder.getEntity());
                     break;

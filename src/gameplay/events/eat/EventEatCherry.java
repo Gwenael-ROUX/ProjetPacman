@@ -8,7 +8,7 @@ import moteur.physics.Position;
 import moteur.sound.SoundManager;
 
 /**
- * Event gerant l'action manger une cerise (cadeau)
+ * Event gerant l'action manger un cadeau (cadeau)
  */
 public class EventEatCherry extends Event {
     private PacmanModel pacmanModel;
