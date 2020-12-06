@@ -42,7 +42,7 @@ public class MenuView extends ViewFX {
         gameButton1P.setAction(new SceneHandler() {
             @Override
             public void handle() {
-                GameViewController gameViewController = new GameViewController(6,1, false);
+                GameViewController gameViewController = new GameViewController(6,6, false);
                 SceneManager.getInstance().setSceneView(gameViewController);
             }
         });

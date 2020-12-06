@@ -7,7 +7,7 @@ import gameplay.scene.MenuController;
 public class PacmanLaunch {
 
     public static void main(String[] args) {
-        GameLoop.setTitle("Pacman");
+        GameLoop.setTitle("PacNoël");
         MenuController menuController = new MenuController();
         GameLoop.setSceneController(menuController);
         GameLoop.startGame();

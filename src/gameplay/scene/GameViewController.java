@@ -133,7 +133,7 @@ public class GameViewController implements SceneController {
         vieUI.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),25);
 
         bestScore.setColor(Color.WHITE);
-        bestScore.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),25);
+        bestScore.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),22);
 
         gameView.addToScene(scoreUI.getLabel());
         gameView.addToScene(vieUI.getLabel());
@@ -204,7 +204,7 @@ public class GameViewController implements SceneController {
     }
 
     public void setBestScore(){
-        bestScore =new LabelUI("bestScore: " + score.getScorefile(),200,465);
+        bestScore =new LabelUI("bestScore: " + score.getScorefile(),180,470);
         if (sessionBestScore > Integer.parseInt(score.getScorefile())){
             bestScore.update("bestScore: " + sessionBestScore);
         }
