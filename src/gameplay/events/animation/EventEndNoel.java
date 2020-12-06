@@ -15,6 +15,7 @@ public class EventEndNoel extends Event {
 
     @Override
     public void handle() {
+        SoundManager.getInstance().stopAllSound();
         pacmanModel.setNoel(false);
     }
 }

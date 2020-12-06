@@ -12,6 +12,7 @@ import moteur.core_kernel.Map;
 import moteur.physics.Collider;
 import moteur.physics.PhysicsComponent;
 import moteur.physics.Position;
+import moteur.sound.SoundManager;
 import moteur.ui.SceneManager;
 
 public class PacmanPhysics extends PhysicsComponent {
@@ -77,6 +78,7 @@ public class PacmanPhysics extends PhysicsComponent {
                 entity_owned.setOrientation(Displacement.NOTHING.orientation);
             } else {
                 GameModel.getInstance().resetGame();
+                SoundManager.getInstance().addSound("touch.wav", "touch", false, 0.2f, 0L);
             }
         }
     }

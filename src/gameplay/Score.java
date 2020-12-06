@@ -1,35 +1,17 @@
 package gameplay;
 
-import java.io.*;
+import java.util.prefs.Preferences;
 
 public class Score {
 
-    private static final String SCOREFILE = "/Score/score.txt";
-    private static final String SCOREFILE2 = "Ressources/Score/score.txt";
+    private final Preferences preferences = Preferences.userRoot().node(Score.class.getName());
 
 
     public String getScorefile(){
-        String score = "";
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Score.class.getResourceAsStream(SCOREFILE)));
-            score = bufferedReader.readLine();
-            bufferedReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return  score;
+        return preferences.get("Score", "0");
     }
 
     public void setScorefile(String score)  {
-        try {
-            File file = new File(SCOREFILE2);
-            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fileWriter);
-            bw.write(score);
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        preferences.put("Score",score);
     }
 }
