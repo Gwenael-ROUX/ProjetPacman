@@ -17,6 +17,7 @@ public class BoutonUI {
         button.setLayoutY(y);
         button.setLayoutX(x);
         button.setStyle("-fx-background-color: transparent");
+
     }
 
     public Button getButton() {
