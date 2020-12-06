@@ -1,19 +1,20 @@
 package gameplay.physics;
 
 import gameplay.EntityType;
+import gameplay.events.eat.EventEatCherry;
+import gameplay.events.eat.EventEatGhost;
+import gameplay.events.eat.EventEatGum;
+import gameplay.events.eat.EventEatXMassTree;
 import gameplay.model.GameModel;
-import gameplay.events.*;
-import gameplay.events.animation.EventPacmanDie;
+import gameplay.events.mort.EventPacmanDie;
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.EventManager;
-import moteur.core_kernel.GameManager;
 import moteur.core_kernel.Map;
 import moteur.physics.Collider;
 import moteur.physics.PhysicsComponent;
 import moteur.physics.Position;
 import moteur.sound.SoundManager;
-import moteur.ui.SceneManager;
 
 /**
  * Classe du composant physique de pacman

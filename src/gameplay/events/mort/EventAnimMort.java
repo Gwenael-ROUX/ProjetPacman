@@ -1,4 +1,4 @@
-package gameplay.events.animation;
+package gameplay.events.mort;
 
 import gameplay.model.GameModel;
 import moteur.core_kernel.Entity;
@@ -8,6 +8,9 @@ import moteur.sound.SoundManager;
 import gameplay.scene.MenuController;
 import moteur.ui.SceneManager;
 
+/**
+ * Event rebootant le jeu aprés la mort
+ */
 public class EventAnimMort extends Event {
     private Entity entity_owned;
     protected EventAnimMort(Entity entity_owned, Entity entity, int time) {

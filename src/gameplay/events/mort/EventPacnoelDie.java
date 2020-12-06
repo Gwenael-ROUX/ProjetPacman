@@ -1,9 +1,12 @@
-package gameplay.events.animation;
+package gameplay.events.mort;
 
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.core_kernel.EventManager;
 
+/**
+ * Event permettant d'afficher l'image du panoel mort
+ */
 public class EventPacnoelDie extends Event {
     private Entity entity_owned;
 

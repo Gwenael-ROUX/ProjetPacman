@@ -1,4 +1,4 @@
-package gameplay.events;
+package gameplay.events.eat;
 
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
@@ -7,6 +7,9 @@ import moteur.core_kernel.Map;
 import moteur.physics.Position;
 import moteur.sound.SoundManager;
 
+/**
+ * Event gerant l'action manger une cerise (cadeau)
+ */
 public class EventEatCherry extends Event {
     private PacmanModel pacmanModel;
     private Map map;

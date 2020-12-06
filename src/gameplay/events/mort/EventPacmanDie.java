@@ -1,12 +1,14 @@
-package gameplay.events.animation;
+package gameplay.events.mort;
 
 import gameplay.Score;
 import gameplay.model.PacmanModel;
-import gameplay.scene.GameView;
 import gameplay.scene.GameViewController;
 import moteur.core_kernel.*;
 import moteur.sound.SoundManager;
 
+/**
+ * Event declenchant l'animation de mort et definis un nouveau hight score si le record est battus
+ */
 public class EventPacmanDie extends Event {
     private PacmanModel pacmanModel;
     private Map map;

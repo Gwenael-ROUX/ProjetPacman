@@ -1,10 +1,13 @@
-package gameplay.events;
+package gameplay.events.eat;
 
 import gameplay.model.PacmanModel;
 import moteur.core_kernel.Entity;
 import moteur.core_kernel.Event;
 import moteur.sound.SoundManager;
 
+/**
+ * Event gerant l'action manger un fantome
+ */
 public class EventEatGhost extends Event {
     private PacmanModel pacmanModel;
 
