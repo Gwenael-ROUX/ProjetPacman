@@ -25,23 +25,23 @@ public class MenuView extends ViewFX {
     public void init() {
         setBackgroundScene("/Image/Menu/PacNoel_menu.png");
 
-        gameButton1P = new BoutonUI("Start Game -1P",getPrefWidth() * 0.27,getPrefHeight()/2+20);
+        gameButton1P = new BoutonUI("Start Game -1P",getPrefWidth() * 0.27,getPrefHeight() * 0.3);
         gameButton1P.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),30);
         gameButton1P.setColor(Color.WHITE);
 
-        gameButton2P = new BoutonUI("Start Game -2P",getPrefWidth() * 0.27,getPrefHeight()/2+45);
+        gameButton2P = new BoutonUI("Start Game -2P",getPrefWidth() * 0.27,getPrefHeight() * 0.4);
         gameButton2P.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),30);
         gameButton2P.setColor(Color.WHITE);
 
-        controls = new BoutonUI("Controle",getPrefWidth() * 0.27,getPrefHeight()/2+70);
+        controls = new BoutonUI("Controle",getPrefWidth() * 0.27,getPrefHeight() *0.5);
         controls.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),30);
         controls.setColor(Color.WHITE);
 
-        helpButton= new BoutonUI("Aide",getPrefWidth() * 0.27,getPrefHeight()/2+95);
+        helpButton= new BoutonUI("Aide",getPrefWidth() * 0.27,getPrefHeight() * 0.6);
         helpButton.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),30);
         helpButton.setColor(Color.WHITE);
 
-        quitButton= new BoutonUI("Quitter",getPrefWidth() * 0.27,getPrefHeight()/2+120);
+        quitButton= new BoutonUI("Quitter",getPrefWidth() * 0.27,getPrefHeight() * 0.7);
         quitButton.changeFont(getClass().getResourceAsStream("/Font/CurlzMT.ttf"),30);
         quitButton.setColor(Color.WHITE);
 
